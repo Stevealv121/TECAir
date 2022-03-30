@@ -52,14 +52,37 @@
                             <br>
                         </div>
                         <div class="student">
-                            <select class="form-select" aria-label="Are you a student?">
+                            <select id="select" class="form-select" aria-label="Are you a student?"
+                                (change)="showStudentForm()">
                                 <option selected>Are you a student?</option>
-                                <option value="1">Yes</option>
-                                <option value="2">No</option>
+                                <option value="1" id="Yes">Yes, I am a student.</option>
+                                <option value="2" id="No">No, I am not a student.</option>
                             </select>
                         </div>
                         <div class="br">
                             <br>
+                        </div>
+                        <div class="student" [style.display]="isVisible ? 'block' : 'none'">
+                            <div class="form-group" id="hide">
+                                <div class="pos-r">
+                                    <input id="form-college" type="text" name="form-college" placeholder="College"
+                                        class="form-college form-control">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="br" id="hide">
+                                <br>
+                            </div>
+                            <div class="form-group" id="hide">
+                                <div class="pos-r">
+                                    <input id="form-id-student" type="text" name="form-id-student"
+                                        placeholder="Student card" class="form-id-student form-control">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="br" id="hide">
+                                <br>
+                            </div>
                         </div>
                         <div class="form-group">
                             <button type="submit"
