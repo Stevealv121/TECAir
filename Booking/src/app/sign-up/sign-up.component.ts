@@ -12,10 +12,6 @@ export class SignUpComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    //Make visible the students forms.
-    // $('#select').on('change', function () {
-    //   $(function () { $("#hide").fadeIn(500); });
-    // });
   }
 
   showStudentForm() {
