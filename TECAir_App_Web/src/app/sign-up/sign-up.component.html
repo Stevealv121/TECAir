@@ -52,11 +52,11 @@
                             <br>
                         </div>
                         <div class="student">
-                            <select id="select" class="form-select" aria-label="Are you a student?"
-                                (change)="showStudentForm()">
-                                <option selected>Are you a student?</option>
-                                <option value="1" id="Yes">Yes, I am a student.</option>
-                                <option value="2" id="No">No, I am not a student.</option>
+                            <select id="select" class="form-select" (change)="chooseRole()">
+                                <option selected>Choose your role</option>
+                                <option value="1" id="Client">Client</option>
+                                <option value="2" id="Student">Student</option>
+                                <option value="3" id="Employee">Employee</option>
                             </select>
                         </div>
                         <div class="br">

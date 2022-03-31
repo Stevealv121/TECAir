@@ -14,17 +14,15 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  showStudentForm() {
+  chooseRole() {
 
-    let student = (<HTMLInputElement>document.getElementById('select')).value;
-    console.log(student);
-    if (student == "1") {
+    let role = (<HTMLInputElement>document.getElementById('select')).value;
+    console.log(role);
+    if (role == "2") {
       this.isVisible = true;
-    } else if (student == "2") {
+    } else if (role == "1" || role == "3") {
       this.isVisible = false;
     }
-
-
 
   }
 
