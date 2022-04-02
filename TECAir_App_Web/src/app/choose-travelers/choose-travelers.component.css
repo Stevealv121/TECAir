@@ -1,0 +1,8 @@
+.required {
+    display: inline;
+    color: darkgray;
+}
+
+#trip-card {
+    text-align: center;
+}
