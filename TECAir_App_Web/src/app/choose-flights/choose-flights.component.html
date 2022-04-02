@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row mb-5">
+        <div class="col">
+            <input type="text">
+        </div>
+        <div class="col">
+            <input type="text">
+        </div>
+        <div class="col">
+            <input type="text">
+        </div>
+        <div class="col">
+            <input type="text">
+        </div>
+        <div class="col">
+            <button>Find Flight</button>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <h2>Depart: city,country to city,country</h2>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h5>Flight Info</h5>
+        </div>
+        <div class="col">
+            <h5>Price</h5>
+        </div>
+    </div>
+    <!-- Test -->
+    <div class="card-data" *ngFor="let info of flights">
+        <div class="card">
+            Info
+        </div>
+        <div class="card">
+            Price
+        </div>
+    </div>
+</div>
