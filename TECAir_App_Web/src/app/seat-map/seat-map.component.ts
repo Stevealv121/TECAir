@@ -51,54 +51,70 @@ export class SeatMapComponent implements OnInit {
   pickSeat(i: any, j: any) {
     //console.log("selected.")
     let pos = this.setPos(i, j);
-    //console.log("seatsA:" + this.countSeatsAvailables());
-    console.log("pos i:" + i);
-    console.log("pos j:" + j);
-    console.log("pos: " + pos);
+    // console.log("seatsA:" + this.countSeatsAvailables());
+    // console.log("pos i:" + i);
+    // console.log("pos j:" + j);
+    // console.log("pos: " + pos);
     let seat = document.getElementsByClassName('square') as HTMLCollectionOf<HTMLElement>;
     seat[pos].style.backgroundColor = "#213dad";
 
   }
 
   setPos(i: any, j: any) {
-    //i:2,j:2 -> last
-    //i:2,j:5 -> next
     let seatsOccupied = this.countSeatsUnavailables();
     let col = 6 - seatsOccupied[i];
     let pos = 0;
-    let rows = 35;
-    let row = 0
-    let nj = (col - 1);
-    let seatsAvailables = this.countSeatsAvailables();
+    //let rows = 35;
+    let newJ = this.transformIndex(i, j);
+
+
     for (let x = 0; x < i; x++) {
       pos += col;
     }
-    // for (let y = 0; y < j; y++) {
-    //   row += (col - 1);
-    // }
-    pos = pos + row;
+    pos = pos + newJ;
 
     return pos;
   }
+  transformIndex(i: any, j: any) {
+    let newJ = 0;
+    let breakError = {};
+    let seatsAvailables = this.countSeatsAvailables();
+
+    try {
+      seatsAvailables[i].forEach((element) => {
+        if (element == j) {
+          throw breakError;
+        } else {
+          newJ++;
+        }
+      })
+
+    } catch (error) {
+
+      if (error !== breakError) throw error;
+
+    }
+
+
+    return newJ;
+
+  }
   countSeatsAvailables() {
 
-    let count = 0;
-    let i = 0;
     let jp = 0;
     let available: number[][] = [];
+    let arr: number[] = [];
     this.aircraft.forEach((element) => {
-      let arr: number[] = [];
+
       element.forEach((j) => {
         if (j == 0) {
-          count++;
-        }
-
-        arr.push(count);
-        jp++;
+          arr.push(jp);
+          jp++;
+        } else { jp++; }
       })
-      //available[i].push(arr[jp]);
-      count = 0;
-      i++;
+      available.push(arr);
+      jp = 0;
+      //i++;
     })
 
     return available;
