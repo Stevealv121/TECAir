@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="row mb-4">
+        <div class="col">
+            <h2>Select seats</h2>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col" *ngFor="let flight of flights; index as i;">
+            Flight {{i+1}}
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col"><strong>Date</strong> Fri, Jun 3, 2022</div>
+        <div class="col"><strong>Flight</strong> UA 1682</div>
+        <div class="col"><strong>Aircraft</strong> Boeing 737-800</div>
+        <div class="col"><strong>Duration</strong> 3h 41m</div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="row mb-3">
+                <div class="col">
+                    <h5>Select seats for San Jose to Houston</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <img src="assets/images/seats.jpg" class="card-img-top" alt="seats">
+                        <div class="card-body">
+                            <p class="card-text">This is how the seats for this plane looks like.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-auto">
+            <div class="row mb-2" *ngFor="let row of aircraft; index as i">
+                <div class="col" *ngFor="let rowItem of row; index as j">
+                    <ng-container *ngIf="rowItem === 2; else seatTemplate">
+                        <a>{{i+1}}</a>
+                    </ng-container>
+                    <ng-template #seatTemplate>
+                        <ng-container *ngIf="rowItem === 0; else unavailable">
+                            <a (click)="pickSeat(i,j)">
+                                <div class="square">
+                                </div>
+                            </a>
+                        </ng-container>
+                    </ng-template>
+                    <ng-template #unavailable>
+                        <div class="x"></div>
+                    </ng-template>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-5">Legend</h5>
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <div class="legend-available mb-3">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <p class="p-available">Available</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <div class="legend-selected mb-3"></div>
+                        </div>
+                        <div class="col">
+                            <p class="p-available">Selected</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <div class="legend-unavailable mb-3"></div>
+                        </div>
+                        <div class="col">
+                            <p class="p-available">Unavailable</p>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

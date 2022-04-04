@@ -1,0 +1,52 @@
+.square {
+    height: 50px;
+    width: 50px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    border: 2px solid #213dad;
+    display: block;
+    cursor: pointer;
+}
+
+.square:hover {
+    background-color: #213dad;
+    color: white;
+}
+
+.x {
+    height: 50px;
+    width: 50px;
+    background-color: grey;
+    border-radius: 5px;
+    border: 2px solid black;
+
+}
+
+.legend-available {
+    height: 30px;
+    width: 30px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    border: 2px solid #213dad;
+}
+
+.legend-selected {
+    height: 30px;
+    width: 30px;
+    background-color: #213dad;
+    border-radius: 5px;
+    border: 2px solid #213dad;
+}
+
+.legend-unavailable {
+    height: 30px;
+    width: 30px;
+    background-color: grey;
+    border-radius: 5px;
+    border: 2px solid black;
+
+}
+
+.p-available {
+    display: inline;
+}

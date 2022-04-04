@@ -4,6 +4,7 @@ import { ChooseFlightsComponent } from './choose-flights/choose-flights.componen
 import { ChooseTravelersComponent } from './choose-travelers/choose-travelers.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { SeatMapComponent } from './seat-map/seat-map.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "home", component: HomeComponent },
   { path: "choose-flights", component: ChooseFlightsComponent },
-  { path: "choose-travelers", component: ChooseTravelersComponent }
+  { path: "choose-travelers", component: ChooseTravelersComponent },
+  { path: "seat-map", component: SeatMapComponent }
 ];
 
 @NgModule({
