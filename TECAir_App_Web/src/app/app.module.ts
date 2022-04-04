@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { ChooseFlightsComponent } from './choose-flights/choose-flights.component';
 import { ChooseTravelersComponent } from './choose-travelers/choose-travelers.component';
 import { SeatMapComponent } from './seat-map/seat-map.component';
+import { CheckOutComponent } from './check-out/check-out.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SeatMapComponent } from './seat-map/seat-map.component';
     HomeComponent,
     ChooseFlightsComponent,
     ChooseTravelersComponent,
-    SeatMapComponent
+    SeatMapComponent,
+    CheckOutComponent
   ],
   imports: [
     BrowserModule,

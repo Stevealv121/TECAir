@@ -1,0 +1,12 @@
+#trip-card {
+    text-align: center;
+}
+
+.optional {
+    color: grey;
+    display: inline;
+}
+
+#buy {
+    width: 75%;
+}

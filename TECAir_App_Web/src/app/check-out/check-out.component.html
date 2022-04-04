@@ -1,0 +1,151 @@
+<div class="container">
+    <div class="row mb-4">
+        <div class="col">
+            <h2>Checkout</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class=" card">
+                <div class="card-header">
+                    Payment information
+                </div>
+                <div class="card-body">
+                    <p>Please complete your payment below.</p>
+                    <h5 class="mb-3">Payment method</h5>
+                    <select class="form-select mb-4" id="select" (change)="choosePaymentMethod()">
+                        <option selected>Select the payment method</option>
+                        <option value="1">Credit or Debit</option>
+                        <option value="2">Travel credits</option>
+                        <option value="3">Paypal</option>
+                    </select>
+                    <div class="payment" [style.display]="isVisible ? 'block' : 'none'">
+                        <div class="hide-card">
+                            <h5 class="mb-3">Card information</h5>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="card" class="form-label">Card number
+                                    </label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="col">
+                                    <label for="card" class="form-label">Exp. date
+                                    </label>
+                                    <input type="text" class="form-control" placeholder="MM/YY">
+                                </div>
+                                <div class="col">
+                                    <label for="card" class="form-label">Security code
+                                    </label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col"><label for="card" class="form-label">Name on card
+                                    </label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <h5 class="mb-3">Billing information</h5>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="card" class="form-label">Billing address line 1
+                                    </label>
+                                    <input type="text" class="form-control">
+                                </div>
+
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="card" class="form-label">Billing address line 2 <p class="optional">
+                                            (optional)
+                                        </p>
+                                    </label>
+                                    <input type="text" class="form-control">
+                                </div>
+
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="card" class="form-label">City/town/department
+                                    </label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="col">
+                                    <label for="card" class="form-label">State/province/region
+                                    </label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="col">
+                                    <label for="card" class="form-label">Zip/postal code
+                                    </label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="div col">
+                                    <label for="card" class="form-label">Country/region
+                                    </label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="card" class="form-label">Country/region code
+                                    </label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="col">
+                                    <label for="card" class="form-label">Phone number
+                                    </label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <label for="card" class="form-label">Email address
+                                    </label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <h5 class="mb-3">Agree and purchase</h5>
+                            <div class="row">
+                                <div class="col-md-7">By selecting "Buy now," you agree to the terms and conditions
+                                    that is
+                                    associated with this purchase.</div>
+                                <div class="col">
+                                    <button class="btn btn-primary" id="buy">Buy now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" id="trip-card">
+                <h5 class="card-header">Your Trip</h5>
+                <div class="card-body" id="trip-card">
+                    <h5 class="card-title">Type of Flight</h5>
+                    <div class="card" id="city-card">
+                        <h6>City to City</h6>
+                        <p>Apr 15 * 3:00am to 1:10pm * 1 Stop</p>
+                        <a href="#">Show details</a>
+                    </div>
+                    <div class="row">
+                        <div class="col">Fare</div>
+                        <div class="col">000 CRC</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">Taxes & fees</div>
+                        <div class="col">000 CRC</div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><strong>Total due</strong></div>
+                        <div class="col">000 CRC</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
