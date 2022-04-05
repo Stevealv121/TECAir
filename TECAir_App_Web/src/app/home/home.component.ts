@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  promos: number[] = [1, 2];
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
