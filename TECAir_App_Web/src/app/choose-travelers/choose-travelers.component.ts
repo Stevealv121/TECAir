@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChooseTravelersComponent implements OnInit {
 
-  travelers: string[] = ["Samuel"];
+  travelers: string[] = ["Samuel", "Jackson"];
 
   constructor() { }
 

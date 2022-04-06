@@ -4,77 +4,74 @@
             <h2>Traveler Information</h2>
         </div>
     </div>
-    <div class="card-data">
+    <div class="row">
+        <div class="col col-md-8">
+            <div class="card mb-4" *ngFor="let traveler of travelers;index as i">
+                <h5 class="card-header">Traveler {{i+1}}</h5>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="travelerName" class="form-label">First name <p class="required">(required)</p>
+                            </label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="travelerLName" class="form-label">Last name <p class="required">(required)</p>
+                            </label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="travelerMName" class="form-label">Middle name
+                            </label>
+                            <input type="text" class="form-control" placeholder="if shown on ID">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="travelerDateB" class="form-label">Date birth <p class="required">(required)</p>
+                            </label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="travelerGender" class="form-label">Gender <p class="required">(required)</p>
+                            </label>
+                            <input type="text" class="form-control">
+                        </div>
 
-        <div class="card mb-4" *ngFor="let traveler of travelers;index as i">
-            <h5 class="card-header">Traveler {{i+1}}</h5>
-            <div class="card-body">
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="travelerName" class="form-label">First name <p class="required">(required)</p>
-                        </label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="col">
-                        <label for="travelerLName" class="form-label">Last name <p class="required">(required)</p>
-                        </label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="col">
-                        <label for="travelerMName" class="form-label">Middle name <p class="required">(required, if
-                                shown
-                                on ID)</p>
-                        </label>
-                        <input type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <label for="travelerDateB" class="form-label">Date birth <p class="required">(required)</p>
-                        </label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="col">
-                        <label for="travelerGender" class="form-label">Gender <p class="required">(required)</p>
-                        </label>
-                        <input type="text" class="form-control">
-                    </div>
-
-                    <div class="col">
-                        <label for="travelerSuffix" class="form-label">Suffix
-                        </label>
-                        <input type="text" class="form-control">
+                        <div class="col">
+                            <label for="travelerSuffix" class="form-label">Suffix
+                            </label>
+                            <input type="text" class="form-control">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-        <div class="card">
-            <h5 class="card-header">Your Trip</h5>
-            <div class="card-body" id="trip-card">
-                <h5 class="card-title">Type of Flight</h5>
-                <div class="card" id="city-card">
-                    <h6>City to City</h6>
-                    <p>Apr 15 * 3:00am to 1:10pm * 1 Stop</p>
-                    <a href="#">Show details</a>
+        <div class="col">
+            <div class="card">
+                <h5 class="card-header">Your Trip</h5>
+                <div class="card-body" id="trip-card">
+                    <h5 class="card-title">Type of Flight</h5>
+                    <div class="card" id="city-card">
+                        <h6>City to City</h6>
+                        <p>Apr 15 * 3:00am to 1:10pm * 1 Stop</p>
+                        <a href="#">Show details</a>
+                    </div>
+                    <div class="row">
+                        <div class="col">Fare</div>
+                        <div class="col">000 CRC</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">Taxes & fees</div>
+                        <div class="col">000 CRC</div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><strong>Total due</strong></div>
+                        <div class="col">000 CRC</div>
+                    </div>
+                    <a id="seats-btn" routerLink="/seat-map" class="btn btn-primary">Continue to seats</a>
                 </div>
-                <div class="row">
-                    <div class="col">Fare</div>
-                    <div class="col">000 CRC</div>
-                </div>
-                <div class="row">
-                    <div class="col">Taxes & fees</div>
-                    <div class="col">000 CRC</div>
-                </div>
-                <div class="row">
-                    <div class="col"><strong>Total due</strong></div>
-                    <div class="col">000 CRC</div>
-                </div>
-                <a routerLink="/seat-map" class="btn btn-primary">Continue to seats</a>
             </div>
         </div>
-
-
     </div>
 </div>

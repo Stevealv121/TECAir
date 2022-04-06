@@ -50,3 +50,7 @@
 .p-available {
     display: inline;
 }
+
+#pay-btn {
+    background-color: rgb(39, 43, 255);
+}

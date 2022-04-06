@@ -1,21 +1,25 @@
-<div class="container">
-    <div class="row mb-5">
+<div class="container-fluid">
+    <div id="book" class="row mb-4 p-3">
+        <div class="col-md-1"></div>
         <div class="col">
-            <input type="text">
+            <input class="form-control" type="text">
         </div>
         <div class="col">
-            <input type="text">
+            <input class="form-control" type="text">
         </div>
         <div class="col">
-            <input type="text">
+            <input class="form-control" type="text">
         </div>
         <div class="col">
-            <input type="text">
+            <input class="form-control" type="text">
         </div>
         <div class="col">
-            <button>Find Flight</button>
+            <button id="find" class="btn btn-light">Find Flight</button>
         </div>
     </div>
+</div>
+<div class="container">
+
     <div class="row mb-3">
         <h2>Depart: city,country to city,country</h2>
     </div>
@@ -27,14 +31,20 @@
             <h5>Price</h5>
         </div>
     </div>
-    <!-- Test -->
+    <!-- Flights -->
     <div class="card-data" *ngFor="let info of flights">
         <div class="card">
-            Info
+            <h5 id="stop-h5">1 STOP</h5>
+            <div id="time">
+                <h4 id="time-from">0:00 AM</h4>
+                <h4 id="time-to">0:00 PM</h4>
+            </div>
+            <h6 class="flight-time">SJO ------------ 8H,32M ------------ MIA</h6>
+            <h6><a href="">Details</a></h6>
         </div>
-        <div class="card">
+        <div id="price-card" class="card">
             <p class="card-text" style="transform: rotate(0);">
-                <a routerLink="/choose-travelers" class="text-warning stretched-link"></a>Price
+                <a routerLink="/choose-travelers" class="text-warning stretched-link"></a>100 $
             </p>
         </div>
     </div>

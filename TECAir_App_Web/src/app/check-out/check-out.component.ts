@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckOutComponent implements OnInit {
 
-  isVisible = true;
+  isVisible = false;
   constructor() { }
 
   ngOnInit(): void {
