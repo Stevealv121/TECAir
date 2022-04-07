@@ -33,7 +33,24 @@
                 </div>
             </div>
         </div>
+        <!-- SeatMap -->
         <div class="col-md-auto">
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="lavatory"></div>
+                </div>
+                <div class="col">
+                    <div class="galley" style="float: right;"></div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="galley"></div>
+                </div>
+                <div class="col">
+                    <div class="galley" style="float: right;"></div>
+                </div>
+            </div>
             <div class="row mb-2" *ngFor="let row of aircraft; index as i">
                 <div class="col" *ngFor="let rowItem of row; index as j">
                     <ng-container *ngIf="rowItem === 2; else seatTemplate">
@@ -53,6 +70,20 @@
 
                 </div>
             </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="lavatory"></div>
+                </div>
+                <div class="col">
+                    <div class="lavatory" style="float: right;"></div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col" style="background-color: grey; border-radius: 5px;">
+                    <div class="galley" style="margin-left: 40%;"></div>
+                </div>
+            </div>
+
         </div>
         <div class="col">
             <div class="card">
@@ -75,7 +106,7 @@
                             <p class="p-available">Selected</p>
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <div class="row">
                         <div class="col-md-auto">
                             <div class="legend-unavailable mb-3"></div>
                         </div>
@@ -83,7 +114,22 @@
                             <p class="p-available">Unavailable</p>
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <div class="legend-lavatory mb-3"></div>
+                        </div>
+                        <div class="col">
+                            <p class="p-lavatory">Lavatory</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-auto">
+                            <div class="legend-galley mb-3"></div>
+                        </div>
+                        <div class="col">
+                            <p class="p-galley">Galley</p>
+                        </div>
+                    </div>
                 </div>
 
             </div>

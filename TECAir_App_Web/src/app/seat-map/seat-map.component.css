@@ -22,6 +22,46 @@
 
 }
 
+.lavatory {
+    height: 70px;
+    width: 80px;
+    border-radius: 5px;
+    background-image: url("../../assets/images/toilet.png");
+    background-color: grey;
+    background-size: 80px 70px;
+    background-repeat: no-repeat;
+}
+
+.galley {
+    height: 70px;
+    width: 80px;
+    border-radius: 5px;
+    background-image: url("../../assets/images/galley.png");
+    background-color: grey;
+    background-size: 80px 70px;
+    background-repeat: no-repeat;
+}
+
+.legend-lavatory {
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    background-image: url("../../assets/images/toilet.png");
+    background-color: grey;
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+}
+
+.legend-galley {
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    background-image: url("../../assets/images/galley.png");
+    background-color: grey;
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+}
+
 .legend-available {
     height: 30px;
     width: 30px;
