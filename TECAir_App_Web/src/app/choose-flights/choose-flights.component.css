@@ -59,5 +59,27 @@ input:focus {
 }
 
 #price-card {
-    height: 125px;
+    height: 198px;
+}
+
+.line-1 {
+    height: 1px;
+    background: black;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.line-dotted {
+    border: none;
+    border-top: 2px dotted black;
+    color: #fff;
+    background-color: #fff;
+    height: 1px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+summary {
+    color: rgb(0, 0, 129);
+    text-decoration-line: underline;
 }
