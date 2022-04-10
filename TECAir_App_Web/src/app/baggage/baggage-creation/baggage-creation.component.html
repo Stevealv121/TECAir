@@ -1,0 +1,40 @@
+<div class="row align-items-center">
+  <div id="col1" class="col">
+    <label id="description">CREATE A SUITCASE <br>
+      To create a suitcase you must indicate the user to which it belongs, its color and weight. <br>
+      The system will create a specific id for each suitcase.
+    </label>
+  </div> <!--Agregar funcionalidad para guardad los datos del input-->
+  <div class="col">
+    <h3>Create a Baggage</h3>
+    <div class="input-group">
+      <span class="input-group-text">Suitcase Id</span>
+      <input type="text" aria-label="Id" class="form-control" disabled value="5151518">
+    </div>
+    <br>
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputGroupSelect01">Passenger</label>
+      <select class="form-select" id="inputGroupSelect01">
+        <option selected>Choose...</option>
+        <option value="1">118515 Alex Smith</option>
+        <option value="2">48945 Michael Dumberry</option>
+        <option value="3">156487 Alexa Araya</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <span class="input-group-text">SuitCase Color</span>
+      <input type="text" aria-label="Color" class="form-control">
+    </div>
+    <br>
+    <div class="input-group">
+      <span class="input-group-text">Suitcase Weight</span>
+      <input type="number" aria-label="weight" class="form-control">
+    </div>
+    <br>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button id="buttons" class="btn btn-primary me-md-2" type="button" (click)="goBack()">Cancel</button>
+      <button id="buttons" class="btn btn-primary" type="button" (click)="goBack()">Create</button>
+    </div>
+  </div>
+</div>
