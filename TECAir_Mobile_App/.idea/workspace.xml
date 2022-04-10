@@ -10,19 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="199a18ab-df91-45c8-ba51-42b9e3009082" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Applies_to.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Books.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Flight_Stopover.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Has.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/SQLitehelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Airplane.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Airplane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Baggage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Baggage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Flight.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Flight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Promotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Promotion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Route.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Route.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Seats.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Seats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
