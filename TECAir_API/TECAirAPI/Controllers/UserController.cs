@@ -50,7 +50,7 @@ namespace TECAirAPI.Controllers
 
             return NoContent();
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("{ID}")]
         public async Task<IActionResult> DeleteUser(int ID)
         {
             
