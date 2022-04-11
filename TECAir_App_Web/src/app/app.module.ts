@@ -5,12 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BaggageComponent } from './baggage/baggage.component';
 import { BaggageCreationComponent } from './baggage/baggage-creation/baggage-creation.component';
+import { BookTripComponent } from './book-trip/book-trip.component';
+import { FlightManagementComponent } from './flights/flight-management/flight-management.component';
+import { FlightsComponent } from './flights/flights.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BaggageComponent,
-    BaggageCreationComponent
+    BaggageCreationComponent,
+    BookTripComponent,
+    FlightManagementComponent,
+    FlightsComponent
   ],
   imports: [
     BrowserModule,
