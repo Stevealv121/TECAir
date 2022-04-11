@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TECAir_API_Data", "TECAir_API_Data\TECAir_API_Data.csproj", "{FCC21F1A-B80E-4CFD-BE9C-9B14B50A261C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEC_Air_API_Model", "TEC_Air_API_Model\TEC_Air_API_Model.csproj", "{D31AA9A8-42D9-455B-A1B0-20C93FB1813B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TECAirAPI", "TECAirAPI\TECAirAPI.csproj", "{A8728989-50F0-4CF0-9C98-E8E720524BC5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCC21F1A-B80E-4CFD-BE9C-9B14B50A261C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCC21F1A-B80E-4CFD-BE9C-9B14B50A261C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCC21F1A-B80E-4CFD-BE9C-9B14B50A261C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCC21F1A-B80E-4CFD-BE9C-9B14B50A261C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D31AA9A8-42D9-455B-A1B0-20C93FB1813B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D31AA9A8-42D9-455B-A1B0-20C93FB1813B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D31AA9A8-42D9-455B-A1B0-20C93FB1813B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D31AA9A8-42D9-455B-A1B0-20C93FB1813B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8728989-50F0-4CF0-9C98-E8E720524BC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8728989-50F0-4CF0-9C98-E8E720524BC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8728989-50F0-4CF0-9C98-E8E720524BC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8728989-50F0-4CF0-9C98-E8E720524BC5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B958D877-4F16-44D9-91E4-9E70A15535E7}
+	EndGlobalSection
+EndGlobal
