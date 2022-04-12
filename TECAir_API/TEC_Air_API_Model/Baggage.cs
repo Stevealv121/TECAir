@@ -10,7 +10,7 @@ namespace TEC_Air_API_Model
     {
         public int id { get; set; }
         public string color { get; set; }
-        public string weight { get; set; }
+        public int weight { get; set; }
 
     }
 }

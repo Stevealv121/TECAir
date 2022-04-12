@@ -5,7 +5,7 @@ using Route = TEC_Air_API_Model.Route;
 
 namespace TECAirAPI.Controllers
 {
-    [Route("api/route/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class RouteController : Controller
     {

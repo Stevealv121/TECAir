@@ -4,7 +4,7 @@ using TECAir_API_Data.Repositories;
 
 namespace TECAirAPI.Controllers
 {
-    [Route("api/user/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class UserController : Controller
     {

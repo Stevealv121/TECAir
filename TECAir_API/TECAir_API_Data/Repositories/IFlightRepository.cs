@@ -11,8 +11,8 @@ namespace TECAir_API_Data.Repositories
     {
         Task<IEnumerable<Flight>> GetAllFlights();
         Task<Flight> GetFlightDetails(int id);
-        Task<bool> InsertFlight(Flight baggage);
-        Task<bool> UpdateFlight(Flight baggage);
-        Task<bool> DeleteFlight(Flight baggage);
+        Task<bool> InsertFlight(Flight flight);
+        Task<bool> UpdateFlight(Flight flight);
+        Task<bool> DeleteFlight(Flight flight);
     }
 }

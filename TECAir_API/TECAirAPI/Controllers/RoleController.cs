@@ -4,7 +4,7 @@ using TECAir_API_Data.Repositories;
 
 namespace TECAirAPI.Controllers
 {
-    [Route("api/role/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class RoleController : Controller
     {
@@ -39,7 +39,7 @@ namespace TECAirAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateRoute([FromBody] Role role)
+        public async Task<IActionResult> UpdateRole([FromBody] Role role)
         {
             if (role == null)
                 return BadRequest();
@@ -51,7 +51,7 @@ namespace TECAirAPI.Controllers
             return NoContent();
         }
         [HttpDelete("{Name}")]
-        public async Task<IActionResult> DeleteRoute(string Name)
+        public async Task<IActionResult> DeleteRole(string Name)
         {
 
             await _roleRepository.DeleteRole(new Role { name = Name });
