@@ -2,16 +2,20 @@
     <div id="book" class="row mb-4 p-3">
         <div class="col-md-1"></div>
         <div class="col">
-            <input class="form-control" type="text">
+            <input type="text" class="form-control">
         </div>
         <div class="col">
-            <input class="form-control" type="text">
+            <input type="text" class="form-control">
         </div>
         <div class="col">
-            <input class="form-control" type="text">
-        </div>
-        <div class="col">
-            <input class="form-control" type="text">
+            <mat-form-field>
+                <mat-date-range-input class="form-control" [rangePicker]="picker">
+                    <input matStartDate placeholder="Depart">
+                    <input matEndDate placeholder="Return">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
         </div>
         <div class="col">
             <button id="find" class="btn btn-light">Find Flight</button>

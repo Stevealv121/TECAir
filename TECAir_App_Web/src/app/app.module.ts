@@ -12,6 +12,11 @@ import { ChooseFlightsComponent } from './choose-flights/choose-flights.componen
 import { ChooseTravelersComponent } from './choose-travelers/choose-travelers.component';
 import { SeatMapComponent } from './seat-map/seat-map.component';
 import { CheckOutComponent } from './check-out/check-out.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,13 @@ import { CheckOutComponent } from './check-out/check-out.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatMomentDateModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

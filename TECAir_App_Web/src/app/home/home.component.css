@@ -175,6 +175,11 @@
     transition: all 0.5s ease-in-out;
 }
 
+.mat-form-field {
+    width: 90%;
+    color: rgb(5, 6, 63);
+}
+
 .input-container input {
     border: 0;
     border-bottom: 1px solid #555;

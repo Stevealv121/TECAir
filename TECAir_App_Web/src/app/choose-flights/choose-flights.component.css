@@ -21,13 +21,22 @@
 }
 
 #find {
-    height: 100%;
+    height: 45%;
     width: 70%;
 }
 
 input {
     background-color: rgb(5, 6, 63);
     color: white;
+}
+
+.mat-form-field {
+
+    bottom: 25%;
+}
+
+.mat-form-field mat-date-range-input {
+    background-color: rgb(5, 6, 63);
 }
 
 input:focus {
