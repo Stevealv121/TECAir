@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-flights',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlightsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+
+   }
 
   ngOnInit(): void {
+  }
+
+  getInfo(){
+    this.router.navigate(['flightsInfo'])
   }
 
 }

@@ -14,6 +14,7 @@
               <th scope="col">Boarding Gate</th>
               <th scope="col">Airplane</th>
               <th scope="col">Status</th>
+              <th scope="col">Price</th>
               <th><a id="buttons" class="btn btn-primary btn-sm " href="/flightsManagement" role="button"> Create Flight</a></th>
             </tr>
           </thead>
@@ -26,7 +27,8 @@
               <td>A10</td>
               <td>NGB-201</td>
               <td>enable</td>
-              <td> <a id="buttons" class="btn btn-primary btn-sm " href="#" role="button">Info </a></td>
+              <td>$500</td>
+              <td> <a id="buttons" class="btn btn-primary btn-sm " (click)="getInfo()" role="button">Info </a></td>
             </tr>
           </tbody>
         </table>

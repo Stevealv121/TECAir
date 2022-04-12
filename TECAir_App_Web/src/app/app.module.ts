@@ -8,6 +8,7 @@ import { BaggageCreationComponent } from './baggage/baggage-creation/baggage-cre
 import { BookTripComponent } from './book-trip/book-trip.component';
 import { FlightManagementComponent } from './flights/flight-management/flight-management.component';
 import { FlightsComponent } from './flights/flights.component';
+import { FlightsInfoComponent } from './flights/flights-info/flights-info.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FlightsComponent } from './flights/flights.component';
     BaggageCreationComponent,
     BookTripComponent,
     FlightManagementComponent,
-    FlightsComponent
+    FlightsComponent,
+    FlightsInfoComponent
   ],
   imports: [
     BrowserModule,
