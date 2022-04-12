@@ -16,6 +16,7 @@ builder.Services.AddSingleton(posgreSQLConnectionConfig);
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRouteRepository, RouteRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 
 // Build app
 var app = builder.Build();
