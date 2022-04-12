@@ -15,6 +15,7 @@ var posgreSQLConnectionConfig = new PostgreSQLConfig(builder.Configuration.GetCo
 builder.Services.AddSingleton(posgreSQLConnectionConfig);
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRouteRepository, RouteRepository>();
 
 // Build app
 var app = builder.Build();
