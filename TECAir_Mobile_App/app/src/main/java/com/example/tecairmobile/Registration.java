@@ -3,6 +3,7 @@ package com.example.tecairmobile;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +14,7 @@ import com.example.tecairmobile.Utilities.Utilities;
 
 public class Registration extends AppCompatActivity {
 
-    EditText name, mail, college, studentID;
+    EditText name, mail, college, studentID,secondname,firstsurname,secondsurname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +25,16 @@ public class Registration extends AppCompatActivity {
         mail = (EditText) findViewById(R.id.mail);
         college = (EditText) findViewById(R.id.college);
         studentID = (EditText) findViewById(R.id.studentID);
+        secondname = (EditText) findViewById(R.id.secondname);
+        firstsurname = (EditText) findViewById(R.id.firstsurname);
+        secondsurname = (EditText) findViewById(R.id.secondsurname);
     }
 
     public void onClick(View view){
         singUserUp();
+        Intent myintent = new Intent(Registration.this,FlightReservation.class);
+        startActivity(myintent);
+
     }
     private void singUserUp(){
         SQLitehelper conn = new SQLitehelper(this, "bd_User", null,1);
@@ -35,7 +42,10 @@ public class Registration extends AppCompatActivity {
         SQLiteDatabase db = conn.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(Utilities.FIELD_NAME, name.getText().toString());
+        values.put(Utilities.FIELD_FNAME, name.getText().toString());
+        values.put(Utilities.FIELD_SNAME, secondname.getText().toString());
+        values.put(Utilities.FIELD_FSNAME, firstsurname.getText().toString());
+        values.put(Utilities.FIELD_SSNAME, secondsurname.getText().toString());
         values.put(Utilities.FIELD_EMAIL, mail.getText().toString());
         values.put(Utilities.FIELD_UNIVERSITY, college.getText().toString());
         values.put(Utilities.FIELD_STID, studentID.getText().toString());
