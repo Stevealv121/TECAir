@@ -11,6 +11,7 @@ namespace TECAir_API_Data.Repositories
 {
     public class FlightRepository : IFlightRepository
     {
+        
         private PostgreSQLConfig connectionStr;
 
         public FlightRepository(PostgreSQLConfig connectionString)
@@ -32,12 +33,12 @@ namespace TECAir_API_Data.Repositories
             return result > 0;
         }
 
-        public async Task<IEnumerable<Flight>> GetAllFlights()
+        public async Task<IEnumerable<Flight_Route>> GetAllFlights()
         {
             var db = dbConnection();
-            var sql = @"SELECT id,boarding_gate,price,status,route_code,airplane_plate
-                       FROM public.""FLIGHT"" ";
-            return await db.QueryAsync<Flight>(sql, new { });
+            var sql = @"SELECT * FROM public.""FLIGHT""
+                        NATURAL JOIN public.""ROUTE"" ";
+            return await db.QueryAsync<Flight_Route>(sql, new { });
         }
 
         public async Task<Flight> GetFlightDetails(int ID)

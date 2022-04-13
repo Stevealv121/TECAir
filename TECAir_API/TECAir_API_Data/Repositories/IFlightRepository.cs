@@ -9,7 +9,7 @@ namespace TECAir_API_Data.Repositories
 {
     public interface IFlightRepository
     {
-        Task<IEnumerable<Flight>> GetAllFlights();
+        Task<IEnumerable<Flight_Route>> GetAllFlights();
         Task<Flight> GetFlightDetails(int id);
         Task<bool> InsertFlight(Flight flight);
         Task<bool> UpdateFlight(Flight flight);

@@ -22,6 +22,8 @@ builder.Services.AddScoped<IBaggageRepository, BaggageRepository>();
 builder.Services.AddScoped<IFlightRepository, FlightRepository>();
 builder.Services.AddScoped<IPromotionRepository, PromotionRepository>();
 builder.Services.AddScoped<ISeatRepository, SeatRepository>();
+builder.Services.AddScoped<IBooksRepository, BooksRepository>();
+builder.Services.AddScoped<IFlight_StopoverRepository, Flight_StopoverRepository>();
 
 // Build app
 var app = builder.Build();
