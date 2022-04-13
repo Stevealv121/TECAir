@@ -33,7 +33,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     FlightManagementComponent,
     FlightsComponent,
     FlightsInfoComponent,
-    RoutesComponent
+    RoutesComponent,
     AppComponent,
     LoginComponent,
     SignUpComponent,

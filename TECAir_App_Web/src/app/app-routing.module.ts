@@ -16,13 +16,13 @@ import { SeatMapComponent } from './seat-map/seat-map.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
-  { path: "baggage", component: BaggageComponent},
-  { path: "baggageCreation", component: BaggageCreationComponent},
-  {path:"booking", component: BookTripComponent},
-  {path:"flights", component:FlightsComponent},
-  {path:"flightsManagement", component:FlightManagementComponent},
-  {path: "flightsInfo", component:FlightsInfoComponent},
-  {path: "routes", component:RoutesComponent}
+  { path: "baggage", component: BaggageComponent },
+  { path: "baggageCreation", component: BaggageCreationComponent },
+  { path: "booking", component: BookTripComponent },
+  { path: "flights", component: FlightsComponent },
+  { path: "flightsManagement", component: FlightManagementComponent },
+  { path: "flightsInfo", component: FlightsInfoComponent },
+  { path: "routes", component: RoutesComponent },
   { path: "", pathMatch: "full", redirectTo: "/sign-up" },
   { path: "sign-up", component: SignUpComponent },
   { path: "login", component: LoginComponent },
