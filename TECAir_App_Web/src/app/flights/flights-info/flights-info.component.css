@@ -1,0 +1,43 @@
+#primaryCol1{
+  padding-right: 50px;
+}
+#primaryCol2{
+  border-left: 5px solid #a14ea3 ;
+  padding-left: 50px;
+}
+#container{
+  border-style:dotted;
+  border-color: #a14ea3;
+  align-items: center;
+}
+#left{
+  text-align: left;
+}
+#arrive{
+  text-align: center;
+}
+#route{
+  text-align: center;
+}
+#details{
+  text-align: center;
+}
+#cols{
+  text-align: right;
+}
+#subtitles{
+  margin-top: 10px;
+}
+#table{
+ width: 500px;
+}
+#thead{
+  background-color: #a14ea3;
+  color: white;
+  border-bottom: solid white;
+}
+#span{
+  background-color: #a14ea3;
+  border-color: #a14ea3;
+  color: white;
+}

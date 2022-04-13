@@ -1,0 +1,45 @@
+<div class="row align-items-center">
+  <div id="col1" class="col">
+    <div id = cont class="container">
+      <label id="description">CREATE A Flight <br>
+        To create a suitcase you must select the predefined route, the boarding gate and the status. <br>
+        The system will create a specific id for each flight. <br>
+        Status is the seats availability in the flight
+      </label>
+    </div>
+  </div> <!--Agregar funcionalidad para guardad los datos del input-->
+  <div class="col">
+    <h3>Create a New Fligth</h3>
+    <div class="input-group">
+      <span id="span"  class="input-group-text">Flight Number</span>
+      <input type="text" aria-label="Id" class="form-control" disabled value="545154">
+    </div>
+    <br>
+    <div class="input-group mb-3">
+      <label id="span" class="input-group-text" for="inputGroupSelect01">Route</label>
+      <select class="form-select" id="inputGroupSelect01">
+        <option selected>Select the route</option>
+        <option value="1">4544 San josé, Costa Rica - Buenos Aires, Argentina </option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <span id="span" class="input-group-text">Boarding Gate</span>
+      <input type="text" aria-label="Color" class="form-control" placeholder="Example: A58">
+    </div>
+    <br>
+    <div class="input-group mb-3">
+      <label id="span" class="input-group-text" for="inputGroupSelect01">Status</label>
+      <select class="form-select" id="inputGroupSelect01">
+        <option selected>Select the status</option>
+        <option value="1">Enable </option>
+        <option value="1">Unable</option>
+      </select>
+    </div>
+    <br>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button id="buttons" class="btn btn-primary me-md-2" type="button" (click)="goBack()">Cancel</button>
+      <button id="buttons" class="btn btn-primary" type="button" (click)="goBack()">Create</button>
+    </div>
+  </div>
+</div>
