@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="row align-items-center">
+    <div id="primaryCol1" class="col">
+      <h3>Primary Route</h3> <!--Primary Route-->
+      <div id="container"class="container">
+      <div class="row">
+        <div class="col">
+          <label id="left">0:00 AM</label>
+        </div>
+        <div id="cols" class="col">
+          <label id="arrive">0:00 PM</label>
+        </div>
+      </div>
+      <div class="row">
+        <label id="route">SJO-----8H,32M----MIA</label>
+      </div>
+      </div>
+      <h3 id="subtitles">Scales</h3> <!---Hacer recursivo para cada ruta intermedia/ scales-->
+      <div id="container"class="container">
+        <div class="row">
+          <div class="col">
+            <label id="left">3:00 AM</label>
+          </div>
+          <div id="cols" class="col">
+            <label id="arrive">5:00 PM</label>
+          </div>
+        </div>
+        <div class="row">
+          <label id="route">SJO-----3H,00M----PTY</label>
+        </div>
+        </div>
+        <br>
+      <h3>Promotion</h3><!--Añadir promocion que tenga el vuelo, si no tiene no se coloca nada-->
+      <div  class="container">
+        <table id= "table"class="table">
+          <thead id="thead">
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Expiration</th>
+              <th>Discount</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="row">Europe Travel</td>
+              <td>Treavel to the beautiful London</td>
+              <td>25-07-22</td>
+              <td> 25%</td>
+              <td>
+                <button id="span" class="btn btn-primary" type="button">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button id="span" class="btn btn-primary me-md-2" type="button" (click)="closeFlight()">Close the Flight</button>
+          <button id="span" class="btn btn-primary" type="button" (click)="openFlight()">Open the Flight</button>
+        </div>
+      </div>
+
+
+    </div>
+    <div id="primaryCol2" class="col"><!--Promotion Form-->
+      <h3>Would you want create a promotion to this Flight?</h3>
+      <div class="input-group">
+        <span id="span"class="input-group-text">Title</span>
+        <input #title type="text" aria-label="Id" class="form-control" placeholder="Example: Trip to the Caribe">
+      </div>
+      <br>
+      <div class="input-group">
+        <span id="span"class="input-group-text">Description</span>
+        <input #description type="text" aria-label="Id" class="form-control" placeholder="This Trip is...">
+      </div>
+      <br>
+      <div class="input-group">
+        <span id="span"class="input-group-text">Valid Until</span>
+        <input #date type="date" aria-label="Id" class="form-control" >
+      </div>
+      <br>
+      <div class="input-group">
+        <span id="span" class="input-group-text">Discount</span>
+        <input #discount type="number" min="1" max="100" class="form-control" placeholder="1-100" >
+      </div>
+      <br>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button id="span" class="btn btn-primary me-md-2" type="button" (click)="goBack()">Cancel</button>
+        <button id="span" class="btn btn-primary" type="button" (click)="createPromo(title.value, description.value,date.value, discount.value)">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>

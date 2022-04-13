@@ -1,0 +1,32 @@
+#background {
+  height: 665px;
+  background-image: url("https://viajes.nationalgeographic.com.es/medio/2022/03/18/avion-baikal_2b571aa5_1280x720.jpg");
+background-size: cover;
+  background-repeat:no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
+#titleText{
+  background-color: #a14ea3;
+  width:fit-content;
+  opacity: 0.8;
+}
+#title{
+  color: white;
+}
+#subtitle{
+  color: #d9d7d9;
+}
+#table{
+  margin: auto;
+  width: 600px;
+  background-color: white;
+  /*background-color:#8A288D;*/
+  opacity: 0.9;
+  position:-ms-page;
+  color: black;
+}
+#buttons{
+  background-color: #a14ea3;
+  border-color: #a14ea3;
+}

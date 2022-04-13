@@ -1,0 +1,106 @@
+.card-data {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 40%;
+    height: 100%;
+    line-height: 100px;
+    background-color: white;
+    margin: 10px;
+
+    text-align: center;
+    vertical-align: middle;
+}
+
+mat-form-field mat-datepicker-toggle {
+    color: #fff;
+}
+
+#book {
+    background-color: rgb(5, 6, 63);
+}
+
+#find {
+    height: 45%;
+    width: 70%;
+}
+
+input {
+    background-color: rgb(5, 6, 63);
+    color: white;
+    font-size: 16px;
+}
+
+.mat-form-field {
+    bottom: 25%;
+    color: #fff;
+}
+
+
+
+.mat-form-field mat-date-range-input {
+    background-color: rgb(5, 6, 63);
+
+}
+
+mat-form-field mat-date-range-input input {
+    color: #fff;
+}
+
+input:focus {
+    background-color: rgb(5, 6, 63);
+    color: white;
+}
+
+#stop-h5 {
+    text-align: right;
+}
+
+#time-to {
+    float: right;
+
+}
+
+#time-from {
+    float: left;
+
+}
+
+.flight-time {
+    display: inline;
+}
+
+#price-card:hover {
+    background-color: rgb(52, 35, 140);
+    color: white;
+}
+
+#price-card {
+    height: 198px;
+}
+
+.line-1 {
+    height: 1px;
+    background: black;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.line-dotted {
+    border: none;
+    border-top: 2px dotted black;
+    color: #fff;
+    background-color: #fff;
+    height: 1px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+summary {
+    color: rgb(0, 0, 129);
+    text-decoration-line: underline;
+}

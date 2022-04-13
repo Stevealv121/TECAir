@@ -1,0 +1,109 @@
+<div class="container-fluid">
+    <div id="book" class="row mb-4 p-3">
+        <div class="col-md-1"></div>
+        <div class="col">
+            <input type="text" class="form-control">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control">
+        </div>
+        <div class="col">
+            <mat-form-field color="accent" appeareance="fill">
+                <mat-date-range-input class="form-control" [rangePicker]="picker">
+                    <input matStartDate placeholder="Depart">
+
+                    <input matEndDate placeholder="Return">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <button id="find" class="btn btn-light">Find Flight</button>
+        </div>
+    </div>
+</div>
+<div class="container">
+
+    <div class="row mb-3">
+        <h2>Depart: city,country to city,country</h2>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h5>Flight Info</h5>
+        </div>
+        <div class="col">
+            <h5>Price</h5>
+        </div>
+    </div>
+    <!-- Flights -->
+    <div class="card-data" *ngFor="let info of flights">
+        <div class="card">
+            <h5 id="stop-h5">1 STOP</h5>
+            <div id="time">
+                <h4 id="time-from">0:00 AM</h4>
+                <h4 id="time-to">0:00 PM</h4>
+            </div>
+            <h6 class="flight-time">SJO ------------ 8H,32M ------------ MIA</h6>
+            <details>
+                <summary>
+                    Details
+                </summary>
+                <div class="container-details">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <div class="line-1"></div>
+                        </div>
+                    </div>
+                    <div class="row row-bottom-margin">
+                        <div class="col">
+                            <h6>San Jose to Houston</h6>
+                        </div>
+                    </div>
+                    <div class="row gy-1">
+                        <div class="col">Jun 3 * 3:05 am to 7:46 am</div>
+                    </div>
+                    <div class="row gy-1">
+                        <div class="col"><strong>Duration:</strong> 3h 41m</div>
+                    </div>
+                    <div class="row gy-1">
+                        <div class="col"><strong>Flight number:</strong> UA 1682</div>
+                    </div>
+                    <div class="row gy-1">
+                        <div class="col"><strong>Aircraft type:</strong> Boeing 737-800</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col">
+                            <div class="line-dotted"></div>
+                        </div>
+                    </div>
+                    <div class="row row-bottom-margin">
+                        <div class="col">
+                            <h6>Houston to Miami</h6>
+                        </div>
+                    </div>
+                    <div class="row gy-1">
+                        <div class="col">Jun 3 * 3:05 am to 7:46 am</div>
+                    </div>
+                    <div class="row gy-1">
+                        <div class="col"><strong>Duration:</strong> 3h 41m</div>
+                    </div>
+                    <div class="row gy-1">
+                        <div class="col"><strong>Flight number:</strong> UA 1682</div>
+                    </div>
+                    <div class="row gy-1">
+                        <div class="col"><strong>Aircraft type:</strong> Boeing 737-800</div>
+                    </div>
+
+                </div>
+
+
+            </details>
+        </div>
+        <div id="price-card" class="card">
+            <p class="card-text" style="transform: rotate(0);">
+                <a routerLink="/choose-travelers" class="text-warning stretched-link"></a>100 $
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+.square {
+    height: 50px;
+    width: 50px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    border: 2px solid #213dad;
+    display: block;
+    cursor: pointer;
+}
+
+.square:hover {
+    background-color: #213dad;
+    color: white;
+}
+
+.x {
+    height: 50px;
+    width: 50px;
+    background-color: grey;
+    border-radius: 5px;
+    border: 2px solid black;
+
+}
+
+.lavatory {
+    height: 70px;
+    width: 80px;
+    border-radius: 5px;
+    background-image: url("../../assets/images/toilet.png");
+    background-color: grey;
+    background-size: 80px 70px;
+    background-repeat: no-repeat;
+}
+
+.galley {
+    height: 70px;
+    width: 80px;
+    border-radius: 5px;
+    background-image: url("../../assets/images/galley.png");
+    background-color: grey;
+    background-size: 80px 70px;
+    background-repeat: no-repeat;
+}
+
+.legend-lavatory {
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    background-image: url("../../assets/images/toilet.png");
+    background-color: grey;
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+}
+
+.legend-galley {
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    background-image: url("../../assets/images/galley.png");
+    background-color: grey;
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+}
+
+.legend-available {
+    height: 30px;
+    width: 30px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    border: 2px solid #213dad;
+}
+
+.legend-selected {
+    height: 30px;
+    width: 30px;
+    background-color: #213dad;
+    border-radius: 5px;
+    border: 2px solid #213dad;
+}
+
+.legend-unavailable {
+    height: 30px;
+    width: 30px;
+    background-color: grey;
+    border-radius: 5px;
+    border: 2px solid black;
+
+}
+
+.p-available {
+    display: inline;
+}
+
+#pay-btn {
+    background-color: rgb(39, 43, 255);
+}
