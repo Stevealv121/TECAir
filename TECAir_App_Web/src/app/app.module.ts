@@ -9,6 +9,7 @@ import { BookTripComponent } from './book-trip/book-trip.component';
 import { FlightManagementComponent } from './flights/flight-management/flight-management.component';
 import { FlightsComponent } from './flights/flights.component';
 import { FlightsInfoComponent } from './flights/flights-info/flights-info.component';
+import { RoutesComponent } from './routes/routes.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FlightsInfoComponent } from './flights/flights-info/flights-info.compon
     BookTripComponent,
     FlightManagementComponent,
     FlightsComponent,
-    FlightsInfoComponent
+    FlightsInfoComponent,
+    RoutesComponent
   ],
   imports: [
     BrowserModule,

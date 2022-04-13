@@ -67,27 +67,27 @@
       <h3>Would you want create a promotion to this Flight?</h3>
       <div class="input-group">
         <span id="span"class="input-group-text">Title</span>
-        <input type="text" aria-label="Id" class="form-control" placeholder="Example: Trip to the Caribe">
+        <input #title type="text" aria-label="Id" class="form-control" placeholder="Example: Trip to the Caribe">
       </div>
       <br>
       <div class="input-group">
         <span id="span"class="input-group-text">Description</span>
-        <input type="text" aria-label="Id" class="form-control" placeholder="This Trip is...">
+        <input #description type="text" aria-label="Id" class="form-control" placeholder="This Trip is...">
       </div>
       <br>
       <div class="input-group">
         <span id="span"class="input-group-text">Valid Until</span>
-        <input type="date" aria-label="Id" class="form-control" >
+        <input #date type="date" aria-label="Id" class="form-control" >
       </div>
       <br>
       <div class="input-group">
         <span id="span" class="input-group-text">Discount</span>
-        <input type="number" min="1" max="100" class="form-control" placeholder="1-100" >
+        <input #discount type="number" min="1" max="100" class="form-control" placeholder="1-100" >
       </div>
       <br>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button id="span" class="btn btn-primary me-md-2" type="button" (click)="goBack()">Cancel</button>
-        <button id="span" class="btn btn-primary" type="button" (click)="goBack()">Apply</button>
+        <button id="span" class="btn btn-primary" type="button" (click)="createPromo(title.value, description.value,date.value, discount.value)">Apply</button>
       </div>
     </div>
   </div>

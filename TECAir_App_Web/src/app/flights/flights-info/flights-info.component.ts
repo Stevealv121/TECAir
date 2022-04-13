@@ -25,7 +25,8 @@ export class FlightsInfoComponent implements OnInit {
     alert("The Flight has been closed")
   }
 
-  CreatePromo(){
+  createPromo(title:string, description: string, date: string, discount:string){
+    // conect with the DB and refresh the page
 
   }
 

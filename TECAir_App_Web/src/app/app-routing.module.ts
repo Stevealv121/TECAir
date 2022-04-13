@@ -6,6 +6,7 @@ import { BookTripComponent } from './book-trip/book-trip.component';
 import { FlightManagementComponent } from './flights/flight-management/flight-management.component';
 import { FlightsInfoComponent } from './flights/flights-info/flights-info.component';
 import { FlightsComponent } from './flights/flights.component';
+import { RoutesComponent } from './routes/routes.component';
 
 const routes: Routes = [
   { path: "baggage", component: BaggageComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path:"booking", component: BookTripComponent},
   {path:"flights", component:FlightsComponent},
   {path:"flightsManagement", component:FlightManagementComponent},
-  {path: "flightsInfo", component:FlightsInfoComponent}
+  {path: "flightsInfo", component:FlightsInfoComponent},
+  {path: "routes", component:RoutesComponent}
 
 ];
 
