@@ -17,6 +17,9 @@ export const MY_FORMATS = {
   },
   display: {
     dateInput: 'MMM D',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
 
   },
 };

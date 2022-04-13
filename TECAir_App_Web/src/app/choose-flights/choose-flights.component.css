@@ -16,6 +16,10 @@
     vertical-align: middle;
 }
 
+mat-form-field mat-datepicker-toggle {
+    color: #fff;
+}
+
 #book {
     background-color: rgb(5, 6, 63);
 }
@@ -28,15 +32,23 @@
 input {
     background-color: rgb(5, 6, 63);
     color: white;
+    font-size: 16px;
 }
 
 .mat-form-field {
-
     bottom: 25%;
+    color: #fff;
 }
+
+
 
 .mat-form-field mat-date-range-input {
     background-color: rgb(5, 6, 63);
+
+}
+
+mat-form-field mat-date-range-input input {
+    color: #fff;
 }
 
 input:focus {
