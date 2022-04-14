@@ -2,13 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-routes',
-  templateUrl: './routes.component.html',
-  styleUrls: ['./routes.component.css']
+  selector: 'app-route-edit',
+  templateUrl: './route-edit.component.html',
+  styleUrls: ['./route-edit.component.css']
 })
-export class RoutesComponent implements OnInit {
-
-  info: any
+export class RouteEditComponent implements OnInit {
 
   constructor(private router:Router) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -16,8 +14,8 @@ export class RoutesComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  editView(){
-    this.router.navigate(['RouteEdit'])
+  goBack(){
+    this.router.navigate(['routes'])
   }
 
 

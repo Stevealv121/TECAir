@@ -1,32 +1,29 @@
-#background {
+#background{
   height: 665px;
-  background-image: url("https://viajes.nationalgeographic.com.es/medio/2022/03/18/avion-baikal_2b571aa5_1280x720.jpg");
-background-size: cover;
-  background-repeat:no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-}
-#titleText{
-  background-color: #a14ea3;
-  width:fit-content;
-  opacity: 0.8;
-}
-#title{
-  color: white;
-}
-#subtitle{
-  color: #d9d7d9;
+  background-image: url("https://millionmilesecrets.com/wp-content/uploads/luggage-resized.jpg");
+  background-size: cover;
+    background-repeat:no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
 }
 #table{
+  text-align: center;
   margin: auto;
-  width: 600px;
+  width: 920px;
   background-color: white;
   /*background-color:#8A288D;*/
   opacity: 0.9;
   position:-ms-page;
   color: black;
+  margin-top: 100px;
 }
 #buttons{
   background-color: #a14ea3;
   border-color: #a14ea3;
+}
+#col{
+  width:fit-content ;
+}
+#col2{
+  width:fit-content;
 }

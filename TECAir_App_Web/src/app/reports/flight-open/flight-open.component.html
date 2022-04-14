@@ -1,0 +1,62 @@
+<div id="content"class="content" #content>
+  <div class="row align-items-center">
+    <div id="col1" class="col">
+      <h3>Passengers</h3>
+      <table id="table" class="table "> <!--Se debe llenar con el la informacion de la BD-->
+        <thead id="head">
+          <tr>
+            <th scope="col">User ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Manuel Osorio</td>
+            <td> <a id="buttons" class="btn btn-primary btn-sm " role="button">Delete </a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="col2" class="col">
+      <h3>Baggage</h3>
+      <table id="table" class="table "> <!--Se debe llenar con el la informacion de la BD-->
+        <thead id="head">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Price</th>
+            <th scope="col">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Manuel Osorio</td>
+            <td> $50</td>
+            <td> <a id="buttons" class="btn btn-primary btn-sm " role="button">Delete </a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row align-items-center">
+    <div id ="container2" class="container">
+      <div class="row">
+        <label>Total Passengers : </label>
+      </div>
+      <div class="row">
+        <label>Capacity : </label>
+      </div>
+      <div class="row">
+        <label>Total Baggage : </label>
+      </div>
+      <br>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button id="buttons" class="btn btn-primary me-md-2" (click)="goBack()" type="button">Ok</button>
+      </div>
+
+    </div>
+  </div>
+</div>

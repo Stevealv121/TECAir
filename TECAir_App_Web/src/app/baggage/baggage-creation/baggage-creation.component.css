@@ -1,6 +1,6 @@
 #col1{
   height: 665px;
-  background-image: url("https://viajes.nationalgeographic.com.es/medio/2022/03/18/avion-baikal_2b571aa5_1280x720.jpg");
+  background-image: url("https://www.edreams.com/blog/wp-content/uploads/sites/3/2017/06/baggage.jpg");
   background-size: cover;
     background-repeat:no-repeat;
     background-position: center center;
@@ -22,4 +22,9 @@
   font-size: large;
   font-family: Georgia, 'Times New Roman', Times, serif;
 
+}
+#span{
+  background-color: #a14ea3;
+  border-color: #a14ea3;
+  color: white;
 }
