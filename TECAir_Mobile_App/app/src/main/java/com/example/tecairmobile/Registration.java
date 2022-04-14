@@ -28,6 +28,9 @@ public class Registration extends AppCompatActivity {
         secondname = (EditText) findViewById(R.id.secondname);
         firstsurname = (EditText) findViewById(R.id.firstsurname);
         secondsurname = (EditText) findViewById(R.id.secondsurname);
+
+        college.setVisibility(View.INVISIBLE);
+        studentID.setVisibility(View.INVISIBLE);
     }
 
     public void onClick(View view){

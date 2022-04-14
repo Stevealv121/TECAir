@@ -9,33 +9,33 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/secondsurname"
-        android:layout_width="408dp"
+        android:layout_width="400dp"
         android:layout_height="64dp"
         android:layout_marginTop="5dp"
         android:hint="Second Surname (If applies)"
         android:textColor="@color/white"
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstsurname" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/firstsurname"
-        android:layout_width="408dp"
+        android:layout_width="400dp"
         android:layout_height="64dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:hint="First Surname"
         android:textColor="@color/white"
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0.363"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/secondname" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/college"
-        android:layout_width="408dp"
+        android:layout_width="400dp"
         android:layout_height="64dp"
         android:layout_marginTop="5dp"
         android:hint="College Name"
@@ -48,7 +48,7 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/studentID"
-        android:layout_width="408dp"
+        android:layout_width="400dp"
         android:layout_height="64dp"
         android:layout_marginTop="5dp"
         android:hint="Student ID"
@@ -74,7 +74,7 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/name"
-        android:layout_width="408dp"
+        android:layout_width="400dp"
         android:layout_height="64dp"
         android:layout_marginTop="5dp"
         android:hint="First Name"
@@ -87,7 +87,7 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/mail"
-        android:layout_width="408dp"
+        android:layout_width="400dp"
         android:layout_height="64dp"
         android:layout_marginTop="5dp"
         android:hint="E-mail"
@@ -100,7 +100,7 @@
 
     <Spinner
         android:id="@+id/student"
-        android:layout_width="408dp"
+        android:layout_width="400dp"
         android:layout_height="64dp"
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -122,13 +122,14 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/secondname"
-        android:layout_width="408dp"
+        android:layout_width="400dp"
         android:layout_height="64dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="12dp"
         android:hint="Second Name (If applies)"
         android:textColor="@color/white"
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 </androidx.constraintlayout.widget.ConstraintLayout>

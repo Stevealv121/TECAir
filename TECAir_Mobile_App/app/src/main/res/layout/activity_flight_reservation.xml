@@ -13,7 +13,7 @@
         android:layout_width="301dp"
         android:layout_height="62dp"
         android:layout_marginTop="64dp"
-        android:text="Your flight was foud, proceding with payment"
+        android:text="Your flight was found, proceding with payment"
         android:textAlignment="center"
         android:textColor="#EAE9E5"
         android:textSize="24sp"
