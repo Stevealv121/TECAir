@@ -39,13 +39,15 @@ namespace TECAir_API_Data.Repositories
             return await db.QueryAsync<Flight_Stopover>(sql, new { });
         }
 
-        public async Task<Flight_Stopover> GetFlightStopoverDetails(int flght_id)
+        public async Task<IEnumerable<string>> GetFlightStopoverDetails(int flght_id)
         {
             var db = dbConnection();
-            var sql = @"SELECT flight_id,stopover
+            var sql = @"SELECT stopover
                        FROM public.""Flight Stopover"" 
                        WHERE flight_id = @flight_id";
-            return await db.QueryFirstOrDefaultAsync<Flight_Stopover>(sql, new { flight_id = flght_id });
+            var result = await db.QueryAsync<string>(sql, new { flight_id = flght_id });
+            
+            return result ;
         }
 
         public async Task<bool> InsertFlightStopover(Flight_Stopover flightStopover)

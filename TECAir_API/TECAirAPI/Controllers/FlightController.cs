@@ -19,6 +19,12 @@ namespace TECAirAPI.Controllers
         {
             return Ok(await _flightRepository.GetAllFlights());
         }
+        [Route("FlightsandRoutes")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllFlightsandRoutes()
+        {
+            return Ok(await _flightRepository.GetAllFlightandRoutes());
+        }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFlightDetails(int id)

@@ -32,8 +32,14 @@ namespace TECAir_API_Data.Repositories
             var result = await db.ExecuteAsync(sql, new { id = flight.id });
             return result > 0;
         }
-
-        public async Task<IEnumerable<Flight_Route>> GetAllFlights()
+        public async Task<IEnumerable<Flight>> GetAllFlights()
+        {
+            var db = dbConnection();
+            var sql = @"SELECT *
+                       FROM public.""FLIGHT"" ";
+            return await db.QueryAsync<Flight>(sql, new { });
+        }
+        public async Task<IEnumerable<Flight_Route>> GetAllFlightandRoutes()
         {
             var db = dbConnection();
             var sql = @"SELECT * FROM public.""FLIGHT""
