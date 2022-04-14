@@ -10,16 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TECAirMobile">
         <activity
+            android:name=".flightSearch"
+            android:exported="false" />
+        <activity
             android:name=".ShowDiscounts"
             android:exported="false" />
         <activity
             android:name=".FlightReservation"
             android:exported="false" />
         <activity
-            android:name=".Registration"
+            android:name=".MainMenu"
             android:exported="false" />
         <activity
-            android:name=".flightSearch"
+            android:name=".Registration"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

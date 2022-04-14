@@ -9,24 +9,6 @@
     tools:context=".ShowDiscounts">
 
     <TextView
-        android:id="@+id/sdt3"
-        android:layout_width="285dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="72dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sdt2" />
-
-    <TextView
-        android:id="@+id/sdt2"
-        android:layout_width="285dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="72dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sdt1" />
-
-    <TextView
         android:id="@+id/discdisp"
         android:layout_width="311dp"
         android:layout_height="64dp"
@@ -39,23 +21,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/sdt1"
-        android:layout_width="285dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="72dp"
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="413dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="164dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/discdisp" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="154dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="72dp"
-        android:text="Go back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sdt3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

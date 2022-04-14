@@ -8,23 +8,49 @@
     tools:context=".Registration">
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/college"
-        android:layout_width="408dp"
+        android:id="@+id/secondsurname"
+        android:layout_width="400dp"
         android:layout_height="64dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
+        android:hint="Second Surname (If applies)"
+        android:textColor="@color/white"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstsurname" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/firstsurname"
+        android:layout_width="400dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="8dp"
+        android:hint="First Surname"
+        android:textColor="@color/white"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.363"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/secondname" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/college"
+        android:layout_width="400dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="5dp"
         android:hint="College Name"
         android:textColor="#FBFBFB"
         android:textColorHint="#FDFDFD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/student" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/studentID"
-        android:layout_width="408dp"
+        android:layout_width="400dp"
         android:layout_height="64dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:hint="Student ID"
         android:textColor="#FBFBFB"
         android:textColorHint="#FDFDFD"
@@ -35,50 +61,50 @@
 
     <TextView
         android:id="@+id/rt1"
-        android:layout_width="241dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="374dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
         android:text="Please Complete with your data"
         android:textAlignment="center"
         android:textColor="#FBE203"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/name"
-        android:layout_width="408dp"
+        android:layout_width="400dp"
         android:layout_height="64dp"
-        android:layout_marginTop="20dp"
-        android:hint="Full name"
+        android:layout_marginTop="5dp"
+        android:hint="First Name"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFCFC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rt1" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/mail"
-        android:layout_width="408dp"
+        android:layout_width="400dp"
         android:layout_height="64dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:hint="E-mail"
         android:textColor="#FBFBFB"
         android:textColorHint="#FDFDFD"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintTop_toBottomOf="@+id/secondsurname" />
 
     <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="408dp"
+        android:id="@+id/student"
+        android:layout_width="400dp"
         android:layout_height="64dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mail" />
 
@@ -86,9 +112,24 @@
         android:id="@+id/bregister"
         android:layout_width="186dp"
         android:layout_height="57dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="15dp"
+        android:onClick="onClick"
         android:text="File"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/studentID" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/secondname"
+        android:layout_width="400dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="12dp"
+        android:hint="Second Name (If applies)"
+        android:textColor="@color/white"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 </androidx.constraintlayout.widget.ConstraintLayout>
