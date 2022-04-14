@@ -32,7 +32,7 @@ public class Registration extends AppCompatActivity {
 
     public void onClick(View view){
         singUserUp();
-        Intent myintent = new Intent(Registration.this,FlightReservation.class);
+        Intent myintent = new Intent(Registration.this,MainMenu.class);
         startActivity(myintent);
 
     }
