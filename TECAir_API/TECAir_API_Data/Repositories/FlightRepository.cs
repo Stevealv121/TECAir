@@ -56,6 +56,18 @@ namespace TECAir_API_Data.Repositories
             return await db.QueryFirstOrDefaultAsync<Flight>(sql, new { id = ID });
         }
 
+        public async Task<IEnumerable<Flight_Route>> GetFlightByLocation(string _origin, string _destination)
+        {
+            var db = dbConnection();
+            var sql = @"SELECT * FROM public.""FLIGHT""
+                        NATURAL JOIN public.""ROUTE""  
+                       WHERE destination = @destination AND origin = @origin";
+            return await db.QueryAsync<Flight_Route>(sql, new 
+            { 
+                destination = _destination,
+                origin = _origin
+            });
+        }
         public async Task<bool> InsertFlight(Flight flight)
         {
             var db = dbConnection();

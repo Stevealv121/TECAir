@@ -31,6 +31,11 @@ namespace TECAirAPI.Controllers
         {
             return Ok(await _flightRepository.GetFlightDetails(id));
         }
+        [HttpGet("{origin}/{destination}")]
+        public async Task<IActionResult> GetFlightByLocation(string origin, string destination)
+        {
+            return Ok(await _flightRepository.GetFlightByLocation(origin, destination));
+        }
         [HttpPost]
         public async Task<IActionResult> CreateFlight([FromBody] Flight flight)
         {
