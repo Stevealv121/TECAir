@@ -36,27 +36,27 @@ namespace TECAir_API_Data.Repositories
         public async Task<IEnumerable<User>> GetAllUsers()
         {
             var db = dbConnection();
-            var sql = @"SELECT id, email, first_name, second_name, first_surname, second_surname, phone, university, student_id,role_name
+            var sql = @"SELECT id, email, first_name, second_name, first_surname, second_surname, phone, university, student_id,role_name,password
                        FROM public.""USER"" ";
             return await db.QueryAsync<User>(sql, new { });
                 
         }
 
-        public async Task<User> GetUserDetails(int id)
+        public async Task<User> GetUserDetails(int id, string password)
         {
             var db = dbConnection();
-            var sql = @"SELECT id, email, first_name, second_name, first_surname, second_surname, phone, university, student_id,role_name
+            var sql = @"SELECT *
                        FROM public.""USER"" 
-                        WHERE id = @Id";
-            return await db.QueryFirstOrDefaultAsync<User>(sql, new {Id = id });
+                        WHERE id = @Id AND password = @Password";
+            return await db.QueryFirstOrDefaultAsync<User>(sql, new {Id = id, Password = password });
         }
 
         public async Task<bool> InsertUser(User user)
         {
             var db = dbConnection();
             var sql = @"
-                        INSERT INTO public.""USER"" (id, email, first_name, second_name, first_surname, second_surname, phone, university, student_id,role_name)
-                        VALUES (@id, @email, @first_name, @second_name, @first_surname, @second_surname, @phone, @university, @student_id,@role_name)";
+                        INSERT INTO public.""USER"" (id, email, first_name, second_name, first_surname, second_surname, phone, university, student_id,role_name,password)
+                        VALUES (@id, @email, @first_name, @second_name, @first_surname, @second_surname, @phone, @university, @student_id,@role_name, @password)";
             var result = await db.ExecuteAsync(sql, new { 
                                                             user.id, 
                                                             user.email, 
@@ -67,7 +67,8 @@ namespace TECAir_API_Data.Repositories
                                                             user.phone, 
                                                             user.university,
                                                             user.student_id,
-                                                            user.role_name });
+                                                            user.role_name,
+                                                            user.password });
             return result > 0;
         }
 
@@ -85,7 +86,8 @@ namespace TECAir_API_Data.Repositories
                             phone = @phone, 
                             university = @university, 
                             student_id = @student_id,
-                            role_name = @role_name
+                            role_name = @role_name,
+                            password = @password
                         WHERE id = @id";
             var result = await db.ExecuteAsync(sql, new
                                                     {
@@ -98,6 +100,7 @@ namespace TECAir_API_Data.Repositories
                                                         user.university,
                                                         user.student_id,
                                                         user.role_name,
+                                                        user.password,
                                                         user.id
 
                                                         });

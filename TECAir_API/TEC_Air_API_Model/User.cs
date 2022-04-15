@@ -18,6 +18,8 @@ namespace TEC_Air_API_Model
         public string? university { get; set; }
         public int? student_id { get; set; }
         public string role_name { get; set; }
+        public string password { get; set; }
+
 
 
     }
