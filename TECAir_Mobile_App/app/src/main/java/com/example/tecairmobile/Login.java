@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -20,51 +21,45 @@ import java.util.List;
 
 public class Login extends AppCompatActivity {
 
-    EditText name, mail, college, studentID,secondname,firstsurname,secondsurname;
-    Spinner student;
+    EditText name, mail,firstsurname;
+    SQLitehelper conn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_login);
+
+        conn = new SQLitehelper(getApplicationContext(), "bd_user", null, 1);
 
         name = (EditText) findViewById(R.id.name);
         mail = (EditText) findViewById(R.id.mail);
-        college = (EditText) findViewById(R.id.college);
-        studentID = (EditText) findViewById(R.id.studentID);
-        secondname = (EditText) findViewById(R.id.secondname);
         firstsurname = (EditText) findViewById(R.id.firstsurname);
-        secondsurname = (EditText) findViewById(R.id.secondsurname);
-        student = findViewById(R.id.student);
 
-        List<String> states = Arrays.asList("Regular","Student");
-        ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item,states);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        student.setAdapter(adapter);
-
-        student.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String state = student.getSelectedItem().toString();
-                if(state == "Regular"){
-                    college.setVisibility(View.INVISIBLE);
-                    studentID.setVisibility(View.INVISIBLE);
-                }
-                else{
-                    college.setVisibility(View.VISIBLE);
-                    studentID.setVisibility(View.VISIBLE);
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
     }
 
     public void onClick(View view) {
-        Intent myintent = new Intent(Login.this,MainMenu.class);
-        startActivity(myintent);
+        consult();
+    }
+
+    private void consult() {
+        SQLiteDatabase db = conn.getReadableDatabase();
+        String[] consult = {name.getText().toString(),firstsurname.getText().toString(),mail.getText().toString()};
+        String[] result = {Utilities.FIELD_FNAME};
+        try{
+            Cursor cursor = db.query(Utilities.TABLE_USER,result,Utilities.FIELD_FNAME+"=?"+" AND "+Utilities.FIELD_FSNAME+"=?"+" AND "+Utilities.FIELD_EMAIL+"=?",consult,null,null,null);
+            cursor.moveToFirst();
+            Intent myintent = new Intent(Login.this,MainMenu.class);
+            startActivity(myintent);
+
+        }catch(Exception e){
+            Toast.makeText(getApplicationContext(),"User was not found", Toast.LENGTH_LONG).show();
+            clean();
+        }
+    }
+
+    private void clean() {
+        name.setText("");
+        mail.setText("");
+        firstsurname.setText("");
     }
 }
