@@ -18,7 +18,7 @@ import com.example.tecairmobile.Utilities.Utilities;
 import java.util.Arrays;
 import java.util.List;
 
-public class Registration extends AppCompatActivity {
+public class Login extends AppCompatActivity {
 
     EditText name, mail, college, studentID,secondname,firstsurname,secondsurname;
     Spinner student;
@@ -63,30 +63,8 @@ public class Registration extends AppCompatActivity {
         });
     }
 
-    public void onClick(View view){
-        singUserUp();
-        Intent myintent = new Intent(Registration.this,intro.class);
+    public void onClick(View view) {
+        Intent myintent = new Intent(Login.this,MainMenu.class);
         startActivity(myintent);
-
-    }
-    private void singUserUp(){
-        SQLitehelper conn = new SQLitehelper(this, "bd_User", null,1);
-
-        SQLiteDatabase db = conn.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(Utilities.FIELD_FNAME, name.getText().toString());
-        values.put(Utilities.FIELD_SNAME, secondname.getText().toString());
-        values.put(Utilities.FIELD_FSNAME, firstsurname.getText().toString());
-        values.put(Utilities.FIELD_SSNAME, secondsurname.getText().toString());
-        values.put(Utilities.FIELD_EMAIL, mail.getText().toString());
-        values.put(Utilities.FIELD_UNIVERSITY, college.getText().toString());
-        values.put(Utilities.FIELD_STID, studentID.getText().toString());
-
-        Long idResult = db.insert(Utilities.TABLE_USER, Utilities.FIELD_ID, values);
-
-        Toast.makeText(getApplicationContext(), "Id Registro: " +idResult, Toast.LENGTH_SHORT).show();
-        db.close();
-
     }
 }
