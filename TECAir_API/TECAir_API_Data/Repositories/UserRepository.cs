@@ -42,13 +42,13 @@ namespace TECAir_API_Data.Repositories
                 
         }
 
-        public async Task<User> GetUserDetails(int id, string password)
+        public async Task<User> GetUserDetails(string email, string password)
         {
             var db = dbConnection();
             var sql = @"SELECT *
                        FROM public.""USER"" 
-                        WHERE id = @Id AND password = @Password";
-            return await db.QueryFirstOrDefaultAsync<User>(sql, new {Id = id, Password = password });
+                        WHERE email = @Email AND password = @Password";
+            return await db.QueryFirstOrDefaultAsync<User>(sql, new { Email = email, Password = password });
         }
 
         public async Task<bool> InsertUser(User user)
