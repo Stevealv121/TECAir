@@ -20,10 +20,10 @@ namespace TECAirAPI.Controllers
             return Ok(await _userRepository.GetAllUsers());
         }
 
-        [HttpGet("{id}/{password}")]
-        public async Task<IActionResult> GetUserDetails(int id, string password)
+        [HttpGet("{email}/{password}")]
+        public async Task<IActionResult> GetUserDetails(string email, string password)
         {
-            return Ok(await _userRepository.GetUserDetails(id, password));
+            return Ok(await _userRepository.GetUserDetails(email, password));
         }
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody]User usr)

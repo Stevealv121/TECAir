@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-routes',
@@ -9,16 +10,15 @@ export class RoutesComponent implements OnInit {
 
   info: any
 
-  constructor() {
-    this.info = [["a","b","x","5","6","7","8"],["r","b","x","5","6","7","8"]]
+  constructor(private router:Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnInit(): void {
   }
-
-  getInfo(dato:string){
-    alert(dato)
-
+  editView(){
+    this.router.navigate(['RouteEdit'])
   }
+
 
 }

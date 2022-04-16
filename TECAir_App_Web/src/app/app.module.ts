@@ -24,6 +24,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { CreateRouteComponent } from './routes/create-route/create-route.component';
+import { RouteEditComponent } from './routes/route-edit/route-edit.component';
+import { FlightOpenComponent } from './reports/flight-open/flight-open.component';
+import { FlightClosedComponent } from './reports/flight-closed/flight-closed.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,11 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     ChooseFlightsComponent,
     ChooseTravelersComponent,
     SeatMapComponent,
-    CheckOutComponent
+    CheckOutComponent,
+    CreateRouteComponent,
+    RouteEditComponent,
+    FlightOpenComponent,
+    FlightClosedComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,7 @@ public class MainMenu extends AppCompatActivity {
         Intent myintent = null;
 
         switch(view.getId()){
-            case R.id.toFlights:
+            case R.id.booking:
                 myintent = new Intent(MainMenu.this,flightSearch.class);
                 break;
             case R.id.discounts:

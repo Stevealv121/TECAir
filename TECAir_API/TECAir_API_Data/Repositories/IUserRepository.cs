@@ -10,7 +10,7 @@ namespace TECAir_API_Data.Repositories
     public interface IUserRepository
     {
         Task<IEnumerable<User>> GetAllUsers();
-        Task<User> GetUserDetails(int id, string password);
+        Task<User> GetUserDetails(string email, string password);
         Task<bool> InsertUser(User user);
         Task<bool> UpdateUser(User user);
         Task<bool> DeleteUser(User user);

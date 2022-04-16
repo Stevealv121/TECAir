@@ -1,0 +1,25 @@
+#buttons{
+  background-color: #a14ea3;
+  border-color: #a14ea3;
+}
+#col1{
+  width: 500px;
+  height: 665px;
+  background-image: url("https://astelus.com/wp-content/viajes/historia-de-paris-paisaje.jpg");
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
+#cont{
+  background-color: white;
+  width: 10cm;
+  opacity: 0.8;
+  margin-top: 200px;
+  border-radius: 0.2cm;
+}
+#span{
+  background-color: #a14ea3;
+  border-color: #a14ea3;
+  color: white;
+}
