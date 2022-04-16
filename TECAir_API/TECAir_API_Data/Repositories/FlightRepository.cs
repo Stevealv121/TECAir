@@ -68,13 +68,13 @@ namespace TECAir_API_Data.Repositories
                 origin = _origin
             });
         }
-        public async Task<bool> InsertFlight(Flight flight)
+        public async Task<int> InsertFlight(Flight flight)
         {
             var db = dbConnection();
             var sql = @"
                         INSERT INTO public.""FLIGHT"" (boarding_gate,price,status,route_code,airplane_plate)
-                        VALUES (@boarding_gate,@price,@status,@route_code,@airplane_plate)";
-            var result = await db.ExecuteAsync(sql, new
+                        VALUES (@boarding_gate,@price,@status,@route_code,@airplane_plate) RETURNING id";
+            var result = await db.QueryFirstOrDefaultAsync<int>(sql, new
             {
 
                 flight.boarding_gate,
@@ -83,7 +83,7 @@ namespace TECAir_API_Data.Repositories
                 flight.route_code,
                 flight.airplane_plate
             });
-            return result > 0;
+            return result ;
         }
 
         public async Task<bool> UpdateFlight(Flight flight)

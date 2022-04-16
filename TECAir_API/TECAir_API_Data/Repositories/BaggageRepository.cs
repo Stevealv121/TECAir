@@ -49,19 +49,19 @@ namespace TECAir_API_Data.Repositories
             return await db.QueryFirstOrDefaultAsync<Baggage>(sql, new { id = ID });
         }
 
-        public async Task<bool> InsertBaggage(Baggage baggage)
+        public async Task<int> InsertBaggage(Baggage baggage)
         {
             var db = dbConnection();
             var sql = @"
                         INSERT INTO public.""BAGGAGE"" (color,weight)
-                        VALUES (@color,@weight)";
-            var result = await db.ExecuteAsync(sql, new
+                        VALUES (@color,@weight) RETURNING id";
+            var result = await db.QueryFirstOrDefaultAsync<int>(sql, new
             {
                 
                 baggage.color,
                 baggage.weight
             });
-            return result > 0;
+            return result;
         }
 
         public async Task<bool> UpdateBaggage(Baggage baggage)

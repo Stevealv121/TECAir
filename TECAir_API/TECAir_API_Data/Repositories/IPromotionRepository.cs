@@ -11,7 +11,7 @@ namespace TECAir_API_Data.Repositories
     {
         Task<IEnumerable<Promotion>> GetAllPromotions();
         Task<Promotion> GetPromotionDetails(int promo_code);
-        Task<bool> InsertPromotion(Promotion promotion);
+        Task<int> InsertPromotion(Promotion promotion);
         Task<bool> UpdatePromotion(Promotion promotion);
         Task<bool> DeletePromotion(Promotion promotion);
     }
