@@ -1,0 +1,36 @@
+<div class="row align-items-center">
+  <div id="col1" class="col">
+    <div id = cont class="container">
+      <label id="description">CREATE A Route <br>
+        To create a new route you must indicate the place of origin, destination and departure time
+      </label>
+    </div>
+  </div> <!--Agregar funcionalidad para guardad los datos del input-->
+  <div class="col">
+    <h3>Create a New Route</h3>
+    <div class="input-group">
+      <span id="span" class="input-group-text">Origin</span>
+      <input type="text" aria-label="Color" class="form-control" placeholder="Example: San Jose, CR">
+    </div>
+    <br>
+    <div class="input-group">
+      <span id="span" class="input-group-text">Destination</span>
+      <input type="text" aria-label="Color" class="form-control" placeholder="Example: London, England">
+    </div>
+    <br>
+    <div class="input-group">
+      <span id="span" class="input-group-text">Departure Date</span>
+      <input type="date" aria-label="Color" class="form-control">
+    </div>
+    <br>
+    <div class="input-group">
+      <span id="span" class="input-group-text">Departure Hour</span>
+      <input type="time" aria-label="Color" class="form-control">
+    </div>
+    <br>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button id="buttons" class="btn btn-primary me-md-2" type="button" (click)="goBack()">Cancel</button>
+      <button id="buttons" class="btn btn-primary" type="button" (click)="goBack()">Create</button>
+    </div>
+  </div>
+</div>

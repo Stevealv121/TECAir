@@ -1,0 +1,21 @@
+#content{
+  padding: 30px;
+}
+#head{
+  background-color:#a14ea3;
+  color: white;
+  border-bottom: rgb(232, 229, 229) solid;
+}
+#buttons{
+  background-color: #a14ea3;
+  border-color: #a14ea3;
+}
+#col2{
+  border-left: #a14ea3 solid;
+}
+#container2{
+  margin-top: 30px;
+  width: 500px;
+  border: #a14ea3 dashed;
+  border-radius: 0.2cm;
+}

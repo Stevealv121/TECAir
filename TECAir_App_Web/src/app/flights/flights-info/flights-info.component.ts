@@ -19,10 +19,10 @@ export class FlightsInfoComponent implements OnInit {
   }
 
   openFlight(){
-    alert("The Flight has been opened")
+    this.router.navigate(['OpenFlight'])
   }
   closeFlight(){
-    alert("The Flight has been closed")
+    this.router.navigate(['ClosedFlight'])
   }
 
   createPromo(title:string, description: string, date: string, discount:string){
