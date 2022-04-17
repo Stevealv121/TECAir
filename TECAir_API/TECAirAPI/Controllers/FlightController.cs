@@ -36,6 +36,21 @@ namespace TECAirAPI.Controllers
         {
             return Ok(await _flightRepository.GetFlightByLocation(origin, destination));
         }
+        [HttpGet("Baggage/{flight_id}")]
+        public async Task<IActionResult> GetBaggagebyFlight(int flight_id)
+        {
+            return Ok(await _flightRepository.GetBaggageByFlight(flight_id));
+        }
+        [HttpGet("Users/{flight_id}")]
+        public async Task<IActionResult> GetUsersbyFlight(int flight_id)
+        {
+            return Ok(await _flightRepository.GetUsersByFlight(flight_id));
+        }
+        [HttpGet("Capacity/{flight_id}")]
+        public async Task<IActionResult> GetFlightCapacity(int flight_id)
+        {
+            return Ok(await _flightRepository.GetFlightCapacity(flight_id));
+        }
         [HttpPost]
         public async Task<IActionResult> CreateFlight([FromBody] Flight flight)
         {
