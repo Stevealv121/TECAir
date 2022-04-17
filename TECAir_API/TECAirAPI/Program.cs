@@ -3,6 +3,8 @@ using TECAir_API_Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -27,6 +29,17 @@ builder.Services.AddScoped<IFlight_StopoverRepository, Flight_StopoverRepository
 builder.Services.AddScoped<IHasRepository, HasRepository>();
 builder.Services.AddScoped<IAppliesToRepository, AppliesToRepository>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:4200")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                      });
+});
+
 // Build app
 var app = builder.Build();
 
@@ -36,6 +49,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 

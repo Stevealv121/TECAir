@@ -566,3 +566,37 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,dotnetcore,aspnetcore,angular
+
+TECAir_API/.vs/TECAir_API/v17/
+
+TECAir_API/TEC_Air_API_Model/bin/Debug/net6.0/
+
+TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/ref/
+
+TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/refint/
+
+TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/
+
+TECAir_API/TEC_Air_API_Model/obj/
+
+TECAir_API/TECAir_API_Data/bin/Debug/net6.0/
+
+TECAir_API/TECAir_API_Data/obj/Debug/net6.0/ref/
+
+TECAir_API/TECAir_API_Data/obj/Debug/net6.0/refint/
+
+TECAir_API/TECAir_API_Data/obj/Debug/net6.0/
+
+TECAir_API/TECAir_API_Data/obj/
+
+TECAir_API/TECAirAPI/bin/Debug/net6.0/
+
+TECAir_API/TECAirAPI/obj/Debug/net6.0/ref/
+
+TECAir_API/TECAirAPI/obj/Debug/net6.0/refint/
+
+TECAir_API/TECAirAPI/obj/Debug/net6.0/
+
+TECAir_API/TECAirAPI/obj/
+
+TECAir_API/.vs/TECAir_API/DesignTimeBuild/

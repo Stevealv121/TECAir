@@ -15,7 +15,8 @@ export class FlightManagementComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goBack(){
+  goBack(selct: string){
+    console.log(selct)
     this.router.navigate(['flights'])
   }
 
