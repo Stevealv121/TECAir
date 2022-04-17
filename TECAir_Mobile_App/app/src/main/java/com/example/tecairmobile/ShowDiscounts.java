@@ -43,7 +43,7 @@ public class ShowDiscounts extends AppCompatActivity {
     }
 
     private void find(int code){
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://localhost:5104/")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5104/")
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
         PromotionAPI promotionAPI = retrofit.create(PromotionAPI.class);

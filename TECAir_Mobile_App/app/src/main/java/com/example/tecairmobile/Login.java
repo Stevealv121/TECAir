@@ -29,7 +29,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        conn = new SQLitehelper(getApplicationContext(), "bd_user", null, 1);
+        conn = new SQLitehelper(getApplicationContext(), "bd_User", null, 1);
 
         name = (EditText) findViewById(R.id.name);
         mail = (EditText) findViewById(R.id.mail);
