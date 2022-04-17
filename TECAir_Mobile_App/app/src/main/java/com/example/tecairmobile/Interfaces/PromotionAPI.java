@@ -9,7 +9,5 @@ import retrofit2.http.Path;
 public interface PromotionAPI {
 
     @GET("api/Promotion/{id}")
-    static Call<Promotion> find(@Path("id") int id) {
-        return null;
-    }
+    Call<Promotion> find(@Path("id") int id);
 }

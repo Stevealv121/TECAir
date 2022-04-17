@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ public class ShowDiscounts extends AppCompatActivity {
 
     EditText code;
     TextView description;
+    Button pb1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,28 +30,38 @@ public class ShowDiscounts extends AppCompatActivity {
         setContentView(R.layout.activity_show_discounts);
         code = findViewById(R.id.code);
         description = findViewById(R.id.description);
+        pb1 = findViewById(R.id.pb1);
+
+        pb1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                find(Integer.parseInt(code.getText().toString()));
+
+            }
+        });
     }
 
-    public void onClick(View view) {
-        findP(Integer.parseInt(code.getText().toString()));
-    }
-
-    private void findP(int code){
+    private void find(int code){
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://localhost:5104/")
                 .addConverterFactory(GsonConverterFactory.create()).build();
+
         PromotionAPI promotionAPI = retrofit.create(PromotionAPI.class);
-        Call<Promotion> call = PromotionAPI.find(code);
+        Call<Promotion> call = promotionAPI.find(code);
         call.enqueue(new Callback<Promotion>() {
             @Override
             public void onResponse(Call<Promotion> call, Response<Promotion> response) {
+
                 try{
                     if(response.isSuccessful()){
                         Promotion p = response.body();
                         description.setText(p.getDescription());
                     }
+
                 }catch (Exception ex){
                     Toast.makeText(ShowDiscounts.this,ex.getMessage(),Toast.LENGTH_SHORT).show();
                 }
+
             }
 
             @Override
