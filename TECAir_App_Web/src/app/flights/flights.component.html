@@ -19,16 +19,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>5-5-22</td>
-              <td>San Jose, Costa Rica</td>
-              <td>London, England</td>
-              <td>A10</td>
-              <td>NGB-201</td>
-              <td>enable</td>
-              <td>$500</td>
-              <td> <a id="buttons" class="btn btn-primary btn-sm " (click)="getInfo()" role="button">Info </a></td>
+            <tr *ngFor="let item of information">
+              <th scope="row">{{item.id}}</th>
+              <td>{{item.day}}/{{item.month}}/{{item.year}}</td>
+              <td>{{item.origin}}</td>
+              <td>{{item.destination}}</td>
+              <td>{{item.boarding_gate}}</td>
+              <td>{{item.airplane_plate}}</td>
+              <td>{{item.status}}</td>
+              <td>${{item.price}}</td>
+              <td> <a id="buttons" class="btn btn-primary btn-sm " (click)="getInfo(item.id, item.origin, item.destination,item.year,item.month,item.day,item.hours,item.minutes)" role="button">Info </a></td>
             </tr>
           </tbody>
         </table>
