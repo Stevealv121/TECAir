@@ -27,7 +27,6 @@ export class FlightsComponent implements OnInit {
   cargarTabla(){
     this.api.getFlights().subscribe((data: any) => {
       this.information =data;
-      console.log(this.information);
     })
 
   }
