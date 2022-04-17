@@ -11,7 +11,7 @@ namespace TECAir_API_Data.Repositories
     {
         Task<IEnumerable<AppliesTo>> GetAllAppliesTo();
         Task<IEnumerable<string>> GetAppliesToDetails(int promo_code);
-        Task<int> GetAppliesToPrice(int flght_id);
+        Task<IEnumerable<Promotion_AppliesTo>> GetPromoAppliesTo(int flght_id);
         Task<bool> InsertAppliesTo(AppliesTo applies_to);
         Task<bool> UpdateAppliesTo(AppliesTo applies_to);
         Task<bool> DeleteAppliesTo(AppliesTo applies_to);

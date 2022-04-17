@@ -27,10 +27,10 @@ namespace TECAirAPI.Controllers
         }
 
 
-        [HttpGet("Price/{flght_id}")]
+        [HttpGet("PromotionandAppliesTo/{flght_id}")]
         public async Task<IActionResult> GetPrice(int flght_id)
         {
-            return Ok(await _appliestoRepository.GetAppliesToPrice(flght_id));
+            return Ok(await _appliestoRepository.GetPromoAppliesTo(flght_id));
         }
 
         [HttpPost]
