@@ -2,7 +2,7 @@ package com.example.tecairmobile.entities;
 
 public class Promotion {
 
-    private int promotioncode;
+    private int promotion_code;
     private String description;
     private String title;
     private int day;
@@ -11,7 +11,7 @@ public class Promotion {
     private int discount;
 
     public Promotion(int promotioncode, String description, String title, int day, int month, int year, int discount) {
-        this.promotioncode = promotioncode;
+        this.promotion_code = promotioncode;
         this.description = description;
         this.title = title;
         this.day = day;
@@ -21,11 +21,11 @@ public class Promotion {
     }
 
     public int getPromotioncode() {
-        return promotioncode;
+        return promotion_code;
     }
 
     public void setPromotioncode(int promotioncode) {
-        this.promotioncode = promotioncode;
+        this.promotion_code = promotioncode;
     }
 
     public String getDescription() {

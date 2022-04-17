@@ -10,16 +10,68 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="199a18ab-df91-45c8-ba51-42b9e3009082" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/Interfaces/PromotionAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/.vs/TECAir_API/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/.vs/TECAir_API/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/.vs/TECAir_API/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/.vs/TECAir_API/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/bin/Debug/net6.0/TECAirAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/bin/Debug/net6.0/TECAirAPI.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/bin/Debug/net6.0/TECAirAPI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/bin/Debug/net6.0/TECAirAPI.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/bin/Debug/net6.0/TECAir_API_Data.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/bin/Debug/net6.0/TECAir_API_Data.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/bin/Debug/net6.0/TECAir_API_Data.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/bin/Debug/net6.0/TECAir_API_Data.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/bin/Debug/net6.0/TEC_Air_API_Model.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/bin/Debug/net6.0/TEC_Air_API_Model.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/bin/Debug/net6.0/TEC_Air_API_Model.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/bin/Debug/net6.0/TEC_Air_API_Model.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/TECAirAPI.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/TECAirAPI.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/TECAirAPI.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/TECAirAPI.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/TECAirAPI.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/TECAirAPI.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/TECAirAPI.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/TECAirAPI.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/TECAirAPI.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/TECAirAPI.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/TECAirAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/TECAirAPI.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/TECAirAPI.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/TECAirAPI.genruntimeconfig.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/TECAirAPI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/TECAirAPI.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/ref/TECAirAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/ref/TECAirAPI.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/refint/TECAirAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/Debug/net6.0/refint/TECAirAPI.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/TECAirAPI.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/TECAirAPI.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/TECAirAPI.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/TECAirAPI.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/staticwebassets.pack.sentinel" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAirAPI/obj/staticwebassets.pack.sentinel" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/bin/Debug/net6.0/TECAir_API_Data.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/bin/Debug/net6.0/TECAir_API_Data.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/bin/Debug/net6.0/TECAir_API_Data.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/bin/Debug/net6.0/TECAir_API_Data.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/bin/Debug/net6.0/TEC_Air_API_Model.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/bin/Debug/net6.0/TEC_Air_API_Model.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/bin/Debug/net6.0/TEC_Air_API_Model.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/bin/Debug/net6.0/TEC_Air_API_Model.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/TECAir_API_Data.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/TECAir_API_Data.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/TECAir_API_Data.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/TECAir_API_Data.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/TECAir_API_Data.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/TECAir_API_Data.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/TECAir_API_Data.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/TECAir_API_Data.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/TECAir_API_Data.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/TECAir_API_Data.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/TECAir_API_Data.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/TECAir_API_Data.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/TECAir_API_Data.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/TECAir_API_Data.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/ref/TECAir_API_Data.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/ref/TECAir_API_Data.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/refint/TECAir_API_Data.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/Debug/net6.0/refint/TECAir_API_Data.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/TECAir_API_Data.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/TECAir_API_Data.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/TECAir_API_Data.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/TECAir_API_Data.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TECAir_API_Data/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/bin/Debug/net6.0/TEC_Air_API_Model.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/bin/Debug/net6.0/TEC_Air_API_Model.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/bin/Debug/net6.0/TEC_Air_API_Model.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/bin/Debug/net6.0/TEC_Air_API_Model.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/TEC_Air_API_Model.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/TEC_Air_API_Model.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/TEC_Air_API_Model.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/TEC_Air_API_Model.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/TEC_Air_API_Model.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/TEC_Air_API_Model.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/TEC_Air_API_Model.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/TEC_Air_API_Model.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/TEC_Air_API_Model.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/TEC_Air_API_Model.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/TEC_Air_API_Model.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/TEC_Air_API_Model.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/ref/TEC_Air_API_Model.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/ref/TEC_Air_API_Model.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/refint/TEC_Air_API_Model.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/Debug/net6.0/refint/TEC_Air_API_Model.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/TEC_Air_API_Model.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/TEC_Air_API_Model.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/TEC_Air_API_Model.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/TEC_Air_API_Model.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../TECAir_API/TEC_Air_API_Model/obj/project.nuget.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/TECAir_Mobile.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/TECAir_Mobile.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/ShowDiscounts.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/ShowDiscounts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Promotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tecairmobile/entities/Promotion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_show_discounts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_show_discounts.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +100,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -68,6 +121,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../Database" />
+    <property name="settings.editor.selected.configurable" value="inlay.hints.JAVA" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.-1702112970">

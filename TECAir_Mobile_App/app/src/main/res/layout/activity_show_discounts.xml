@@ -5,7 +5,7 @@
     android:id="@+id/disc"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAD946"
+    android:background="@color/white"
     tools:context=".ShowDiscounts">
 
     <TextView
@@ -13,22 +13,44 @@
         android:layout_width="311dp"
         android:layout_height="64dp"
         android:layout_marginTop="76dp"
-        android:text="Check out our great discounts!"
+        android:text="FInd our discounts by introducing a code"
         android:textAlignment="center"
-        android:textColor="#D32A2A"
+        android:textColor="@color/purple_500"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="413dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="164dp"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/code"
+        android:layout_width="200dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="168dp"
+        android:hint="Code"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/discdisp" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="310dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="224dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/pb1"
+        android:layout_width="141dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="48dp"
+        android:text="Find"
+        android:onClick="onClick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/code" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
