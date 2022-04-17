@@ -16,6 +16,7 @@ export class ApiService {
   flightPath: string = this.url + "Flight/FlightsandRoutes";
   airplanePath: string = this.url + "Airplane";
   routesPath: string = this.url + "Route";
+  scalesPath: string = this.url + "Flight_Stopover/";
 
   constructor(private http: HttpClient) { }
 
@@ -75,6 +76,22 @@ export class ApiService {
     };
 
     return this.http.get<string>(this.routesPath, requestOptions);
+  }
+
+  getScales(id:number){
+    const headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Access-Control-Allow-Credentials': 'true'
+    }
+
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+
+    return this.http.get<string>(this.scalesPath+ id, requestOptions);
   }
 
 }

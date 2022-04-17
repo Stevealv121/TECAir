@@ -31,10 +31,10 @@ export class FlightsComponent implements OnInit {
 
   }
 
-  getInfo(id:number){
+  getInfo(id:number, origin:string, departure: string, year: number, month: number, day:number, hour:number, minutes:number){
     this.data.setFlightId(id);
-    console.log(id);
-    this.router.navigate(['flightsInfo'])
+    this.data.setFlightInfo([origin,departure,String(day)+"/"+String(month)+ "/"+ String(year), String(hour)+":"+String(minutes)+"0"]);
+    this.router.navigate(['flightsInfo']);
   }
 
 }

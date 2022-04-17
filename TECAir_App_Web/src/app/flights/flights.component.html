@@ -28,7 +28,7 @@
               <td>{{item.airplane_plate}}</td>
               <td>{{item.status}}</td>
               <td>${{item.price}}</td>
-              <td> <a id="buttons" class="btn btn-primary btn-sm " (click)="getInfo(item.id)" role="button">Info </a></td>
+              <td> <a id="buttons" class="btn btn-primary btn-sm " (click)="getInfo(item.id, item.origin, item.destination,item.year,item.month,item.day,item.hours,item.minutes)" role="button">Info </a></td>
             </tr>
           </tbody>
         </table>

@@ -5,28 +5,28 @@
       <div id="container"class="container">
       <div class="row">
         <div class="col">
-          <label id="left">0:00 AM</label>
+          <label id="left">{{flightInfo[2]}}</label>
         </div>
         <div id="cols" class="col">
-          <label id="arrive">0:00 PM</label>
+          <label id="arrive">{{flightInfo[3]}}</label>
         </div>
       </div>
       <div class="row">
-        <label id="route">SJO-----8H,32M----MIA</label>
+        <label id="route">{{flightInfo[0]}} -----Travel to ------ {{flightInfo[1]}}</label>
       </div>
       </div>
-      <h3 id="subtitles">Scales</h3> <!---Hacer recursivo para cada ruta intermedia/ scales-->
-      <div id="container"class="container">
+      <h3 id="subtitles" *ngIf="scales != null">Scales</h3> <!--scale recurtion-->
+      <div id="container" *ngFor="let scale of scales" class="container">
         <div class="row">
           <div class="col">
-            <label id="left">3:00 AM</label>
+            <label id="left">Max Duration:</label>
           </div>
           <div id="cols" class="col">
-            <label id="arrive">5:00 PM</label>
+            <label id="arrive">7 hour</label>
           </div>
         </div>
         <div class="row">
-          <label id="route">SJO-----3H,00M----PTY</label>
+          <label id="route">{{scale}} ----- Min Duration: 4 Hours</label>
         </div>
         </div>
         <br>

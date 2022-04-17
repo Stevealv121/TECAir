@@ -6,9 +6,11 @@ import { Injectable } from '@angular/core';
 export class DataServiceService {
 
   flightId : number;
+  flightInfo: string[];
 
   constructor() {
     this.flightId = 0;
+    this.flightInfo =[];
    }
 
   setFlightId(id: number){
@@ -16,5 +18,11 @@ export class DataServiceService {
   }
   getFlightId(){
     return this.flightId;
+  }
+  setFlightInfo(info: string[]){
+    this.flightInfo = info;
+  }
+  getFlightInfo(){
+    return this.flightInfo;
   }
 }
