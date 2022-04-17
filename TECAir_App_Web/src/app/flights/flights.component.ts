@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Flight } from '../models/flight';
 import { ApiService } from '../services/api.service';
+import { DataServiceService } from '../services/data-service.service';
 
 @Component({
   selector: 'app-flights',
@@ -12,18 +13,18 @@ export class FlightsComponent implements OnInit {
 
   information: Flight[];
 
-  constructor(private router:Router, private api: ApiService) {
+  constructor(private router:Router, private api: ApiService, private data: DataServiceService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.information =[]
+    this.information =[];
 
    }
 
   ngOnInit(): void {
-    this.prueba()
+    this.cargarTabla()
 
   }
 
-  prueba(){
+  cargarTabla(){
     this.api.getFlights().subscribe((data: any) => {
       this.information =data;
       console.log(this.information);
@@ -32,6 +33,7 @@ export class FlightsComponent implements OnInit {
   }
 
   getInfo(id:number){
+    this.data.setFlightId(id);
     console.log(id);
     this.router.navigate(['flightsInfo'])
   }

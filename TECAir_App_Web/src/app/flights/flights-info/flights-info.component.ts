@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataServiceService } from 'src/app/services/data-service.service';
 
 @Component({
   selector: 'app-flights-info',
@@ -8,11 +9,12 @@ import { Router } from '@angular/router';
 })
 export class FlightsInfoComponent implements OnInit {
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private data: DataServiceService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
    }
 
   ngOnInit(): void {
+    console.log(this.data.getFlightId());
   }
   goBack(){
     this.router.navigate(['flights'])
