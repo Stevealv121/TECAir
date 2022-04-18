@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
@@ -8,6 +8,9 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
 import { default as _rollupMoment } from 'moment';
+import { ApiService } from '../services/api.service';
+import { FlightI } from '../models/flight.interface';
+import { DataService } from '../services/data.service';
 
 const moment = _rollupMoment || _moment;
 
@@ -40,8 +43,14 @@ export class HomeComponent implements OnInit {
 
   promos: number[] = [1, 2];
   date = new FormControl(moment());
+  bookingForm = new FormGroup({
+    origin: new FormControl('', Validators.required),
+    destination: new FormControl('', Validators.required),
+    travelers: new FormControl('', Validators.required)
+  });
+  // availableFlights: FlightI[] = [];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private api: ApiService, private data: DataService) { }
 
   ngOnInit(): void {
     this.changeIndicator();
@@ -81,7 +90,16 @@ export class HomeComponent implements OnInit {
 
   }
 
-  findFlights() {
+  async findFlights(form: FlightI) {
+    let from = form.origin;
+    let to = form.destination;
+    this.api.searchFlights(from, to).subscribe(data => {
+      this.data.availableFlights = data;
+      // console.log(data);
+      // console.log(this.availableFlights);
+      // console.log(this.data.availableFlights);
+    });
+    await new Promise(f => setTimeout(f, 100));
     this.router.navigateByUrl("/choose-flights");
   }
 

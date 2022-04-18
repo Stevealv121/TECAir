@@ -4,6 +4,7 @@ import { LoginI } from '../models/login.interface';
 import { ResponseI } from '../models/response.interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserI } from '../models/user.interface';
+import { FlightI } from '../models/flight.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,10 @@ export class ApiService {
 
   signUp(form: UserI): Observable<ResponseI> {
     return this.http.post<ResponseI>(this.userPath, form)
+  }
+
+  searchFlights(origin: string, destination: string): Observable<FlightI[]> {
+    let flightPath = this.url + "Flight/" + origin + "/" + destination;
+    return this.http.get<FlightI[]>(flightPath)
   }
 }

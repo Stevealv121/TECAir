@@ -1,11 +1,11 @@
 <div class="container-fluid">
-    <div id="book" class="row mb-4 p-3">
+    <div id="book" class="row mb-4 p-3" [formGroup]="bookingForm">
         <div class="col-md-1"></div>
         <div class="col">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" formControlName="origin">
         </div>
         <div class="col">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" formControlName="destination">
         </div>
         <div class="col">
             <mat-form-field color="accent" appeareance="fill">
@@ -19,8 +19,10 @@
             </mat-form-field>
         </div>
         <div class="col">
-            <button id="find" class="btn btn-light">Find Flight</button>
+            <button type="submit" id="find" class="btn btn-light" (click)="findFlights(bookingForm.value)">Find
+                Flight</button>
         </div>
+
     </div>
 </div>
 <div class="container">
@@ -37,11 +39,11 @@
         </div>
     </div>
     <!-- Flights -->
-    <div class="card-data" *ngFor="let info of flights">
+    <div class="card-data" *ngFor="let info of availableFlights">
         <div class="card">
             <h5 id="stop-h5">1 STOP</h5>
             <div id="time">
-                <h4 id="time-from">0:00 AM</h4>
+                <h4 id="time-from">{{info.hours}}:{{info.minutes}} AM</h4>
                 <h4 id="time-to">0:00 PM</h4>
             </div>
             <h6 class="flight-time">SJO ------------ 8H,32M ------------ MIA</h6>
@@ -57,7 +59,7 @@
                     </div>
                     <div class="row row-bottom-margin">
                         <div class="col">
-                            <h6>San Jose to Houston</h6>
+                            <h6>{{info.origin}} to {{info.destination}}</h6>
                         </div>
                     </div>
                     <div class="row gy-1">
@@ -67,7 +69,7 @@
                         <div class="col"><strong>Duration:</strong> 3h 41m</div>
                     </div>
                     <div class="row gy-1">
-                        <div class="col"><strong>Flight number:</strong> UA 1682</div>
+                        <div class="col"><strong>Flight number:</strong> {{info.route_code}}</div>
                     </div>
                     <div class="row gy-1">
                         <div class="col"><strong>Aircraft type:</strong> Boeing 737-800</div>

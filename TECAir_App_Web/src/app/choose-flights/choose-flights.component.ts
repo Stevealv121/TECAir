@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
@@ -8,6 +8,9 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
 import { default as _rollupMoment } from 'moment';
+import { DataService } from '../services/data.service';
+import { FlightI } from '../models/flight.interface';
+import { ApiService } from '../services/api.service';
 
 const moment = _rollupMoment || _moment;
 
@@ -38,12 +41,47 @@ export const MY_FORMATS = {
 })
 export class ChooseFlightsComponent implements OnInit {
 
-  flights: string[] = ["info1", "price1", "info2", "price2"];
+  //flights: string[] = ["info1", "price1", "info2", "price2"];
   date = new FormControl(moment());
+  availableFlights: FlightI[] = [];
+  // @Input()
+  // from!: string;
+  // @Input()
+  // to!: string;
+  bookingForm = new FormGroup({
+    origin: new FormControl('', Validators.required),
+    destination: new FormControl('', Validators.required)
+  });
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private data: DataService, private api: ApiService) {
+    this.initiateValues();
+  }
 
   ngOnInit(): void {
+  }
+
+  initiateValues() {
+    this.availableFlights = this.data.availableFlights;
+    // console.log(this.availableFlights);
+    if (this.availableFlights.length == 0) {
+      this.bookingForm.patchValue({ origin: "From" });
+      this.bookingForm.patchValue({ destination: "To" });
+    } else {
+      this.bookingForm.patchValue({ origin: this.availableFlights[0].origin });
+      this.bookingForm.patchValue({ destination: this.availableFlights[0].destination });
+    }
+
+  }
+
+  async findFlights(form: FlightI) {
+    let from = form.origin;
+    let to = form.destination;
+    this.api.searchFlights(from, to).subscribe(data => {
+      this.data.availableFlights = data;
+      this.availableFlights = this.data.availableFlights;
+      console.log(this.availableFlights);
+    });
+    await new Promise(f => setTimeout(f, 50));
   }
 
   chooseFlight() {
