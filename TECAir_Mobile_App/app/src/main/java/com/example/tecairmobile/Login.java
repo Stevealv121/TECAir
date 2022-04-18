@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tecairmobile.Utilities.Utilities;
@@ -22,6 +23,7 @@ import java.util.List;
 public class Login extends AppCompatActivity {
 
     EditText name, mail,firstsurname;
+    TextView rt1;
     SQLitehelper conn;
 
     @Override
@@ -29,11 +31,12 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        conn = new SQLitehelper(getApplicationContext(), "bd_User", null, 1);
+        conn = new SQLitehelper(getApplicationContext(), "TecAir_BD", null, 1);
 
         name = (EditText) findViewById(R.id.name);
-        mail = (EditText) findViewById(R.id.mail);
         firstsurname = (EditText) findViewById(R.id.firstsurname);
+        mail = (EditText) findViewById(R.id.mail);
+        rt1 = (TextView) findViewById(R.id.rt1);
 
     }
 
@@ -43,11 +46,13 @@ public class Login extends AppCompatActivity {
 
     private void consult() {
         SQLiteDatabase db = conn.getReadableDatabase();
-        String[] consult = {name.getText().toString(),firstsurname.getText().toString(),mail.getText().toString()};
+        String[] consult = {name.getText().toString()};
         String[] result = {Utilities.FIELD_FNAME};
         try{
-            Cursor cursor = db.query(Utilities.TABLE_USER,result,Utilities.FIELD_FNAME+"=?"+" AND "+Utilities.FIELD_FSNAME+"=?"+" AND "+Utilities.FIELD_EMAIL+"=?",consult,null,null,null);
+            Cursor cursor = db.query(Utilities.TABLE_USER,result,Utilities.FIELD_FNAME+"=?",consult,null,null,null);
             cursor.moveToFirst();
+            Toast.makeText(getApplicationContext(),"Welcome " + cursor.getString(0), Toast.LENGTH_LONG).show();
+            cursor.close();
             Intent myintent = new Intent(Login.this,MainMenu.class);
             startActivity(myintent);
 
@@ -55,6 +60,8 @@ public class Login extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"User was not found", Toast.LENGTH_LONG).show();
             clean();
         }
+        //Intent myintent = new Intent(Login.this,MainMenu.class);
+        //startActivity(myintent);
     }
 
     private void clean() {

@@ -70,7 +70,7 @@ public class Registration extends AppCompatActivity {
 
     }
     private void singUserUp(){
-        SQLitehelper conn = new SQLitehelper(this, "bd_User", null,1);
+        SQLitehelper conn = new SQLitehelper(this, "TecAir_BD", null,1);
 
         SQLiteDatabase db = conn.getWritableDatabase();
 
