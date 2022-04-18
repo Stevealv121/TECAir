@@ -22,6 +22,9 @@ export class ApiService {
   deletePromoPath: string = this.url+"AppliesTo/";
   promotionPath: string = this.url + "Promotion";
   applyToPath:string =this.url + "AppliesTo";
+  passengersPath:string = this.url + "Flight/Users/"
+  flightBaggagePath:string = this.url + "Flight/Baggage/"
+  booksPath:string = this.url + "Books/"
 
   constructor(private http: HttpClient) { }
 
@@ -121,6 +124,36 @@ export class ApiService {
 
     return this.http.get<string>(this.flightPromoPath+ id, requestOptions);
   }
+  getFlightPassengers(id: number){
+    const headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Access-Control-Allow-Credentials': 'true'
+    }
+
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+
+    return this.http.get<string>(this.passengersPath+ id, requestOptions);
+  }
+  getFlightBaggage(id: number){
+    const headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Access-Control-Allow-Credentials': 'true'
+    }
+
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+
+    return this.http.get<string>(this.flightBaggagePath+ id, requestOptions);
+  }
 
   // Deletes
   deleteFlightPromo(id: number){
@@ -138,6 +171,20 @@ export class ApiService {
 
     return this.http.delete<string>(this.deletePromoPath + id,requestOptions);
   }
+  deleteFlightPassenger(id: number){
+    const headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Access-Control-Allow-Credentials': 'true'
+    }
 
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+
+    return this.http.delete<string>(this.booksPath + id,requestOptions);
+  }
 }
 
