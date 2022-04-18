@@ -23,7 +23,6 @@ import java.util.List;
 public class Login extends AppCompatActivity {
 
     EditText name, mail,firstsurname;
-    TextView rt1;
     SQLitehelper conn;
 
     @Override
@@ -36,7 +35,6 @@ public class Login extends AppCompatActivity {
         name = (EditText) findViewById(R.id.name);
         firstsurname = (EditText) findViewById(R.id.firstsurname);
         mail = (EditText) findViewById(R.id.mail);
-        rt1 = (TextView) findViewById(R.id.rt1);
 
     }
 
@@ -46,12 +44,12 @@ public class Login extends AppCompatActivity {
 
     private void consult() {
         SQLiteDatabase db = conn.getReadableDatabase();
-        String[] consult = {name.getText().toString()};
-        String[] result = {Utilities.FIELD_FNAME};
+        String[] consult = {name.getText().toString(), firstsurname.getText().toString(), mail.getText().toString()};
+        String[] result = {Utilities.FIELD_FNAME, Utilities.FIELD_FSNAME};
         try{
-            Cursor cursor = db.query(Utilities.TABLE_USER,result,Utilities.FIELD_FNAME+"=?",consult,null,null,null);
+            Cursor cursor = db.query(Utilities.TABLE_USER,result,Utilities.FIELD_FNAME+"=?"+" AND "+Utilities.FIELD_FSNAME+"=?"+" AND " + Utilities.FIELD_EMAIL+"=?",consult,null,null,null);
             cursor.moveToFirst();
-            Toast.makeText(getApplicationContext(),"Welcome " + cursor.getString(0), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Welcome " + cursor.getString(0) + " " + cursor.getString(1), Toast.LENGTH_LONG).show();
             cursor.close();
             Intent myintent = new Intent(Login.this,MainMenu.class);
             startActivity(myintent);
@@ -60,8 +58,6 @@ public class Login extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"User was not found", Toast.LENGTH_LONG).show();
             clean();
         }
-        //Intent myintent = new Intent(Login.this,MainMenu.class);
-        //startActivity(myintent);
     }
 
     private void clean() {
