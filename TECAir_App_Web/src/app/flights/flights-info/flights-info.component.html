@@ -32,7 +32,7 @@
         <br>
       <h3>Promotion</h3><!--Añadir promocion que tenga el vuelo, si no tiene no se coloca nada-->
       <div  class="container">
-        <table id= "table"class="table">
+        <table #table id= "table"class="table">
           <thead id="thead">
             <tr>
               <th>Title</th>
@@ -43,13 +43,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td scope="row">Europe Travel</td>
-              <td>Treavel to the beautiful London</td>
-              <td>25-07-22</td>
-              <td> 25%</td>
+            <tr *ngFor="let promo of flightPromo">
+              <td scope="row">{{promo.title}}</td>
+              <td>{{promo.description}}</td>
+              <td>{{promo.day}}/{{promo.month}}/{{promo.year}}</td>
+              <td>% {{promo.discount}}</td>
               <td>
-                <button id="span" class="btn btn-primary" type="button">Delete</button>
+                <button id="span" class="btn btn-primary" type="button" (click)="deletePromo()">Delete</button>
               </td>
             </tr>
           </tbody>
