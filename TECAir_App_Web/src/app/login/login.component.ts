@@ -22,16 +22,26 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // checkLocalStorage(){
-  //   if(true){
-  //     this.router.navigate([''])
-  //   }
-  // }
+  async onLogin(form: LoginI) {
+    let password = form.password;
+    let email = form.email;
+    let credentials = false;
+    this.api.loginByEmail(email, password).subscribe(data => {
+      if (data == null) {
+        alert("Wrong credentials, please access with a valid email and password.");
+      } else {
+        credentials = true;
+      }
+      console.log(data)
+    });
 
-  onLogin(form: LoginI) {
-    // this.api.loginByEmail(form).subscribe(data => {
-    //   console.log(data)
-    // })
+    await new Promise(f => setTimeout(f, 50));
+
+    console.log(credentials);
+
+    if (credentials) {
+      this.router.navigateByUrl("home");
+    }
 
   }
 }
