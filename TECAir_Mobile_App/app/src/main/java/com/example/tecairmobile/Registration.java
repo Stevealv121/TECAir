@@ -20,7 +20,7 @@ import java.util.List;
 
 public class Registration extends AppCompatActivity {
 
-    EditText name, mail, college, studentID,secondname,firstsurname,secondsurname;
+    EditText name, mail, college, studentID,secondname,firstsurname,secondsurname,pass;
     Spinner student;
 
     @Override
@@ -33,8 +33,9 @@ public class Registration extends AppCompatActivity {
         college = (EditText) findViewById(R.id.college);
         studentID = (EditText) findViewById(R.id.studentID);
         secondname = (EditText) findViewById(R.id.secondname);
-        firstsurname = (EditText) findViewById(R.id.firstsurname);
+        firstsurname = (EditText) findViewById(R.id.password);
         secondsurname = (EditText) findViewById(R.id.secondsurname);
+        pass = (EditText) findViewById(R.id.pass);
         student = findViewById(R.id.student);
 
         List<String> states = Arrays.asList("Regular","Student");
@@ -82,6 +83,7 @@ public class Registration extends AppCompatActivity {
         values.put(Utilities.FIELD_EMAIL, mail.getText().toString());
         values.put(Utilities.FIELD_UNIVERSITY, college.getText().toString());
         values.put(Utilities.FIELD_STID, studentID.getText().toString());
+        values.put(Utilities.FIELD_PASS, pass.getText().toString());
 
         Long idResult = db.insert(Utilities.TABLE_USER, Utilities.FIELD_ID, values);
 
