@@ -13,6 +13,10 @@
     color: #fff;
 }
 
+.card-link {
+    color: white;
+}
+
 #booking {
     padding-right: 15px;
     padding-left: 15px;
