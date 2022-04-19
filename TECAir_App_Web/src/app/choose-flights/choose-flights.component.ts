@@ -48,6 +48,8 @@ export class ChooseFlightsComponent implements OnInit {
   // from!: string;
   // @Input()
   // to!: string;
+  from: string = "";
+  to: string = "";
   bookingForm = new FormGroup({
     origin: new FormControl('', Validators.required),
     destination: new FormControl('', Validators.required)
@@ -69,7 +71,10 @@ export class ChooseFlightsComponent implements OnInit {
     } else {
       this.bookingForm.patchValue({ origin: this.availableFlights[0].origin });
       this.bookingForm.patchValue({ destination: this.availableFlights[0].destination });
+      this.from = this.availableFlights[0].origin;
+      this.to = this.availableFlights[0].destination;
     }
+
 
   }
 
@@ -82,6 +87,8 @@ export class ChooseFlightsComponent implements OnInit {
       console.log(this.availableFlights);
     });
     await new Promise(f => setTimeout(f, 50));
+    this.from = this.availableFlights[0].origin;
+    this.to = this.availableFlights[0].destination;
   }
 
   chooseFlight() {

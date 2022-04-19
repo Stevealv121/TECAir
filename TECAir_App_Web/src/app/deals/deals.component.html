@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row mb-5">
+        <div class="col">
+            <h2 class="promo-h">Special Flights Offers</h2>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col">
+            <h5>Discover exciting destinations around the world. TECAir flight deals are a great reason to experience
+                new places, or return to your favorite destinations.</h5>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div id="carouselPromo" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div class="row">
+                    <div class="col-md-auto"><button id="btn-slide-prev" class="carousel-control-prev" type="button"
+                            data-bs-target="#carouselPromo" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button></div>
+                    <div class="col">
+                        <div class="carousel inner">
+                            <div class="carousel-item active">
+                                <div class="row">
+                                    <div class="col" *ngFor="let deal of topDeals">
+                                        <div class="card" style="width: 18rem;">
+                                            <img src="assets/images/deal.jpg" class="card-img-top" alt="deal">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{deal.title}}</h5>
+                                                <p class="card-text">{{deal.description}}</p>
+                                                <p class="card-text">Discount: {{deal.discount}}%</p>
+                                                <a href="#" class="btn btn-primary">Book now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item" *ngFor="let item of dealsMatrix">
+                                <div class="row">
+                                    <div class="col" *ngFor="let promo of item">
+                                        <div class="card" style="width: 18rem;">
+                                            <img src="assets/images/deal.jpg" class="card-img-top" alt="deal">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{promo.title}}</h5>
+                                                <p class="card-text">{{promo.description}}</p>
+                                                <p class="card-text">Discount: {{promo.discount}}%</p>
+                                                <a href="#" class="btn btn-primary">Book now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-auto"><button id="btn-slide-next" class="carousel-control-next" type="button"
+                            data-bs-target="#carouselPromo" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button></div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<br>

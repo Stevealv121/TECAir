@@ -211,22 +211,6 @@
     color: rgb(5, 6, 63);
 }
 
-.promo-h {
-    text-align: center;
-}
-
-.carousel-control-prev-icon {
-    position: absolute;
-
-    left: 1px;
-}
-
-.carousel-control-next-icon {
-    position: absolute;
-
-    right: 1px;
-}
-
 #btn-flights {
     margin-left: 50%;
     background-color: rgb(5, 6, 63);

@@ -5,6 +5,7 @@ import { ResponseI } from '../models/response.interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserI } from '../models/user.interface';
 import { FlightI } from '../models/flight.interface';
+import { PromotionI } from '../models/promotion.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,10 @@ export class ApiService {
   searchFlights(origin: string, destination: string): Observable<FlightI[]> {
     let flightPath = this.url + "Flight/" + origin + "/" + destination;
     return this.http.get<FlightI[]>(flightPath)
+  }
+
+  getPromotions(): Observable<PromotionI[]> {
+    let dealsPath = this.url + "Promotion";
+    return this.http.get<PromotionI[]>(dealsPath)
   }
 }

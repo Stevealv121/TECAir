@@ -14,7 +14,7 @@ import { FlightsInfoComponent } from './flights/flights-info/flights-info.compon
 import { RoutesComponent } from './routes/routes.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { HomeComponent } from './home/home.component';
+
 import { ChooseFlightsComponent } from './choose-flights/choose-flights.component';
 import { ChooseTravelersComponent } from './choose-travelers/choose-travelers.component';
 import { SeatMapComponent } from './seat-map/seat-map.component';
@@ -28,6 +28,8 @@ import { CreateRouteComponent } from './routes/create-route/create-route.compone
 import { RouteEditComponent } from './routes/route-edit/route-edit.component';
 import { FlightOpenComponent } from './reports/flight-open/flight-open.component';
 import { FlightClosedComponent } from './reports/flight-closed/flight-closed.component';
+import { HomeComponent } from './home/home.component';
+import { DealsComponent } from './deals/deals.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { FlightClosedComponent } from './reports/flight-closed/flight-closed.com
     CreateRouteComponent,
     RouteEditComponent,
     FlightOpenComponent,
-    FlightClosedComponent
+    FlightClosedComponent,
+    DealsComponent
   ],
   imports: [
     BrowserModule,

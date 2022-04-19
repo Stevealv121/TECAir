@@ -28,7 +28,7 @@
 <div class="container">
 
     <div class="row mb-3">
-        <h2>Depart: city,country to city,country</h2>
+        <h2>Depart: city,{{from}} to city,{{to}}</h2>
     </div>
     <div class="row">
         <div class="col">
@@ -104,7 +104,7 @@
         </div>
         <div id="price-card" class="card">
             <p class="card-text" style="transform: rotate(0);">
-                <a routerLink="/choose-travelers" class="text-warning stretched-link"></a>100 $
+                <a routerLink="/choose-travelers" class="text-warning stretched-link"></a>{{info.price}} $
             </p>
         </div>
     </div>
