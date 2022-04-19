@@ -8,6 +8,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface FlightsAPI {
+
     @GET("api/Flight")
     Call<List<Flight>> findF();
 }

@@ -1,110 +1,110 @@
 package com.example.tecairmobile.entities;
 
 public class User {
-    private int id;
+    private Integer id;
     private String email;
-    private String fname;
-    private String sname;
-    private String fsname;
-    private String ssname;
-    private int phone;
+    private String first_name;
+    private String second_name;
+    private String first_surname;
+    private String second_surname;
+    private Integer phone;
     private String university;
-    private int studentid;
-    private String rolename;
+    private Integer student_id;
+    private String role_name;
     private String password;
 
-    public User(int id, String email, String fname, String sname, String fsname, String ssname, int phone, String university, int studentid, String rolename, String password) {
+    public User(Integer id, String email, String first_name, String second_name, String first_surname, String second_surname, Integer phone, String university, Integer student_id, String role_name, String password) {
         this.id = id;
         this.email = email;
-        this.fname = fname;
-        this.sname = sname;
-        this.fsname = fsname;
-        this.ssname = ssname;
+        this.first_name = first_name;
+        this.second_name = second_name;
+        this.first_surname = first_surname;
+        this.second_surname = second_surname;
         this.phone = phone;
         this.university = university;
-        this.studentid = studentid;
-        this.rolename = rolename;
+        this.student_id = student_id;
+        this.role_name = role_name;
         this.password = password;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getFname() {
-        return fname;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getSname() {
-        return sname;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public String getFsname() {
-        return fsname;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
-    public String getSsname() {
-        return ssname;
+    public String getSecond_name() {
+        return second_name;
     }
 
-    public int getPhone() {
+    public void setSecond_name(String second_name) {
+        this.second_name = second_name;
+    }
+
+    public String getFirst_surname() {
+        return first_surname;
+    }
+
+    public void setFirst_surname(String first_surname) {
+        this.first_surname = first_surname;
+    }
+
+    public String getSecond_surname() {
+        return second_surname;
+    }
+
+    public void setSecond_surname(String second_surname) {
+        this.second_surname = second_surname;
+    }
+
+    public Integer getPhone() {
         return phone;
+    }
+
+    public void setPhone(Integer phone) {
+        this.phone = phone;
     }
 
     public String getUniversity() {
         return university;
     }
 
-    public int getStudentid() {
-        return studentid;
-    }
-
-    public String getRolename() {
-        return rolename;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setFname(String fname) {
-        this.fname = fname;
-    }
-
-    public void setSname(String sname) {
-        this.sname = sname;
-    }
-
-    public void setFsname(String fsname) {
-        this.fsname = fsname;
-    }
-
-    public void setSsname(String ssname) {
-        this.ssname = ssname;
-    }
-
-    public void setPhone(int phone) {
-        this.phone = phone;
-    }
-
     public void setUniversity(String university) {
         this.university = university;
     }
 
-    public void setStudentid(int studentid) {
-        this.studentid = studentid;
+    public Integer getStudent_id() {
+        return student_id;
     }
 
-    public void setRolename(String rolename) {
-        this.rolename = rolename;
+    public void setStudent_id(Integer student_id) {
+        this.student_id = student_id;
+    }
+
+    public String getRole_name() {
+        return role_name;
+    }
+
+    public void setRole_name(String role_name) {
+        this.role_name = role_name;
     }
 
     public String getPassword() {
@@ -115,3 +115,4 @@ public class User {
         this.password = password;
     }
 }
+

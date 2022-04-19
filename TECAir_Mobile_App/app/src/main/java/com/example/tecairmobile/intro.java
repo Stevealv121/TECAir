@@ -87,21 +87,21 @@ public class intro extends AppCompatActivity {
                     for(Flight f:flightList){
                         SQLiteDatabase db = conn.getWritableDatabase();
                         ContentValues values = new ContentValues();
-                        values.put(Utilities.FIELD_FID, f.getId());
-                        values.put(Utilities.FIELD_BGATE, f.getBoardinggate());
+                        values.put(Utilities.FIELD_ID, f.getId());
+                        values.put(Utilities.FIELD_BGATE, f.getBoarding_gate());
                         values.put(Utilities.FIELD_PRICE, f.getPrice());
                         values.put(Utilities.FIELD_STATUS, f.isStatus());
-                        values.put(Utilities.FIELD_RCODE, f.getRoutecode());
-                        values.put(Utilities.FIELD_APLATE, f.getAirplaneplate());
+                        values.put(Utilities.FIELD_RCODE, f.getRoute_code());
+                        values.put(Utilities.FIELD_APLATE, f.getAirplane_plate());
 
                         db.insert(Utilities.TABLE_FLIGHTS, null, values);
                         db.close();
+
                     }
 
                 }catch(Exception ex){
                     Toast.makeText(intro.this,ex.getMessage(),Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override
@@ -125,13 +125,16 @@ public class intro extends AppCompatActivity {
                     for(User u:userList){
                         SQLiteDatabase db = conn.getWritableDatabase();
                         ContentValues values = new ContentValues();
-                        values.put(Utilities.FIELD_FNAME, u.getFname());
-                        values.put(Utilities.FIELD_SNAME, u.getSname());
-                        values.put(Utilities.FIELD_FSNAME, u.getFsname());
-                        values.put(Utilities.FIELD_SSNAME, u.getSsname());
+                        values.put(Utilities.FIELD_ID, u.getId());
+                        values.put(Utilities.FIELD_FNAME, u.getFirst_name());
+                        values.put(Utilities.FIELD_SNAME, u.getSecond_name());
+                        values.put(Utilities.FIELD_FSNAME, u.getFirst_surname());
+                        values.put(Utilities.FIELD_SSNAME, u.getSecond_surname());
+                        values.put(Utilities.FIELD_PHONE, u.getPhone());
                         values.put(Utilities.FIELD_EMAIL, u.getEmail());
                         values.put(Utilities.FIELD_UNIVERSITY, u.getUniversity());
-                        values.put(Utilities.FIELD_STID, u.getStudentid());
+                        values.put(Utilities.FIELD_STID, u.getStudent_id());
+                        values.put(Utilities.FIELD_RNAME, u.getRole_name());
                         values.put(Utilities.FIELD_PASS, u.getPassword());
 
                         db.insert(Utilities.TABLE_USER, null, values);
