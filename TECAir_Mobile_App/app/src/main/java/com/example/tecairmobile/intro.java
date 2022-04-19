@@ -31,9 +31,11 @@ public class intro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
-        sincP();
-        sincUser();
-        sincFlight();
+        if(savedInstanceState == null){
+            sincP();
+            sincUser();
+            sincFlight();
+        }
     }
 
     private void sincP() {
