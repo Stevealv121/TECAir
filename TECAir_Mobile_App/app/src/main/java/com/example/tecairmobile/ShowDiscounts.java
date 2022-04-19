@@ -36,13 +36,11 @@ public class ShowDiscounts extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                find(Integer.parseInt(code.getText().toString()));
-
             }
         });
     }
 
-    private void find(int code){
+    /*private void find(int code){
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5104/")
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
@@ -69,5 +67,5 @@ public class ShowDiscounts extends AppCompatActivity {
                 Toast.makeText(ShowDiscounts.this,"Connection Error",Toast.LENGTH_SHORT).show();
             }
         });
-    }
+    }*/
 }

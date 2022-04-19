@@ -11,8 +11,9 @@ public class User {
     private String university;
     private int studentid;
     private String rolename;
+    private String password;
 
-    public User(int id, String email, String fname, String sname, String fsname, String ssname, int phone, String university, int studentid, String rolename) {
+    public User(int id, String email, String fname, String sname, String fsname, String ssname, int phone, String university, int studentid, String rolename, String password) {
         this.id = id;
         this.email = email;
         this.fname = fname;
@@ -23,6 +24,7 @@ public class User {
         this.university = university;
         this.studentid = studentid;
         this.rolename = rolename;
+        this.password = password;
     }
 
     public int getId() {
@@ -103,5 +105,13 @@ public class User {
 
     public void setRolename(String rolename) {
         this.rolename = rolename;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
