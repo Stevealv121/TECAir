@@ -44,6 +44,7 @@ export const MY_FORMATS = {
 export class HomeComponent implements OnInit {
 
   promos: PromotionI[] = [];
+  filled: boolean = false;
   date = new FormControl(moment());
   bookingForm = new FormGroup({
     origin: new FormControl('', Validators.required),
@@ -58,10 +59,12 @@ export class HomeComponent implements OnInit {
   color: string = "red";
   // availableFlights: FlightI[] = [];
 
-  constructor(private router: Router, private api: ApiService, private data: DataService) { }
+  constructor(private router: Router, private api: ApiService, private data: DataService) {
+    this.retrievePromotions();
+  }
 
   ngOnInit(): void {
-    this.retrievePromotions();
+
 
   }
 
@@ -85,13 +88,14 @@ export class HomeComponent implements OnInit {
   async findFlights(form: FlightI) {
     let from = form.origin;
     let to = form.destination;
+    let travelers = form.travelers;
+    this.data.setNumberTravelers(travelers);
     this.api.searchFlights(from, to).subscribe(data => {
       this.data.availableFlights = data;
-      // console.log(data);
-      // console.log(this.availableFlights);
-      // console.log(this.data.availableFlights);
+
     });
     await new Promise(f => setTimeout(f, 100));
+
     this.router.navigateByUrl("/choose-flights");
   }
 
@@ -103,6 +107,7 @@ export class HomeComponent implements OnInit {
 
     })
     await new Promise(f => setTimeout(f, 100));
+    this.filled = true;
   }
 
 }

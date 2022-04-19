@@ -17,10 +17,10 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  loginByEmail(email: string, password: string): Observable<ResponseI> {
+  loginByEmail(email: string, password: string): Observable<UserI> {
 
     let loginPath = this.userPath + "/" + email + "/" + password;
-    return this.http.get<ResponseI>(loginPath)
+    return this.http.get<UserI>(loginPath)
 
   }
 

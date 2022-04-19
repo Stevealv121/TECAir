@@ -41,13 +41,8 @@ export const MY_FORMATS = {
 })
 export class ChooseFlightsComponent implements OnInit {
 
-  //flights: string[] = ["info1", "price1", "info2", "price2"];
   date = new FormControl(moment());
   availableFlights: FlightI[] = [];
-  // @Input()
-  // from!: string;
-  // @Input()
-  // to!: string;
   from: string = "";
   to: string = "";
   bookingForm = new FormGroup({
