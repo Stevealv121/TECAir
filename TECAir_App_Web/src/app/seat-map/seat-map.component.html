@@ -58,7 +58,7 @@
                     </ng-container>
                     <ng-template #seatTemplate>
                         <ng-container *ngIf="rowItem === 0; else unavailable">
-                            <a (click)="pickSeat(i,j)">
+                            <a (click)="pickSeat()">
                                 <div class="square">
                                 </div>
                             </a>
