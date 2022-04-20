@@ -11,27 +11,25 @@
     <h3>Create a Baggage</h3>
     <div class="input-group mb-3">
       <label id="span" class="input-group-text" for="inputGroupSelect01">Passenger</label>
-      <select class="form-select" id="inputGroupSelect01">
+      <select #user class="form-select" id="inputGroupSelect01">
         <option selected>Choose...</option>
-        <option value="1">118515 Alex Smith</option>
-        <option value="2">48945 Michael Dumberry</option>
-        <option value="3">156487 Alexa Araya</option>
+        <option *ngFor="let user of users">{{user.id}} {{user.first_name}}  {{user.first_surname}} {{user.second_surname}}</option>
       </select>
     </div>
 
     <div class="input-group">
       <span id="span" class="input-group-text">SuitCase Color</span>
-      <input type="text" aria-label="Color" class="form-control">
+      <input #color type="text" aria-label="Color" class="form-control">
     </div>
     <br>
     <div class="input-group">
       <span id="span" class="input-group-text">Suitcase Weight</span>
-      <input type="number" aria-label="weight" class="form-control">
+      <input #weight type="number" aria-label="weight" class="form-control">
     </div>
     <br>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button id="span" id="buttons" class="btn btn-primary me-md-2" type="button" (click)="goBack()">Cancel</button>
-      <button id="span" id="buttons" class="btn btn-primary" type="button" (click)="goBack()">Create</button>
+      <button id="span" id="buttons" class="btn btn-primary" type="button" (click)="postSuitCase(user.value,color.value,weight.value)">Create</button>
     </div>
   </div>
 </div>
