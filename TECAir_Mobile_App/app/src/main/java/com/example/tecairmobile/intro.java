@@ -11,10 +11,12 @@ import android.widget.Toast;
 
 import com.example.tecairmobile.Interfaces.FlightsAPI;
 import com.example.tecairmobile.Interfaces.PromotionAPI;
+import com.example.tecairmobile.Interfaces.RouteAPI;
 import com.example.tecairmobile.Interfaces.UserAPI;
 import com.example.tecairmobile.Utilities.Utilities;
 import com.example.tecairmobile.entities.Flight;
 import com.example.tecairmobile.entities.Promotion;
+import com.example.tecairmobile.entities.Route;
 import com.example.tecairmobile.entities.User;
 
 import java.util.List;
@@ -35,7 +37,46 @@ public class intro extends AppCompatActivity {
             sincP();
             sincUser();
             sincFlight();
+            sincRoute();
         }
+    }
+
+    private void sincRoute() {
+        SQLitehelper conn = new SQLitehelper(this, "TecAir_BD", null,1);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5104/")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        RouteAPI routeAPI = retrofit.create(RouteAPI.class);
+        Call<List<Route>> call = routeAPI.findR();
+        call.enqueue(new Callback<List<Route>>() {
+            @Override
+            public void onResponse(Call<List<Route>> call, Response<List<Route>> response) {
+                try{
+                    List<Route> routeList = response.body();
+                    for(Route r: routeList){
+                        SQLiteDatabase db = conn.getWritableDatabase();
+                        ContentValues values = new ContentValues();
+                        values.put(Utilities.FIELD_RCODE, r.getRoute_code());
+                        values.put(Utilities.FIELD_ORIGIN, r.getOrigin());
+                        values.put(Utilities.FIELD_DESTINATION, r.getDestination());
+                        values.put(Utilities.FIELD_YEAR, r.getYear());
+                        values.put(Utilities.FIELD_MONTH, r.getMonth());
+                        values.put(Utilities.FIELD_DAY, r.getDay());
+                        values.put(Utilities.FIELD_HOUR, r.getHours());
+                        values.put(Utilities.FIELD_MINUTES, r.getMinutes());
+
+                        db.insert(Utilities.TABLE_ROUTE, null, values);
+                        db.close();
+                    }
+                }catch (Exception ex){
+                    Toast.makeText(intro.this,ex.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Route>> call, Throwable t) {
+                Toast.makeText(intro.this,"Connection Error",Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void sincP() {
