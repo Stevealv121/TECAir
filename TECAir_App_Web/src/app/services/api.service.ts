@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserI } from '../models/user.interface';
 import { FlightI } from '../models/flight.interface';
 import { PromotionI } from '../models/promotion.interface';
+import { SeatI } from '../models/seat.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,11 @@ export class ApiService {
   getPromotions(): Observable<PromotionI[]> {
     let dealsPath = this.url + "Promotion";
     return this.http.get<PromotionI[]>(dealsPath)
+  }
+
+  getSeats(): Observable<SeatI[]> {
+    let seatPath = this.url + "Seat";
+    return this.http.get<SeatI[]>(seatPath)
+
   }
 }

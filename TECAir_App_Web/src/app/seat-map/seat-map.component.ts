@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SeatI } from '../models/seat.interface';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-seat-map',
@@ -8,27 +10,64 @@ import { Component, OnInit } from '@angular/core';
 export class SeatMapComponent implements OnInit {
 
   flights: string[] = ["one", "two"];
-  aircraft: number[][] = [[1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
-  [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
-  [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
-  [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
-  [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
-  [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
-  [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
-  [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
-  [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
-  [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
-  [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
-  [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
-  [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
-  [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
-  [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
-  [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
-  [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
-  [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],]; //36 rows.
-  constructor() { }
+  // aircraft: number[][] = [[1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
+  // [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
+  // [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
+  // [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
+  // [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
+  // [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
+  // [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
+  // [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
+  // [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
+  // [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
+  // [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
+  // [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
+  // [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
+  // [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
+  // [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
+  // [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
+  // [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],
+  // [1, 1, 0, 2, 1, 0, 1], [1, 1, 0, 2, 1, 0, 1],]; //36 rows.
+
+  aircraft: number[][] = [];
+
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.fillAircraft();
+  }
+
+  async fillAircraft() {
+    //TODO: fill seats for a specific airplane.
+    let seats: SeatI | any[] = [];
+    this.api.getSeats().subscribe(data => {
+      seats = data;
+    })
+    await new Promise(f => (setTimeout(f, 400)));
+
+    for (let i = 0; i < seats.length; i++) {
+      let n = i % 6;
+      if (n == 0) {
+        let array: number[] = [];
+        for (let is = 0; is < 7; is++) {
+
+          if (is == 3) {
+            array.push(2);
+          } else if (seats[i + is] === undefined) {
+            array.push(1);
+          } else if (seats[i + is].state == false) {
+            array.push(1);
+          } else if (seats[i + is].state == true) {
+            array.push(0);
+
+          }
+        }
+
+        console.log(array);
+        this.aircraft.push(array);
+      }
+
+    }
   }
 
   countSeatsUnavailables() {
