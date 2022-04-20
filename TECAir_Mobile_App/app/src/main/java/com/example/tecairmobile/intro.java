@@ -9,14 +9,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.tecairmobile.Interfaces.Applies_toAPI;
 import com.example.tecairmobile.Interfaces.FlightsAPI;
 import com.example.tecairmobile.Interfaces.PromotionAPI;
 import com.example.tecairmobile.Interfaces.RouteAPI;
+import com.example.tecairmobile.Interfaces.SeatAPI;
 import com.example.tecairmobile.Interfaces.UserAPI;
 import com.example.tecairmobile.Utilities.Utilities;
+import com.example.tecairmobile.entities.Applies_to;
 import com.example.tecairmobile.entities.Flight;
 import com.example.tecairmobile.entities.Promotion;
 import com.example.tecairmobile.entities.Route;
+import com.example.tecairmobile.entities.Seats;
 import com.example.tecairmobile.entities.User;
 
 import java.util.List;
@@ -38,7 +42,78 @@ public class intro extends AppCompatActivity {
             sincUser();
             sincFlight();
             sincRoute();
+            sincSeat();
+            sincApto();
         }
+    }
+
+    private void sincApto() {
+        SQLitehelper conn = new SQLitehelper(this, "TecAir_BD", null,1);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5104/")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        Applies_toAPI applies_toAPI = retrofit.create(Applies_toAPI.class);
+        Call<List<Applies_to>> call = applies_toAPI.findAPT();
+        call.enqueue(new Callback<List<Applies_to>>() {
+            @Override
+            public void onResponse(Call<List<Applies_to>> call, Response<List<Applies_to>> response) {
+
+                try{
+                    List<Applies_to> appliesToList = response.body();
+                    for(Applies_to ap: appliesToList){
+                        SQLiteDatabase db = conn.getWritableDatabase();
+                        ContentValues values = new ContentValues();
+                        values.put(Utilities.FIELD_PCODE, ap.getPromotion_code());
+                        values.put(Utilities.FIELD_FID, ap.getFlight_id());
+                        values.put(Utilities.FIELD_FPRICE, ap.getFinal_price());
+
+                        db.insert(Utilities.TABLE_APTO, null, values);
+                        db.close();
+                    }
+
+                }catch(Exception ex){
+                    Toast.makeText(intro.this,ex.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Applies_to>> call, Throwable t) {
+                Toast.makeText(intro.this,"Connection Error",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void sincSeat() {
+        SQLitehelper conn = new SQLitehelper(this, "TecAir_BD", null,1);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5104/")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        SeatAPI seatAPI = retrofit.create(SeatAPI.class);
+        Call<List<Seats>> call = seatAPI.findS();
+        call.enqueue(new Callback<List<Seats>>() {
+            @Override
+            public void onResponse(Call<List<Seats>> call, Response<List<Seats>> response) {
+                 try{
+                     List<Seats> seatsList = response.body();
+                     for(Seats s: seatsList){
+                         SQLiteDatabase db = conn.getWritableDatabase();
+                         ContentValues values = new ContentValues();
+                         values.put(Utilities.FIELD_ID, s.getId());
+                         values.put(Utilities.FIELD_DESCRIPTION, s.getDescription());
+                         values.put(Utilities.FIELD_STATUS, s.isState());
+                         values.put(Utilities.FIELD_UID, s.getUser_id());
+                         values.put(Utilities.FIELD_APLATE, s.getAirplane_plate());
+
+                         db.insert(Utilities.TABLE_SEATS, null, values);
+                         db.close();
+                     }
+                 }catch (Exception ex){
+                     Toast.makeText(intro.this,ex.getMessage(),Toast.LENGTH_SHORT).show();
+                 }
+            }
+
+            @Override
+            public void onFailure(Call<List<Seats>> call, Throwable t) {
+                Toast.makeText(intro.this,"Connection Error",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void sincRoute() {
