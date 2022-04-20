@@ -6,6 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserI } from '../models/user.interface';
 import { SimpPromotion } from '../models/simp-promotion';
 import { AppliesTo } from '../models/applies-to';
+import { FlightPost } from '../models/flight-post';
+import { Scales } from '../models/scales';
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +24,11 @@ export class ApiService {
   deletePromoPath: string = this.url+"AppliesTo/";
   promotionPath: string = this.url + "Promotion";
   applyToPath:string =this.url + "AppliesTo";
-  passengersPath:string = this.url + "Flight/Users/"
-  flightBaggagePath:string = this.url + "Flight/Baggage/"
-  booksPath:string = this.url + "Books/"
+  passengersPath:string = this.url + "Flight/Users/";
+  flightBaggagePath:string = this.url + "Flight/Baggage/";
+  booksPath:string = this.url + "Books/";
+  flightPostPath:string = this.url + "Flight";
+
 
   constructor(private http: HttpClient) { }
 
@@ -41,6 +45,12 @@ export class ApiService {
   }
   postAppliesTo(form: AppliesTo){
     return this.http.post<AppliesTo>(this.applyToPath,form);
+  }
+  postFlight(form: FlightPost){
+    return this.http.post<FlightPost>(this.flightPostPath,form);
+  }
+  postScale(form: Scales){
+    return this.http.post<Scales>(this.scalesPath,form);
   }
   //gets
 

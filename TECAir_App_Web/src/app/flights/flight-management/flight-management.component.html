@@ -28,7 +28,7 @@
 
     <div class="input-group">
       <span id="span" class="input-group-text">Boarding Gate</span>
-      <input #gate type="text" aria-label="Color" class="form-control" placeholder="Example: A58">
+      <input #gate type="number" aria-label="Color" class="form-control" required placeholder="Example: A58">
     </div>
     <br>
     <div class="input-group">
@@ -40,8 +40,8 @@
       <label  id="span" class="input-group-text" for="inputGroupSelect01">Status</label>
       <select #status class="form-select" id="inputGroupSelect01">
         <option selected>Select the status</option>
-        <option>Enable </option>
-        <option> Unable</option>
+        <option #1>Enable </option>
+        <option #0> Unable</option>
       </select>
     </div>
     <div class="input-group">
@@ -55,8 +55,8 @@
     </div>
     <br>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      <button id="buttons" class="btn btn-primary me-md-2" type="button" (click)="goBack(plate.value)">Cancel</button>
-      <button id="buttons" class="btn btn-primary" type="button" (click)="goBack(plate.value)">Create</button>
+      <button id="buttons" class="btn btn-primary me-md-2" type="button" (click)="goBack()">Cancel</button>
+      <button id="buttons" class="btn btn-primary" type="button" (click)="createFlight(plate.value,route.value, gate.value,price.value,status.value,scale1.value,scale2.value)">Create</button>
     </div>
   </div>
 </div>
