@@ -16,13 +16,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>5-5-22</td>
-              <td>San Jose, Costa Rica</td>
-              <td>London, England</td>
-              <td>5:15 pm</td>
-              <td> <a id="buttons" class="btn btn-primary btn-sm " (click)="editView()" role="button">Edit</a></td>
+            <tr *ngFor="let route of routes">
+              <th scope="row">{{route.route_code}}</th>
+              <td>{{route.day}}/{{route.month}}/{{route.year}}</td>
+              <td>{{route.origin}}</td>
+              <td>{{route.destination}}</td>
+              <td>{{route.hours}}:{{route.minutes}}</td>
+              <td> <a id="buttons" class="btn btn-primary btn-sm " (click)="editView(route.route_code)" role="button">Edit</a></td>
             </tr>
           </tbody>
         </table>

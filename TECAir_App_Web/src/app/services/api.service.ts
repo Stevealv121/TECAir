@@ -10,6 +10,7 @@ import { FlightPost } from '../models/flight-post';
 import { Scales } from '../models/scales';
 import { BaggageModel } from '../models/baggage-model';
 import { Has } from '../models/has';
+import { Routes } from '../models/routes';
 
 @Injectable({
   providedIn: 'root'
@@ -129,6 +130,22 @@ export class ApiService {
     return this.http.get<string>(this.routesPath, requestOptions);
   }
 
+  getRouteId(id:number){
+    const headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Access-Control-Allow-Credentials': 'true'
+    }
+
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+
+    return this.http.get<string>(this.routesPath+"/"+id, requestOptions);
+  }
+
   getScales(id:number){
     const headerDict = {
       'Content-Type': 'application/json',
@@ -205,6 +222,12 @@ export class ApiService {
     };
 
     return this.http.get<string>(this.flightBaggagePath+ id, requestOptions);
+  }
+
+  //PUTS
+
+  putRoute(form:Routes){
+    return this.http.put<Routes>(this.routesPath, form);
   }
 
   // Deletes
