@@ -2,43 +2,43 @@ package com.example.tecairmobile.entities;
 
 public class Flight {
 
-    private int id;
-    private int boardinggate;
-    private int price;
+    private Integer id;
+    private Integer boarding_gate;
+    private Integer price;
     private boolean status;
-    private int routecode;
-    private String airplaneplate;
+    private Integer route_code;
+    private String airplane_plate;
 
-    public Flight(int id, int boardinggate, int price, boolean status, int routecode, String airplaneplate) {
+    public Flight(Integer id, Integer boarding_gate, Integer price, boolean status, Integer route_code, String airplane_plate) {
         this.id = id;
-        this.boardinggate = boardinggate;
+        this.boarding_gate = boarding_gate;
         this.price = price;
         this.status = status;
-        this.routecode = routecode;
-        this.airplaneplate = airplaneplate;
+        this.route_code = route_code;
+        this.airplane_plate = airplane_plate;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getBoardinggate() {
-        return boardinggate;
+    public Integer getBoarding_gate() {
+        return boarding_gate;
     }
 
-    public void setBoardinggate(int boardinggate) {
-        this.boardinggate = boardinggate;
+    public void setBoarding_gate(Integer boarding_gate) {
+        this.boarding_gate = boarding_gate;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
@@ -50,19 +50,19 @@ public class Flight {
         this.status = status;
     }
 
-    public int getRoutecode() {
-        return routecode;
+    public Integer getRoute_code() {
+        return route_code;
     }
 
-    public void setRoutecode(int routecode) {
-        this.routecode = routecode;
+    public void setRoute_code(Integer route_code) {
+        this.route_code = route_code;
     }
 
-    public String getAirplaneplate() {
-        return airplaneplate;
+    public String getAirplane_plate() {
+        return airplane_plate;
     }
 
-    public void setAirplaneplate(String airplaneplate) {
-        this.airplaneplate = airplaneplate;
+    public void setAirplane_plate(String airplane_plate) {
+        this.airplane_plate = airplane_plate;
     }
 }

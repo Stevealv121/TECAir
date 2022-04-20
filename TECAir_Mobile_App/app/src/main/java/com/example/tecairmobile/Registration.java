@@ -20,7 +20,7 @@ import java.util.List;
 
 public class Registration extends AppCompatActivity {
 
-    EditText name, mail, college, studentID,secondname,firstsurname,secondsurname;
+    EditText name, mail, college, studentID,secondname,firstsurname,secondsurname,pass,id;
     Spinner student;
 
     @Override
@@ -33,8 +33,10 @@ public class Registration extends AppCompatActivity {
         college = (EditText) findViewById(R.id.college);
         studentID = (EditText) findViewById(R.id.studentID);
         secondname = (EditText) findViewById(R.id.secondname);
-        firstsurname = (EditText) findViewById(R.id.firstsurname);
+        firstsurname = (EditText) findViewById(R.id.password);
         secondsurname = (EditText) findViewById(R.id.secondsurname);
+        pass = (EditText) findViewById(R.id.pass);
+        id = (EditText) findViewById(R.id.id);
         student = findViewById(R.id.student);
 
         List<String> states = Arrays.asList("Regular","Student");
@@ -70,11 +72,12 @@ public class Registration extends AppCompatActivity {
 
     }
     private void singUserUp(){
-        SQLitehelper conn = new SQLitehelper(this, "bd_User", null,1);
+        SQLitehelper conn = new SQLitehelper(this, "TecAir_BD", null,1);
 
         SQLiteDatabase db = conn.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(Utilities.FIELD_ID, id.getText().toString());
         values.put(Utilities.FIELD_FNAME, name.getText().toString());
         values.put(Utilities.FIELD_SNAME, secondname.getText().toString());
         values.put(Utilities.FIELD_FSNAME, firstsurname.getText().toString());
@@ -82,6 +85,7 @@ public class Registration extends AppCompatActivity {
         values.put(Utilities.FIELD_EMAIL, mail.getText().toString());
         values.put(Utilities.FIELD_UNIVERSITY, college.getText().toString());
         values.put(Utilities.FIELD_STID, studentID.getText().toString());
+        values.put(Utilities.FIELD_PASS, pass.getText().toString());
 
         Long idResult = db.insert(Utilities.TABLE_USER, Utilities.FIELD_ID, values);
 
