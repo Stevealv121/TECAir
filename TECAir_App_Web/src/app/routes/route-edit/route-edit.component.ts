@@ -51,7 +51,6 @@ export class RouteEditComponent implements OnInit {
 
   editRoute(origin:string, destination: string, date:string, hour:string){
     var splitted = date.split("-",3);
-    console.log(splitted);
     var splitted2 = hour.split(":",2);
     this.route={
       route_code: this.dataService.getRouteId(),

@@ -63,6 +63,9 @@ export class ApiService {
   postHas(form:Has){
     return this.http.post<Has>(this.haspath,form);
   }
+  postRoute(form:Routes){
+    return this.http.post<Routes>(this.routesPath, form);
+  }
   //gets
 
   getFlights(){

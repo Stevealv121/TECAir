@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { Routes } from '../models/routes';
 import { ApiService } from '../services/api.service';
@@ -9,7 +9,7 @@ import { DataServiceService } from '../services/data-service.service';
   templateUrl: './routes.component.html',
   styleUrls: ['./routes.component.css']
 })
-export class RoutesComponent implements OnInit {
+export class RoutesComponent implements OnInit{
 
   routes:Routes[];
 
@@ -22,10 +22,11 @@ export class RoutesComponent implements OnInit {
   ngOnInit(): void {
     this.getRoutes();
   }
+
+
   getRoutes(){
     this.api.getRoutes().subscribe((data: any) => {
       this.routes =data;
-      console.log(this.routes);
     })
 
   }
