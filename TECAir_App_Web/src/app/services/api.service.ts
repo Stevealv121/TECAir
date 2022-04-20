@@ -83,6 +83,22 @@ export class ApiService {
 
     return this.http.get<string>(this.flightPath, requestOptions);
   }
+  getFlightCapacity(id:number){
+    const headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Access-Control-Allow-Credentials': 'true'
+    }
+
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+
+    return this.http.get<string>(this.flightPostPath +"/Capacity/"+id, requestOptions);
+  }
+
 
   getBaggage(){
     const headerDict = {

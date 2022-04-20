@@ -14,16 +14,19 @@ export class FlightOpenComponent implements OnInit {
 
   passengers: FlightPassengers[];
   baggage: FlightBaggage[];
+  capacity:number;
 
   constructor(private router: Router, private data:DataServiceService, private api:ApiService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.passengers =[];
     this.baggage =[];
+    this.capacity=0;
    }
 
   ngOnInit(): void {
     this.getPassengers();
     this.getBaggage();
+    this.getCapacity();
   }
 
   getPassengers(){
@@ -31,6 +34,11 @@ export class FlightOpenComponent implements OnInit {
       this.passengers =data;
     })
 
+  }
+  getCapacity(){
+    this.api.getFlightCapacity(this.data.getFlightId()).subscribe((data: any) => {
+      this.capacity =data;
+    })
   }
   getBaggage(){
     this.api.getFlightBaggage(this.data.getFlightId()).subscribe((data: any) => {
