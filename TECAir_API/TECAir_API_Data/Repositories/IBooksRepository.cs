@@ -14,5 +14,6 @@ namespace TECAir_API_Data.Repositories
         Task<bool> InsertReservation(Books reservation);
         Task<bool> UpdateReservation(Books reservation);
         Task<bool> DeleteReservation(Books reservation);
+        Task<bool> DeleteReservationFlight(Books reservation);
     }
 }

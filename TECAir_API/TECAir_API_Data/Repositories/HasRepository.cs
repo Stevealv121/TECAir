@@ -27,11 +27,24 @@ namespace TECAir_API_Data.Repositories
             var db = dbConnection();
             var sql = @"DELETE
                         FROM public.""Has""
-                        WHERE user_id = @user_id";
-            var result = await db.ExecuteAsync(sql, new { user_id = usr_baggage.user_id });
+                        WHERE user_id = @user_id AND flight_id = @flight_id";
+            var result = await db.ExecuteAsync(sql, new { user_id = usr_baggage.user_id,
+                                                          flight_id = usr_baggage.flight_id });
             return result > 0;
         }
+        public async Task<bool> DeleteBaggagebyId(Has usr_baggage)
+        {
+            var db = dbConnection();
+            var sql = @"DELETE
+                        FROM public.""Has""
+                        WHERE baggage_id = @baggage_id ";
+            var result = await db.ExecuteAsync(sql, new
+            {
+                baggage_id = usr_baggage.baggage_id
 
+            });
+            return result > 0;
+        }
         public async Task<IEnumerable<Has>> GetAllUserBaggage()
         {
             var db = dbConnection();
@@ -81,13 +94,14 @@ namespace TECAir_API_Data.Repositories
             else if (suitcases >= 2) usr_baggage.price = 75;
 
             var sql2 = @"
-                        INSERT INTO public.""Has"" (baggage_id,user_id,price)
-                        VALUES (@baggage_id,@user_id,@price)";
+                        INSERT INTO public.""Has"" (baggage_id,user_id,price,flight_id)
+                        VALUES (@baggage_id,@user_id,@price,@flight_id)";
             var result = await db.ExecuteAsync(sql2, new
             {
                 usr_baggage.baggage_id,
                 usr_baggage.user_id,
-                usr_baggage.price
+                usr_baggage.price,
+                usr_baggage.flight_id
             });
             return result > 0;
         }
@@ -99,13 +113,15 @@ namespace TECAir_API_Data.Repositories
                         UPDATE public.""Has"" 
                         SET baggage_id = @baggage_id,
                             user_id = @user_id,
-                            price = @price
+                            price = @price,
+                            flight_id = @flight_id
                         WHERE baggage_id = @baggage_id";
             var result = await db.ExecuteAsync(sql, new
             {
                 usr_baggage.baggage_id,
                 usr_baggage.user_id,
-                usr_baggage.price
+                usr_baggage.price,
+                usr_baggage.flight_id
             });
             return result > 0;
         }

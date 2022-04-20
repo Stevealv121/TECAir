@@ -48,7 +48,14 @@ namespace TECAir_API_Data.Repositories
                        WHERE id = @id";
             return await db.QueryFirstOrDefaultAsync<Seat>(sql, new { id = Id });
         }
-
+        public async Task<IEnumerable<Seat>> GetSeatDetailsbyPlate(string Airplane_plate)
+        {
+            var db = dbConnection();
+            var sql = @"SELECT *
+                       FROM public.""SEAT"" 
+                       WHERE airplane_plate = @airplane_plate";
+            return await db.QueryAsync<Seat>(sql, new { airplane_plate = Airplane_plate });
+        }
         public async Task<bool> InsertSeat(Seat seat)
         {
             var db = dbConnection();

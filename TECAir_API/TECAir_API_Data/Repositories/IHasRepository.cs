@@ -15,5 +15,6 @@ namespace TECAir_API_Data.Repositories
         Task<bool> InsertUserBaggage(Has usr_baggage);
         Task<bool> UpdateUserBaggage(Has usr_baggage);
         Task<bool> DeleteUserBaggage(Has usr_baggage);
+        Task<bool> DeleteBaggagebyId(Has usr_baggage);
     }
 }

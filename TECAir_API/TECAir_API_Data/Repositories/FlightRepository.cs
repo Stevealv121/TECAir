@@ -43,9 +43,12 @@ namespace TECAir_API_Data.Repositories
         {
             var db = dbConnection();
             var sql = @"SELECT * FROM public.""FLIGHT""
-                        NATURAL JOIN public.""ROUTE"" ";
+                        NATURAL JOIN public.""ROUTE""
+                        LEFT OUTER JOIN public.""Applies to""
+                        ON public.""FLIGHT"".id = public.""Applies to"".flight_id ";
             return await db.QueryAsync<Flight_Route>(sql, new { });
         }
+
 
         public async Task<Flight> GetFlightDetails(int ID)
         {
@@ -60,10 +63,26 @@ namespace TECAir_API_Data.Repositories
         {
             var db = dbConnection();
             var sql = @"SELECT * FROM public.""FLIGHT""
-                        NATURAL JOIN public.""ROUTE""  
+                        NATURAL JOIN public.""ROUTE""
+                        LEFT OUTER JOIN public.""Applies to""
+                        ON public.""FLIGHT"".id = public.""Applies to"".flight_id  
                        WHERE destination = @destination AND origin = @origin";
             return await db.QueryAsync<Flight_Route>(sql, new 
             { 
+                destination = _destination,
+                origin = _origin
+            });
+        }
+        public async Task<IEnumerable<Flight_Route_Airplane>> GetFlightAirplaneByLocation(string _origin, string _destination)
+        {
+            var db = dbConnection();
+            var sql = @"SELECT route_code, id, boarding_gate, price, status, airplane_plate, origin, destination, year, month,hours,minutes,model
+                        FROM public.""FLIGHT""
+                        NATURAL JOIN public.""ROUTE""
+                        INNER JOIN public.""AIRPLANE"" ON public.""FLIGHT"".airplane_plate = public.""AIRPLANE"".plate
+                        WHERE destination = @destination AND origin = @origin";
+            return await db.QueryAsync<Flight_Route_Airplane>(sql, new
+            {
                 destination = _destination,
                 origin = _origin
             });

@@ -31,6 +31,7 @@ namespace TECAir_API_Data.Repositories
             var result = await db.ExecuteAsync(sql, new { flight_id = applies_to.flight_id });
             return result > 0;
         }
+        
 
         public async Task<IEnumerable<AppliesTo>> GetAllAppliesTo()
         {

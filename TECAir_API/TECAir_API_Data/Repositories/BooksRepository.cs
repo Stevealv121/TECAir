@@ -31,6 +31,15 @@ namespace TECAir_API_Data.Repositories
             var result = await db.ExecuteAsync(sql, new { user_id = reservation.user_id });
             return result > 0;
         }
+        public async Task<bool> DeleteReservationFlight(Books reservation)
+        {
+            var db = dbConnection();
+            var sql = @"DELETE
+                        FROM public.""Books""
+                        WHERE flight_id = @flight_id";
+            var result = await db.ExecuteAsync(sql, new { flight_id = reservation.flight_id });
+            return result > 0;
+        }
 
         public async Task<IEnumerable<Books>> GetAllReservation()
         {
