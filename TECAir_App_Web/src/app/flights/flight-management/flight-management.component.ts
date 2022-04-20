@@ -49,6 +49,7 @@ export class FlightManagementComponent implements OnInit {
 
   createFlight(plate:string, route:string, boardingGate:string, price:string,status:string, scale1: string, scale2:string){
     var bol: boolean = true;
+    var splitted = route.split(" ",2);
     if (status == "Enable"){
       bol = true;
     }else{
@@ -59,7 +60,7 @@ export class FlightManagementComponent implements OnInit {
       boarding_gate: Number(boardingGate),
       price: Number(price),
       status: bol,
-      route_code: Number(route[0]),
+      route_code: Number(splitted[0]),
       airplane_plate:plate
     }
     this.api.postFlight(this.newFlight).subscribe((data: any) => {

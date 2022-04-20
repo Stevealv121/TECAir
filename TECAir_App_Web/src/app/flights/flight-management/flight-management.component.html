@@ -22,13 +22,13 @@
       <label id="span" class="input-group-text" for="inputGroupSelect01">Route</label>
       <select #route class="form-select" id="inputGroupSelect01">
         <option selected>Select the route</option>
-        <option *ngFor="let route of routes">{{route.route_code}}  {{route.origin}} - {{route.destination}}</option>
+        <option *ngFor="let route of routes">{{route.route_code}}  {{route.origin}} - {{route.destination}}  | {{route.day}}/{{route.month}}/{{route.year}}  |  {{route.hours}}:{{route.minutes}}</option>
       </select>
     </div>
 
     <div class="input-group">
       <span id="span" class="input-group-text">Boarding Gate</span>
-      <input #gate type="number" aria-label="Color" class="form-control" required placeholder="Example: A58">
+      <input #gate type="number" aria-label="Color" class="form-control" required placeholder="Example: 58">
     </div>
     <br>
     <div class="input-group">
