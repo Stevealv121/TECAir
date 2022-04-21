@@ -11,6 +11,7 @@ namespace TEC_Air_API_Model
         public int baggage_id { get; set; }
         public int user_id { get; set; }
         public int price { get; set; }
+        public int flight_id { get; set; }
 
     }
 }

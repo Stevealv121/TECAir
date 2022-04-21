@@ -25,6 +25,11 @@ namespace TECAirAPI.Controllers
         {
             return Ok(await _seatRepository.GetSeatDetails(id));
         }
+        [HttpGet("Plate/{airplane_Plate}")]
+        public async Task<IActionResult> GetSeatDetailsbyPlate(string airplane_Plate)
+        {
+            return Ok(await _seatRepository.GetSeatDetailsbyPlate(airplane_Plate));
+        }
         [HttpPost]
         public async Task<IActionResult> CreateSeat([FromBody] Seat seat)
         {

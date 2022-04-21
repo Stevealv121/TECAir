@@ -11,7 +11,7 @@ namespace TECAir_API_Data.Repositories
     {
         Task<IEnumerable<Baggage>> GetAllBaggage();
         Task<Baggage> GetBaggageDetails(int id);
-        Task<bool> InsertBaggage(Baggage baggage);
+        Task<int> InsertBaggage(Baggage baggage);
         Task<bool> UpdateBaggage(Baggage baggage);
         Task<bool> DeleteBaggage(Baggage baggage);
     }

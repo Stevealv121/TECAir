@@ -2,17 +2,17 @@ package com.example.tecairmobile.entities;
 
 public class Route {
 
-    private int routecode;
+    private Integer route_code;
     private String origin;
     private String destination;
-    private int year;
-    private int month;
-    private int day;
-    private int hours;
-    private int minutes;
+    private Integer year;
+    private Integer month;
+    private Integer day;
+    private Integer hours;
+    private Integer minutes;
 
-    public Route(int routecode, String origin, String destination, int year, int month, int day, int hours, int minutes) {
-        this.routecode = routecode;
+    public Route(Integer route_code, String origin, String destination, Integer year, Integer month, Integer day, Integer hours, Integer minutes) {
+        this.route_code = route_code;
         this.origin = origin;
         this.destination = destination;
         this.year = year;
@@ -20,15 +20,14 @@ public class Route {
         this.day = day;
         this.hours = hours;
         this.minutes = minutes;
-
     }
 
-    public int getRoutecode() {
-        return routecode;
+    public Integer getRoute_code() {
+        return route_code;
     }
 
-    public void setRoutecode(int routecode) {
-        this.routecode = routecode;
+    public void setRoute_code(Integer route_code) {
+        this.route_code = route_code;
     }
 
     public String getOrigin() {
@@ -47,43 +46,43 @@ public class Route {
         this.destination = destination;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
-    public int getMonth() {
+    public Integer getMonth() {
         return month;
     }
 
-    public void setMonth(int month) {
+    public void setMonth(Integer month) {
         this.month = month;
     }
 
-    public int getDay() {
+    public Integer getDay() {
         return day;
     }
 
-    public void setDay(int day) {
+    public void setDay(Integer day) {
         this.day = day;
     }
 
-    public int getHours() {
+    public Integer getHours() {
         return hours;
     }
 
-    public void setHours(int hours) {
+    public void setHours(Integer hours) {
         this.hours = hours;
     }
 
-    public int getMinutes() {
+    public Integer getMinutes() {
         return minutes;
     }
 
-    public void setMinutes(int minutes) {
+    public void setMinutes(Integer minutes) {
         this.minutes = minutes;
     }
 }

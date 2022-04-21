@@ -13,7 +13,11 @@ namespace TECAir_API_Data.Repositories
         Task<IEnumerable<Flight_Route>> GetAllFlightandRoutes();
         Task<Flight> GetFlightDetails(int id);
         Task<IEnumerable<Flight_Route>> GetFlightByLocation(string _origin, string _destination);
-        Task<bool> InsertFlight(Flight flight);
+        Task<IEnumerable<Flight_Route_Airplane>> GetFlightAirplaneByLocation(string _origin, string _destination);
+        Task<IEnumerable<Flight_User>> GetUsersByFlight(int id);
+        Task<IEnumerable<Flight_Baggage>> GetBaggageByFlight(int id);
+        Task<int> GetFlightCapacity(int id);
+        Task<int> InsertFlight(Flight flight);
         Task<bool> UpdateFlight(Flight flight);
         Task<bool> DeleteFlight(Flight flight);
     }

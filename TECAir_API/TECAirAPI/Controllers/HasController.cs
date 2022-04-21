@@ -58,11 +58,19 @@ namespace TECAirAPI.Controllers
 
             return NoContent();
         }
-        [HttpDelete("{usr_id}")]
-        public async Task<IActionResult> DeleteUserBaggage(int usr_id)
+        [HttpDelete("{usr_id}/{flght_id}")]
+        public async Task<IActionResult> DeleteUserBaggage(int usr_id, int flght_id)
         {
 
-            await _hasRepository.DeleteUserBaggage(new Has { user_id = usr_id });
+            await _hasRepository.DeleteUserBaggage(new Has { user_id = usr_id, flight_id = flght_id });
+
+            return NoContent();
+        }
+        [HttpDelete("Baggage/{baggage_ID}")]
+        public async Task<IActionResult> DeleteBaggagebyId(int baggage_ID)
+        {
+
+            await _hasRepository.DeleteBaggagebyId(new Has { baggage_id = baggage_ID });
 
             return NoContent();
         }

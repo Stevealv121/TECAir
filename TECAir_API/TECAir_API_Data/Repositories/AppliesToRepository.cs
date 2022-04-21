@@ -31,6 +31,7 @@ namespace TECAir_API_Data.Repositories
             var result = await db.ExecuteAsync(sql, new { flight_id = applies_to.flight_id });
             return result > 0;
         }
+        
 
         public async Task<IEnumerable<AppliesTo>> GetAllAppliesTo()
         {
@@ -51,34 +52,40 @@ namespace TECAir_API_Data.Repositories
             return result;
         }
 
-        public async Task<int> GetAppliesToPrice(int flght_id)
+        public async Task<IEnumerable<Promotion_AppliesTo>> GetPromoAppliesTo(int flght_id)
         {
             var db = dbConnection();
-            var sql = @"SELECT promotion_code FROM public.""FLIGHT""
-                        NATURAL JOIN public.""Applies to""
+            var sql = @"SELECT *
+                        FROM public.""Applies to"" 
+                        NATURAL JOIN public.""PROMOTION""
                         WHERE flight_id = @flight_id";
-            var promotionCode = await db.QueryFirstOrDefaultAsync<int>(sql, new { flight_id = flght_id });
+            var result = await db.QueryAsync<Promotion_AppliesTo>(sql, new { flight_id = flght_id });
 
-            var sql2 = @"SELECT discount 
-                        FROM public.""PROMOTION""
-                        WHERE promotion_code = @promotion_code";
-            var promotionPrice = await db.QueryFirstOrDefaultAsync<int>(sql2, new { promotion_code = promotionCode });
 
-            var sql3 = @"SELECT price 
-                        FROM public.""FLIGHT""
-                        WHERE id = @id";
-            var flightPrice = await db.QueryFirstOrDefaultAsync<int>(sql3, new { id = flght_id });
-
-            return ((100-promotionPrice)*flightPrice)/100;
+            return result;
         }
 
         public async Task<bool> InsertAppliesTo(AppliesTo applies_to)
         {
             var db = dbConnection();
-            var sql = @"
-                        INSERT INTO public.""Applies to"" (promotion_code, flight_id, final_price)
-                        VALUES (@promotion_code, @flight_id, @final_price)";
-            var result = await db.ExecuteAsync(sql, new
+            var sql = @"SELECT discount
+                        FROM public.""PROMOTION""
+                        WHERE promotion_code = @promotion_code
+                        ";
+            var promotionPrice = await db.QueryFirstOrDefaultAsync<int>(sql, new { promotion_code = applies_to.promotion_code });
+
+            var sql2 = @"SELECT price
+                        FROM public.""FLIGHT""
+                        WHERE id = @id
+                        ";
+            var flightPrice = await db.QueryFirstOrDefaultAsync<int>(sql2, new { id = applies_to.flight_id });
+
+            applies_to.final_price = ((100 - promotionPrice) * flightPrice) / 100;
+
+            var sql3 = @"
+                        INSERT INTO public.""Applies to"" (promotion_code, flight_id,final_price)
+                        VALUES (@promotion_code, @flight_id,@final_price)";
+            var result = await db.ExecuteAsync(sql3, new
             {
                 applies_to.promotion_code,
                 applies_to.flight_id,

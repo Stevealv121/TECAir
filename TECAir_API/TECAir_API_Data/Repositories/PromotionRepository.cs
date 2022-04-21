@@ -49,13 +49,13 @@ namespace TECAir_API_Data.Repositories
             return await db.QueryFirstOrDefaultAsync<Promotion>(sql, new { promotion_code = promo_code });
         }
 
-        public async Task<bool> InsertPromotion(Promotion promotion)
+        public async Task<int> InsertPromotion(Promotion promotion)
         {
             var db = dbConnection();
             var sql = @"
                         INSERT INTO public.""PROMOTION"" (description,title,day,month,year,discount)
-                        VALUES (@description,@title,@day,@month,@year,@discount)";
-            var result = await db.ExecuteAsync(sql, new
+                        VALUES (@description,@title,@day,@month,@year,@discount) RETURNING promotion_code";
+            var result = await db.QueryFirstOrDefaultAsync<int>(sql, new
             {
 
                 promotion.description,
@@ -65,7 +65,7 @@ namespace TECAir_API_Data.Repositories
                 promotion.year,
                 promotion.discount
             });
-            return result > 0;
+            return result;
         }
 
         public async Task<bool> UpdatePromotion(Promotion promotion)

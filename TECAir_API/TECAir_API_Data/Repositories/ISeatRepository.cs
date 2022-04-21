@@ -11,6 +11,7 @@ namespace TECAir_API_Data.Repositories
     {
         Task<IEnumerable<Seat>> GetAllSeats();
         Task<Seat> GetSeatDetails(int id);
+        Task<IEnumerable<Seat>> GetSeatDetailsbyPlate(string airplane_plate);
         Task<bool> InsertSeat(Seat seat);
         Task<bool> UpdateSeat(Seat seat);
         Task<bool> DeleteSeat(Seat seat);

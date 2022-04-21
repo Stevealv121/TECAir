@@ -58,5 +58,13 @@ namespace TECAirAPI.Controllers
 
             return NoContent();
         }
+        [HttpDelete("Flight/{flight_ID}")]
+        public async Task<IActionResult> DeleteReservationFlight(int flight_ID)
+        {
+
+            await _booksRepository.DeleteReservationFlight(new Books { flight_id = flight_ID });
+
+            return NoContent();
+        }
     }
 }
