@@ -9,11 +9,47 @@
     tools:context=".ShowDiscounts">
 
     <TextView
+        android:id="@+id/p4"
+        android:layout_width="352dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="36dp"
+        android:textColor="@color/purple_500"
+        android:textColorHint="@color/purple_500"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/p3" />
+
+    <TextView
+        android:id="@+id/p3"
+        android:layout_width="352dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="36dp"
+        android:textColor="@color/purple_500"
+        android:textColorHint="@color/purple_500"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/p2" />
+
+    <TextView
+        android:id="@+id/p2"
+        android:layout_width="352dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="36dp"
+        android:textColor="@color/purple_500"
+        android:textColorHint="@color/purple_500"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/p1" />
+
+    <TextView
         android:id="@+id/discdisp"
         android:layout_width="311dp"
         android:layout_height="64dp"
         android:layout_marginTop="76dp"
-        android:text="FInd our discounts by introducing a code"
+        android:text="Check out our great discounts"
         android:textAlignment="center"
         android:textColor="@color/purple_500"
         android:textSize="24sp"
@@ -21,36 +57,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/code"
-        android:layout_width="200dp"
-        android:layout_height="89dp"
-        android:layout_marginTop="168dp"
-        android:hint="Code"
+    <Spinner
+        android:id="@+id/desc"
+        android:layout_width="399dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/discdisp" />
 
     <TextView
-        android:id="@+id/description"
-        android:layout_width="310dp"
+        android:id="@+id/p1"
+        android:layout_width="352dp"
         android:layout_height="65dp"
-        android:layout_marginBottom="224dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/pb1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="find"
+        android:textColor="@color/purple_500"
+        android:textColorHint="@color/purple_500"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/code" />
+        app:layout_constraintTop_toBottomOf="@+id/desc" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,6 +20,8 @@ public class Promotion {
         this.discount = discount;
     }
 
+    public Promotion(){}
+
     public int getPromotioncode() {
         return promotion_code;
     }
