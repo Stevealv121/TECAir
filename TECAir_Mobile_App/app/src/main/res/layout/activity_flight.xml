@@ -7,16 +7,6 @@
     android:background="@color/white"
     tools:context=".flightSearch">
 
-    <Spinner
-        android:id="@+id/flights"
-        android:layout_width="386dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="108dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/t1" />
-
     <TextView
         android:id="@+id/f5"
         android:layout_width="279dp"
@@ -73,7 +63,7 @@
         android:id="@+id/b1"
         android:layout_width="165dp"
         android:layout_height="57dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="56dp"
         android:onClick="onClick"
         android:text="Continue"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -108,7 +98,7 @@
         android:id="@+id/f1"
         android:layout_width="279dp"
         android:layout_height="61dp"
-        android:layout_marginTop="288dp"
+        android:layout_marginTop="232dp"
         android:textColor="@color/purple_500"
         android:textColorHint="@color/purple_500"
         android:textSize="20sp"

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.tecairmobile.Utilities.Utilities;
 import com.example.tecairmobile.entities.Flight;
+import com.example.tecairmobile.entities.FlightsandRoutes;
 import com.example.tecairmobile.entities.Promotion;
 import com.example.tecairmobile.entities.Route;
 
@@ -24,12 +25,9 @@ import java.util.List;
 public class flightSearch extends AppCompatActivity {
 
     TextView f1,f2,f3,f4,f5;
-    Spinner routes, flights;
+    Spinner routes;
     ArrayList<String> showRoutes;
-    ArrayList<String> showFlights;
-    ArrayList<Route> routeList;
-    ArrayList<Flight> flightList;
-    ArrayList<Flight> finalFlightlist;
+    ArrayList<FlightsandRoutes> farList;
     SQLitehelper conn;
 
     @Override
@@ -40,14 +38,12 @@ public class flightSearch extends AppCompatActivity {
         conn = new SQLitehelper(getApplicationContext(),"TecAir_BD",null,1);
 
         routes = findViewById(R.id.routes);
-        flights = findViewById(R.id.flights);
         f1= findViewById(R.id.f1);
         f2= findViewById(R.id.f2);
         f3= findViewById(R.id.f3);
         f4= findViewById(R.id.f4);
         f5= findViewById(R.id.f5);
-
-        consultR();
+        consultFAR();
 
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,showRoutes);
         routes.setAdapter(adapter);
@@ -56,26 +52,22 @@ public class flightSearch extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 if(i!=0){
-                    f1.setVisibility(View.VISIBLE);
-                    f2.setVisibility(View.VISIBLE);
-                    f3.setVisibility(View.VISIBLE);
-                    f4.setVisibility(View.VISIBLE);
-                    f5.setVisibility(View.VISIBLE);
-                    flights.setVisibility(View.VISIBLE);
+                    f1.setText("Flight ID: " + farList.get(i-1).getFlight_id());
+                    f2.setText("Boarding Gate: " + farList.get(i-1).getBoarding_gate());
+                    f3.setText("Flight Date: " + farList.get(i-1).getDay() + "/" + farList.get(i-1).getMonth() + "/" + farList.get(i-1).getYear());
+                    f4.setText("Departure at: "+farList.get(i-1).getHours() + ":" + farList.get(i-1).getMinutes());
+                    f5.setText("Promotion: " + farList.get(i-1).getPromotion_code());
+
                 }
+
                 else{
                     f1.setText("");
                     f2.setText("");
                     f3.setText("");
                     f4.setText("");
                     f5.setText("");
-                    flights.setVisibility(View.INVISIBLE);
-                    f1.setVisibility(View.INVISIBLE);
-                    f2.setVisibility(View.INVISIBLE);
-                    f3.setVisibility(View.INVISIBLE);
-                    f4.setVisibility(View.INVISIBLE);
-                    f5.setVisibility(View.INVISIBLE);
                 }
+
             }
 
             @Override
@@ -85,24 +77,34 @@ public class flightSearch extends AppCompatActivity {
         });
     }
 
-    private void consultR() {
+    private void consultFAR() {
         SQLiteDatabase db = conn.getReadableDatabase();
-        Route route;
-        routeList = new ArrayList<>();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + Utilities.TABLE_ROUTE,null);
+        FlightsandRoutes far;
+        farList = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Utilities.TABLE_FAR,null);
 
         while(cursor.moveToNext()){
-            route = new Route();
-            route.setRoute_code(cursor.getInt(0));
-            route.setOrigin(cursor.getString(1));
-            route.setDestination(cursor.getString(2));
-            route.setYear(cursor.getInt(3));
-            route.setMonth(cursor.getInt(4));
-            route.setDay(cursor.getInt(5));
-            route.setHours(cursor.getInt(6));
-            route.setMinutes(cursor.getInt(7));
+            boolean value = cursor.getInt(3) > 0;
+            far = new FlightsandRoutes();
 
-            routeList.add(route);
+            far.setId(cursor.getInt(0));
+            far.setBoarding_gate(cursor.getInt(1));
+            far.setPrice(cursor.getInt(2));
+            far.setStatus(value);
+            far.setRoute_code(cursor.getInt(4));
+            far.setAirplane_plate(cursor.getString(5));
+            far.setOrigin(cursor.getString(6));
+            far.setDestination(cursor.getString(7));
+            far.setYear(cursor.getInt(8));
+            far.setMonth(cursor.getInt(9));
+            far.setDay(cursor.getInt(10));
+            far.setHours(cursor.getInt(11));
+            far.setMinutes(cursor.getInt(12));
+            far.setPromotion_code(cursor.getInt(13));
+            far.setFlight_id(cursor.getInt(14));
+            far.setFinal_price(cursor.getInt(15));
+
+            farList.add(far);
 
         }
         db.close();
@@ -112,8 +114,8 @@ public class flightSearch extends AppCompatActivity {
     private void getlistR() {
         showRoutes = new ArrayList<>();
         showRoutes.add("Select Route");
-        for(int i=0; i<routeList.size();i++){
-            showRoutes.add(routeList.get(i).getOrigin()+"-"+routeList.get(i).getDestination());
+        for(int i=0; i<farList.size();i++){
+            showRoutes.add(farList.get(i).getOrigin()+"-"+farList.get(i).getDestination());
         }
     }
 
