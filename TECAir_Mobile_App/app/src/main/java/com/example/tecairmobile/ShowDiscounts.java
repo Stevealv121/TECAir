@@ -42,11 +42,11 @@ public class ShowDiscounts extends AppCompatActivity {
 
         conn = new SQLitehelper(getApplicationContext(),"TecAir_BD",null,1);
 
-        desc = (Spinner) findViewById(R.id.desc);
-        p1= (TextView) findViewById(R.id.p1);
-        p2= (TextView) findViewById(R.id.p2);
-        p3= (TextView) findViewById(R.id.p3);
-        p4= (TextView) findViewById(R.id.p4);
+        desc = findViewById(R.id.desc);
+        p1= findViewById(R.id.p1);
+        p2= findViewById(R.id.p2);
+        p3= findViewById(R.id.p3);
+        p4= findViewById(R.id.p4);
 
         consult();
 
@@ -82,8 +82,8 @@ public class ShowDiscounts extends AppCompatActivity {
     private void consult() {
         SQLiteDatabase db = conn.getReadableDatabase();
 
-        Promotion promotion =null;
-        promList = new ArrayList<Promotion>();
+        Promotion promotion;
+        promList = new ArrayList<>();
 
         Cursor cursor = db.rawQuery("Select * FROM "+ Utilities.TABLE_PROMOTION,null);
 
@@ -103,7 +103,7 @@ public class ShowDiscounts extends AppCompatActivity {
     }
 
     private void getlist() {
-        desclist = new ArrayList<String>();
+        desclist = new ArrayList<>();
         desclist.add("Select an available Promotion");
         for(int i=0; i<promList.size();i++){
             desclist.add(promList.get(i).getDescription());

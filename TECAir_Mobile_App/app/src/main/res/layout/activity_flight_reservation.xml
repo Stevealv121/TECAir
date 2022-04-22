@@ -5,7 +5,7 @@
     android:id="@+id/res"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#169186"
+    android:background="@color/white"
     tools:context=".FlightReservation">
 
     <TextView
@@ -15,7 +15,7 @@
         android:layout_marginTop="64dp"
         android:text="Your flight was found, proceding with payment"
         android:textAlignment="center"
-        android:textColor="#EAE9E5"
+        android:textColor="@color/purple_500"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -24,10 +24,12 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/tarjeta"
-        android:layout_width="404dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="160dp"
+        android:layout_width="333dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="300dp"
         android:hint="Insert credit card number"
+        android:textColor="@color/purple_500"
+        android:textColorHint="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +39,9 @@
         android:id="@+id/frt2"
         android:layout_width="224dp"
         android:layout_height="66dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="88dp"
+        android:textColor="@color/purple_500"
+        android:textColorHint="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,11 +51,18 @@
         android:id="@+id/button"
         android:layout_width="156dp"
         android:layout_height="66dp"
-        android:layout_marginTop="88dp"
-        android:text="Pay"
+        android:layout_marginTop="52dp"
         android:onClick="onClick"
+        android:text="Pay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tarjeta" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="247dp"
+        android:layout_height="64dp"
+        tools:layout_editor_absoluteX="82dp"
+        tools:layout_editor_absoluteY="333dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
