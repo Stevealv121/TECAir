@@ -99,60 +99,81 @@
         </div>
 
         <div class="col">
-            <div class="card" ng>
+            <div class="card">
                 <h5 class="card-header">Your Trip</h5>
                 <div class="card-body" id="trip-card">
                     <h5 class="card-title">Type of Flight</h5>
                     <div class="card" id="city-card">
-                        <h6>City to City</h6>
-                        <p>Apr 15 * 3:00am to 1:10pm * 1 Stop</p>
+                        <h6>{{route.origin}} to {{route.destination}}</h6>
+                        <ng-container *ngIf="numberOfStops===1; else zeroTemplate">
+                            <p>{{route.month}}/{{route.day}}/{{route.year}} - 3:00am to 1:10pm - 1 Stop</p>
+                        </ng-container>
+                        <ng-template #zeroTemplate>
+                            <ng-container *ngIf="numberOfStops===0; else stopsTemplate">
+                                <p>{{route.month}}/{{route.day}}/{{route.year}} - 3:00am to 1:10pm - Direct
+                                </p>
+                            </ng-container>
+                        </ng-template>
+                        <ng-template #stopsTemplate>
+                            <p>{{route.month}}/{{route.day}}/{{route.year}} - 3:00am to 1:10pm - {{numberOfStops}}
+                                Stops
+                            </p>
+                        </ng-template>
+
                         <details>
                             <summary>Show details</summary>
                             <div class="container-details">
-                                <div class="row mb-2">
-                                    <div class="col">
-                                        <div class="line-1"></div>
+                                <ng-container *ngIf="hasStopOvers===false; else stopOversTemplate">
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <div class="line-1"></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col">
-                                        <h6>San Jose to scale</h6>
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <h6>{{route.origin}} to {{route.destination}}</h6>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col">Jun 3 * 3:05 am to 7:46 am</div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col"><strong>Duration:</strong> 3h 41m</div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col"><strong>Flight number:</strong> UA 1682</div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col"><strong>Aircraft type:</strong> {{airplane.model}}</div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col">
-                                        <div class="line-dotted"></div>
+                                    <!-- <div class="row mb-2">
+                                        <div class="col">Jun 3 * 3:05 am to 7:46 am</div>
+                                    </div> -->
+                                    <div class="row mb-2">
+                                        <div class="col"><strong>Duration:</strong> 3h 41m</div>
                                     </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col">
-                                        <h6>Houston to Miami</h6>
+                                    <div class="row mb-2">
+                                        <div class="col"><strong>Flight number:</strong> {{flightNumber}}</div>
                                     </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col">Jun 3 * 3:05 am to 7:46 am</div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col"><strong>Duration:</strong> 3h 41m</div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col"><strong>Flight number:</strong> UA 1682</div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col"><strong>Aircraft type:</strong> Boeing 737-800</div>
-                                </div>
+                                    <div class="row mb-2">
+                                        <div class="col"><strong>Aircraft type:</strong> {{airplane.model}}</div>
+                                    </div>
+                                </ng-container>
+                                <ng-template #stopOversTemplate>
+                                    <div class="template" *ngFor="let stop of stepOvers">
+                                        <div class="row mb-2">
+                                            <div class="col">
+                                                <div class="line-dotted"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div class="col">
+                                                <h6>Stop: {{stop.city}}, {{stop.country}}</h6>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="row mb-2">
+                                            <div class="col">Jun 3 * 3:05 am to 7:46 am</div>
+                                        </div> -->
+                                        <div class="row mb-2">
+                                            <div class="col"><strong>Duration:</strong> {{stop.duration}}</div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div class="col"><strong>Flight number:</strong> {{stop.flightNumber}}</div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div class="col"><strong>Aircraft type:</strong> {{airplane.model}}</div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+
 
                             </div>
                         </details>

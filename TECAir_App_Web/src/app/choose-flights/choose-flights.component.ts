@@ -54,6 +54,7 @@ export class ChooseFlightsComponent implements OnInit {
   stepOvers: StopOver[][] = [];
   numberOfStops: number[] = [];
   hasStopOvers: boolean = false;
+  flightNumber: string = '';
 
   constructor(private router: Router, private data: DataService, private api: ApiService) {
 
@@ -80,13 +81,15 @@ export class ChooseFlightsComponent implements OnInit {
         let stopOvers: StopOver[] = [];
         let numberOfStops = 0;
         //let stops: number[] = [];
-        for (let i = 0; i < data.length; i++) {
-          var splitted = data[i].split(",");
+        for (let is = 0; is < data.length; is++) {
+          var splitted = data[is].split(",");
           let city = splitted[0];
           let country = splitted[1];
           let duration = splitted[2];
           let flightNumber = this.setFlightNumber(city, country);
-          var stopOver = new StopOver(city, country, duration, flightNumber);
+          let flightID: number = +flight_ids[i];
+          // console.log("Iteration n: "+ i+);
+          var stopOver = new StopOver(city, country, duration, flightNumber, flightID);
           stopOvers.push(stopOver);
           numberOfStops++;
         }
@@ -94,7 +97,7 @@ export class ChooseFlightsComponent implements OnInit {
         this.stepOvers.push(stopOvers);
       })
 
-      await new Promise(f => (setTimeout(f, 100)));
+      await new Promise(f => setTimeout(f, 500));
       this.hasStopOvers = true;
     }
 
@@ -120,6 +123,8 @@ export class ChooseFlightsComponent implements OnInit {
         flight_ids.push(this.availableFlights[i].id.toString());
       }
 
+      this.flightNumber = this.setFlightNumber(this.from, this.to);
+
       this.getStopOvers(flight_ids);
     }
 
@@ -136,7 +141,7 @@ export class ChooseFlightsComponent implements OnInit {
       this.availableFlights = this.data.availableFlights;
       console.log(this.availableFlights);
     });
-    await new Promise(f => setTimeout(f, 50));
+    await new Promise(f => setTimeout(f, 500));
     if (this.availableFlights[0] != undefined) {
       this.from = this.availableFlights[0].origin;
       this.to = this.availableFlights[0].destination;
@@ -146,6 +151,11 @@ export class ChooseFlightsComponent implements OnInit {
       flight_ids.push(this.availableFlights[i].id.toString());
     }
 
+    //TODO: flightNumber for all direct flights
+    if (this.flightNumber == '') {
+      this.flightNumber = this.setFlightNumber(this.from, this.to);
+    }
+
     this.getStopOvers(flight_ids);
 
 
@@ -153,7 +163,21 @@ export class ChooseFlightsComponent implements OnInit {
 
   chooseFlight(id: number) {
     this.data.iDflightSelected = id;
+    this.data.stopOvers = this.setStopsOfSelectedFlight(id);
+    this.data.flightNumber = this.flightNumber;
     this.router.navigateByUrl("/choose-travelers");
+  }
+
+  setStopsOfSelectedFlight(id: number): StopOver[] {
+    let stopOvers: StopOver[] = [];
+    this.stepOvers.forEach(flight => {
+      flight.forEach(stopOver => {
+        if (stopOver.flightID == id) {
+          stopOvers.push(stopOver);
+        }
+      })
+    });
+    return stopOvers;
   }
 
 }

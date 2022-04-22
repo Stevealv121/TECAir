@@ -36,6 +36,9 @@ export class ChooseTravelersComponent implements OnInit {
   route!: Routes;
   stepOvers: StopOver[] = [];
   airplane!: Airplane;
+  numberOfStops: number = 0;
+  hasStopOvers: boolean = false;
+  flightNumber: string = '';
 
   constructor(private data: DataService, private formBuilder: FormBuilder, private router: Router, private api: ApiService) {
     this.user = this.data.getUser();
@@ -63,35 +66,39 @@ export class ChooseTravelersComponent implements OnInit {
       this.route = data;
     });
     await new Promise(f => (setTimeout(f, 500)));
-    this.api.getStopOvers(this.data.iDflightSelected.toString()).subscribe(data => {
-      for (let i = 0; i < data.length; i++) {
-        var splitted = data[i].split(",");
-        let city = splitted[0];
-        let country = splitted[1];
-        let duration = splitted[2];
-        let flightNumber = this.setFlightNumber(city, country);
-        var stopOver = new StopOver(city, country, duration, flightNumber);
-        this.stepOvers.push(stopOver);
-      }
-    });
-    await new Promise(f => (setTimeout(f, 500)));
+    this.data.origin = this.route.origin;
+    this.data.destination = this.route.destination;
+    this.data.date = this.setDate();
+
+    this.getStopOvers();
+    console.log(this.stepOvers);
+
     this.api.getAirplane(this.flight.airplane_plate).subscribe(data => {
       this.airplane = data;
+      this.data.selectedAirplane = this.airplane.model;
     });
+    await new Promise(f => (setTimeout(f, 500)));
+    this.flightNumber = this.data.flightNumber;
+  }
+  setDate(): string {
+    return this.route.month.toString() + "/" + this.route.day.toString() + "/" + this.route.year.toString();
+  }
+
+  getStopOvers() {
+    if (this.data.stopOvers.length > 0) {
+      this.stepOvers = this.data.stopOvers;
+      this.hasStopOvers = true;
+      for (let i = 0; i < this.stepOvers.length; i++) {
+        this.numberOfStops++;
+      }
+    } else {
+      this.hasStopOvers = false;
+    }
+    this.data.numberOfStops = this.numberOfStops;
   }
 
   ngOnInit(): void {
     this.getTravelers();
-  }
-
-  setFlightNumber(city: string, country: string) {
-    let min = 100;
-    let max = 999;
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    let randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
-    let flightNumber = city[0] + country[0] + "-" + randomNumber.toString();
-    return flightNumber;
   }
 
   getTravelers() {

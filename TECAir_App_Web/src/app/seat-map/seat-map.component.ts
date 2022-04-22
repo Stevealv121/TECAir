@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { elementAt } from 'rxjs';
 import { SeatI } from '../models/seat.interface';
 import { ApiService } from '../services/api.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-seat-map',
@@ -31,8 +32,20 @@ export class SeatMapComponent implements OnInit {
   // [0, 0, 0, 2, 0, 0, 0], [0, 0, 1, 2, 1, 1, 1]]; //36 rows.
 
   aircraft: number[][] = [];
+  date: string = "";
+  flight: string = "";
+  airplane: string = "";
+  origin: string = "";
+  destination: string = "";
 
-  constructor(private api: ApiService) { }
+
+  constructor(private api: ApiService, private data: DataService) {
+    this.date = this.data.date;
+    this.flight = this.data.flightNumber;
+    this.airplane = this.data.selectedAirplane;
+    this.origin = this.data.origin;
+    this.destination = this.data.destination;
+  }
 
   ngOnInit(): void {
     this.fillAircraft();
