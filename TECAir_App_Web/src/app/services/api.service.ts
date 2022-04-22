@@ -8,6 +8,11 @@ import { Flight } from '../models/flight';
 import { FlightI } from '../models/flight.interface';
 import { PromotionI } from '../models/promotion.interface';
 import { SeatI } from '../models/seat.interface';
+import { Routes } from '../models/routes';
+import { Scales } from '../models/scales';
+import { Airplane } from '../models/airplane';
+//import { StopOverI } from '../models/stopOver.interface';
+import { StopOver } from '../models/stopOver';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +40,7 @@ export class ApiService {
   }
 
   searchFlights(origin: string, destination: string): Observable<FlightI[]> {
-    let flightPath = this.url + "Flight/" + origin + "/" + destination;
+    let flightPath = this.url + "Flight/" + "FlightRouteAirplane/" + origin + "/" + destination;
     return this.http.get<FlightI[]>(flightPath)
   }
 
@@ -50,7 +55,27 @@ export class ApiService {
 
   }
 
-  getFlights(){
+  selectFlight(id: string): Observable<Flight> {
+    let flightPath = this.url + "Flight/" + id;
+    return this.http.get<Flight>(flightPath)
+  }
+
+  retrieveRoutes(route_code: string): Observable<Routes> {
+    let routePath = this.url + "Route/" + route_code;
+    return this.http.get<Routes>(routePath)
+  }
+
+  getStopOvers(flight_Id: string): Observable<string[]> {
+    let scalesPath = this.url + "Flight_Stopover/" + flight_Id;
+    return this.http.get<string[]>(scalesPath);
+  }
+
+  getAirplane(airplane_plate: string): Observable<Airplane> {
+    let airplanePath = this.url + "Airplane/" + airplane_plate;
+    return this.http.get<Airplane>(airplanePath)
+  }
+
+  getFlights() {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -66,7 +91,7 @@ export class ApiService {
     return this.http.get<string>(this.flightPath, requestOptions);
   }
 
-  getAirplanes(){
+  getAirplanes() {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -83,7 +108,7 @@ export class ApiService {
 
   }
 
-  getRoutes(){
+  getRoutes() {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -99,7 +124,7 @@ export class ApiService {
     return this.http.get<string>(this.routesPath, requestOptions);
   }
 
-  getScales(id:number){
+  getScales(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -112,7 +137,7 @@ export class ApiService {
       headers: new HttpHeaders(headerDict),
     };
 
-    return this.http.get<string>(this.scalesPath+ id, requestOptions);
+    return this.http.get<string>(this.scalesPath + id, requestOptions);
   }
 
 }

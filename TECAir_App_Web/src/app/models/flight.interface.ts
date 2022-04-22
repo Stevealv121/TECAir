@@ -12,5 +12,6 @@ export interface FlightI {
     day: number,
     hours: number,
     minutes: number,
-    travelers: number
+    travelers: number,
+    model: string
 }

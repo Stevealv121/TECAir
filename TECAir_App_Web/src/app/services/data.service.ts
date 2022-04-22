@@ -11,6 +11,8 @@ export class DataService {
   public availableFlights: FlightI[];
   private _numberTravelers: number;
   user!: UserI;
+  iDflightSelected!: number;
+  //seatID
 
   constructor() {
     this.availableFlights = [];
