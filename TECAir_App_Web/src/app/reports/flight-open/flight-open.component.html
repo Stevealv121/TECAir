@@ -35,7 +35,7 @@
             <th scope="row">{{suitcase.baggage_id}}</th>
             <td>{{suitcase.first_name}} {{suitcase.first_surname}} {{suitcase.second_surname}}</td>
             <td> $ {{suitcase.price}}</td>
-            <td> <a id="buttons" class="btn btn-primary btn-sm " role="button" (click)="suitcase.baggage_id">Delete </a></td>
+            <td> <a id="buttons" class="btn btn-primary btn-sm " role="button" (click)="deleteBaggage(suitcase.baggage_id)">Delete </a></td>
           </tr>
         </tbody>
       </table>

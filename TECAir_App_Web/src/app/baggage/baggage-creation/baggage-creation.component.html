@@ -27,9 +27,16 @@
       <input #weight type="number" aria-label="weight" class="form-control">
     </div>
     <br>
+    <div class="input-group">
+      <label id="span" class="input-group-text" for="inputGroupSelect01">Assign to a Flight</label>
+        <select #fly class="form-select" id="inputGroupSelect01">
+          <option selected>Choose...</option>
+          <option *ngFor="let flight of flights">{{flight.id}} {{flight.origin}}----{{flight.destination}}</option>
+        </select>
+    </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button id="span" id="buttons" class="btn btn-primary me-md-2" type="button" (click)="goBack()">Cancel</button>
-      <button id="span" id="buttons" class="btn btn-primary" type="button" (click)="postSuitCase(user.value,color.value,weight.value)">Create</button>
+      <button id="span" id="buttons" class="btn btn-primary" type="button" (click)="postSuitCase(user.value,color.value,weight.value,fly.value)">Create</button>
     </div>
   </div>
 </div>

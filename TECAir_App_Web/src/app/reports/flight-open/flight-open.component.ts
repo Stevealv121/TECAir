@@ -54,13 +54,15 @@ export class FlightOpenComponent implements OnInit {
     })
     this.goBack();
   }
-  deleteBaggage(baggage_id: number){
+  async deleteBaggage(baggage_id: number){
     this.api.deleteHas(baggage_id).subscribe((data: any) => {
       console.log(data)
     })
     this.api.deleteBaggage(baggage_id).subscribe((data:any)=>{
       console.log(data)
     })
+    await new Promise(f => setTimeout(f, 500))
+    this.ngOnInit();
   }
   goBack(){
     this.router.navigate(['flightsInfo'])

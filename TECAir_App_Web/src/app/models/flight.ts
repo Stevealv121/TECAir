@@ -11,7 +11,7 @@ export interface Flight {
   month: number;
   day: number;
   hours: number;
-  minutes: number;
+  minutes: string;
   promotion_code: number;
   flight_id: number;
   final_price:number;

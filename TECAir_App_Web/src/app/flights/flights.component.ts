@@ -28,7 +28,6 @@ export class FlightsComponent implements OnInit {
     this.api.getFlights().subscribe((data: any) => {
       this.information =data;
     })
-    console.log(this.information)
 
   }
 
@@ -36,9 +35,9 @@ export class FlightsComponent implements OnInit {
     window.location.reload();
   }
 
-  getInfo(id:number, origin:string, departure: string, year: number, month: number, day:number, hour:number, minutes:number){
+  getInfo(id:number, origin:string, departure: string, year: number, month: number, day:number, hour:number, minutes:string){
     this.data.setFlightId(id);
-    this.data.setFlightInfo([origin,departure,String(day)+"/"+String(month)+ "/"+ String(year), String(hour)+":"+String(minutes)+"0"]);
+    this.data.setFlightInfo([origin,departure,String(day)+"/"+String(month)+ "/"+ String(year), String(hour)+":"+String(minutes)]);
     this.router.navigate(['flightsInfo']);
   }
 
