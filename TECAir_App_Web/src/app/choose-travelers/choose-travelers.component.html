@@ -5,103 +5,175 @@
         </div>
     </div>
     <div class="row">
-        <div class="col col-md-8">
-            <div class="card mb-4" *ngFor="let traveler of travelers;index as i">
-                <h5 class="card-header">Traveler {{i+1}}</h5>
+        <div class="col col-md-8" [formGroup]="travelerForm">
+            <div class="card mb-4">
+                <h5 class="card-header">Traveler 1</h5>
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col">
-                            <label for="travelerName" class="form-label">First name <p class="required">(required)</p>
+                            <label for="travelerName" class="form-label">First name <p class="required">(required)
+                                </p>
                             </label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" formControlName="first_name">
                         </div>
                         <div class="col">
-                            <label for="travelerLName" class="form-label">Last name <p class="required">(required)</p>
+                            <label for="travelerLName" class="form-label">Last name <p class="required">(required)
+                                </p>
                             </label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" formControlName="last_name">
                         </div>
                         <div class="col">
                             <label for="travelerMName" class="form-label">Middle name
                             </label>
-                            <input type="text" class="form-control" placeholder="if shown on ID">
+                            <input type="text" class="form-control" placeholder="if shown on ID"
+                                formControlName="middle_name">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <label for="travelerDateB" class="form-label">Date birth <p class="required">(required)</p>
+                            <label for="travelerDateB" class="form-label">Date birth <p class="required">(required)
+                                </p>
                             </label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" formControlName="date_birth">
                         </div>
                         <div class="col">
                             <label for="travelerGender" class="form-label">Gender <p class="required">(required)</p>
                             </label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" formControlName="gender">
                         </div>
 
                         <div class="col">
                             <label for="travelerSuffix" class="form-label">Suffix
                             </label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" formControlName="suffix">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card mb-4" *ngFor="let traveler of travelers;index as i">
+                    <h5 class="card-header">Traveler {{i+2}}</h5>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="travelerName" class="form-label">First name <p class="required">(required)
+                                    </p>
+                                </label>
+                                <input type="text" class="form-control" formControlName="first_name">
+                            </div>
+                            <div class="col">
+                                <label for="travelerLName" class="form-label">Last name <p class="required">(required)
+                                    </p>
+                                </label>
+                                <input type="text" class="form-control" formControlName="last_name">
+                            </div>
+                            <div class="col">
+                                <label for="travelerMName" class="form-label">Middle name
+                                </label>
+                                <input type="text" class="form-control" placeholder="if shown on ID"
+                                    formControlName="middle_name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="travelerDateB" class="form-label">Date birth <p class="required">(required)
+                                    </p>
+                                </label>
+                                <input type="text" class="form-control" formControlName="date_birth">
+                            </div>
+                            <div class="col">
+                                <label for="travelerGender" class="form-label">Gender <p class="required">(required)</p>
+                                </label>
+                                <input type="text" class="form-control" formControlName="gender">
+                            </div>
+
+                            <div class="col">
+                                <label for="travelerSuffix" class="form-label">Suffix
+                                </label>
+                                <input type="text" class="form-control" formControlName="suffix">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="col">
             <div class="card">
                 <h5 class="card-header">Your Trip</h5>
                 <div class="card-body" id="trip-card">
                     <h5 class="card-title">Type of Flight</h5>
                     <div class="card" id="city-card">
-                        <h6>City to City</h6>
-                        <p>Apr 15 * 3:00am to 1:10pm * 1 Stop</p>
+                        <h6>{{route.origin}} to {{route.destination}}</h6>
+                        <ng-container *ngIf="numberOfStops===1; else zeroTemplate">
+                            <p>{{route.month}}/{{route.day}}/{{route.year}} - 3:00am to 1:10pm - 1 Stop</p>
+                        </ng-container>
+                        <ng-template #zeroTemplate>
+                            <ng-container *ngIf="numberOfStops===0; else stopsTemplate">
+                                <p>{{route.month}}/{{route.day}}/{{route.year}} - 3:00am to 1:10pm - Direct
+                                </p>
+                            </ng-container>
+                        </ng-template>
+                        <ng-template #stopsTemplate>
+                            <p>{{route.month}}/{{route.day}}/{{route.year}} - 3:00am to 1:10pm - {{numberOfStops}}
+                                Stops
+                            </p>
+                        </ng-template>
+
                         <details>
                             <summary>Show details</summary>
                             <div class="container-details">
-                                <div class="row mb-2">
-                                    <div class="col">
-                                        <div class="line-1"></div>
+                                <ng-container *ngIf="hasStopOvers===false; else stopOversTemplate">
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <div class="line-1"></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col">
-                                        <h6>San Jose to Houston</h6>
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <h6>{{route.origin}} to {{route.destination}}</h6>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col">Jun 3 * 3:05 am to 7:46 am</div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col"><strong>Duration:</strong> 3h 41m</div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col"><strong>Flight number:</strong> UA 1682</div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col"><strong>Aircraft type:</strong> Boeing 737-800</div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col">
-                                        <div class="line-dotted"></div>
+                                    <!-- <div class="row mb-2">
+                                        <div class="col">Jun 3 * 3:05 am to 7:46 am</div>
+                                    </div> -->
+                                    <div class="row mb-2">
+                                        <div class="col"><strong>Duration:</strong> 3h 41m</div>
                                     </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col">
-                                        <h6>Houston to Miami</h6>
+                                    <div class="row mb-2">
+                                        <div class="col"><strong>Flight number:</strong> {{flightNumber}}</div>
                                     </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col">Jun 3 * 3:05 am to 7:46 am</div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col"><strong>Duration:</strong> 3h 41m</div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col"><strong>Flight number:</strong> UA 1682</div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col"><strong>Aircraft type:</strong> Boeing 737-800</div>
-                                </div>
+                                    <div class="row mb-2">
+                                        <div class="col"><strong>Aircraft type:</strong> {{airplane.model}}</div>
+                                    </div>
+                                </ng-container>
+                                <ng-template #stopOversTemplate>
+                                    <div class="template" *ngFor="let stop of stepOvers">
+                                        <div class="row mb-2">
+                                            <div class="col">
+                                                <div class="line-dotted"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div class="col">
+                                                <h6>Stop: {{stop.city}}, {{stop.country}}</h6>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="row mb-2">
+                                            <div class="col">Jun 3 * 3:05 am to 7:46 am</div>
+                                        </div> -->
+                                        <div class="row mb-2">
+                                            <div class="col"><strong>Duration:</strong> {{stop.duration}}</div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div class="col"><strong>Flight number:</strong> {{stop.flightNumber}}</div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div class="col"><strong>Aircraft type:</strong> {{airplane.model}}</div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+
 
                             </div>
                         </details>
@@ -118,7 +190,9 @@
                         <div class="col"><strong>Total due</strong></div>
                         <div class="col">000 CRC</div>
                     </div>
-                    <a id="seats-btn" routerLink="/seat-map" class="btn btn-primary">Continue to seats</a>
+                    <a type="submit" (click)="continueSeats(travelerForm.value)" id="seats-btn"
+                        class="btn btn-primary">Continue to
+                        seats</a>
                 </div>
             </div>
         </div>

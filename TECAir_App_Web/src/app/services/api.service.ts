@@ -7,10 +7,17 @@ import { UserI } from '../models/user.interface';
 import { SimpPromotion } from '../models/simp-promotion';
 import { AppliesTo } from '../models/applies-to';
 import { FlightPost } from '../models/flight-post';
-import { Scales } from '../models/scales';
 import { BaggageModel } from '../models/baggage-model';
 import { Has } from '../models/has';
+import { Flight } from '../models/flight';
+import { FlightI } from '../models/flight.interface';
+import { PromotionI } from '../models/promotion.interface';
+import { SeatI } from '../models/seat.interface';
 import { Routes } from '../models/routes';
+import { Scales } from '../models/scales';
+import { Airplane } from '../models/airplane';
+//import { StopOverI } from '../models/stopOver.interface';
+import { StopOver } from '../models/stopOver';
 
 @Injectable({
   providedIn: 'root'
@@ -23,52 +30,88 @@ export class ApiService {
   airplanePath: string = this.url + "Airplane";
   routesPath: string = this.url + "Route";
   scalesPath: string = this.url + "Flight_Stopover/";
-  flightPromoPath: string = this.url+ "AppliesTo/PromotionandAppliesTo/";
-  deletePromoPath: string = this.url+"AppliesTo/";
+  flightPromoPath: string = this.url + "AppliesTo/PromotionandAppliesTo/";
+  deletePromoPath: string = this.url + "AppliesTo/";
   promotionPath: string = this.url + "Promotion";
-  applyToPath:string =this.url + "AppliesTo";
-  passengersPath:string = this.url + "Flight/Users/";
-  flightBaggagePath:string = this.url + "Flight/Baggage/";
-  booksPath:string = this.url + "Books/";
-  flightPostPath:string = this.url + "Flight";
-  baggagePath:string = this.url + "Baggage";
-  haspath:string = this.url +"Has";
+  applyToPath: string = this.url + "AppliesTo";
+  passengersPath: string = this.url + "Flight/Users/";
+  flightBaggagePath: string = this.url + "Flight/Baggage/";
+  booksPath: string = this.url + "Books/";
+  flightPostPath: string = this.url + "Flight";
+  baggagePath: string = this.url + "Baggage";
+  haspath: string = this.url + "Has";
 
 
   constructor(private http: HttpClient) { }
 
-  //post
-  loginByEmail(form: LoginI): Observable<ResponseI> {
-    return this.http.post<ResponseI>(this.userPath, form)
+  loginByEmail(email: string, password: string): Observable<UserI> {
+
+    let loginPath = this.userPath + "/" + email + "/" + password;
+    return this.http.get<UserI>(loginPath)
 
   }
   signUp(form: UserI): Observable<ResponseI> {
     return this.http.post<ResponseI>(this.userPath, form)
   }
-  postPromo(form: SimpPromotion){
-    return this.http.post<SimpPromotion>(this.promotionPath,form);
+  postPromo(form: SimpPromotion) {
+    return this.http.post<SimpPromotion>(this.promotionPath, form);
   }
-  postAppliesTo(form: AppliesTo){
-    return this.http.post<AppliesTo>(this.applyToPath,form);
+  postAppliesTo(form: AppliesTo) {
+    return this.http.post<AppliesTo>(this.applyToPath, form);
   }
-  postFlight(form: FlightPost){
-    return this.http.post<FlightPost>(this.flightPostPath,form);
+  postFlight(form: FlightPost) {
+    return this.http.post<FlightPost>(this.flightPostPath, form);
   }
-  postScale(form: Scales){
-    return this.http.post<Scales>(this.scalesPath,form);
+  postScale(form: Scales) {
+    return this.http.post<Scales>(this.scalesPath, form);
   }
-  postBaggage(form: BaggageModel){
-    return this.http.post<BaggageModel>(this.baggagePath,form);
+  postBaggage(form: BaggageModel) {
+    return this.http.post<BaggageModel>(this.baggagePath, form);
   }
-  postHas(form:Has){
-    return this.http.post<Has>(this.haspath,form);
+  postHas(form: Has) {
+    return this.http.post<Has>(this.haspath, form);
   }
-  postRoute(form:Routes){
+  postRoute(form: Routes) {
     return this.http.post<Routes>(this.routesPath, form);
   }
   //gets
 
-  getFlights(){
+  searchFlights(origin: string, destination: string): Observable<FlightI[]> {
+    let flightPath = this.url + "Flight/" + "FlightRouteAirplane/" + origin + "/" + destination;
+    return this.http.get<FlightI[]>(flightPath)
+  }
+
+  getPromotions(): Observable<PromotionI[]> {
+    let dealsPath = this.url + "Promotion";
+    return this.http.get<PromotionI[]>(dealsPath)
+  }
+
+  getSeats(): Observable<SeatI[]> {
+    let seatPath = this.url + "Seat";
+    return this.http.get<SeatI[]>(seatPath)
+  }
+
+  selectFlight(id: string): Observable<Flight> {
+    let flightPath = this.url + "Flight/" + id;
+    return this.http.get<Flight>(flightPath)
+  }
+
+  retrieveRoutes(route_code: string): Observable<Routes> {
+    let routePath = this.url + "Route/" + route_code;
+    return this.http.get<Routes>(routePath)
+  }
+
+  getStopOvers(flight_Id: string): Observable<string[]> {
+    let scalesPath = this.url + "Flight_Stopover/" + flight_Id;
+    return this.http.get<string[]>(scalesPath);
+  }
+
+  getAirplane(airplane_plate: string): Observable<Airplane> {
+    let airplanePath = this.url + "Airplane/" + airplane_plate;
+    return this.http.get<Airplane>(airplanePath)
+  }
+
+  getFlights() {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -83,7 +126,7 @@ export class ApiService {
 
     return this.http.get<string>(this.flightPath, requestOptions);
   }
-  getFlightCapacity(id:number){
+  getFlightCapacity(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -96,11 +139,11 @@ export class ApiService {
       headers: new HttpHeaders(headerDict),
     };
 
-    return this.http.get<string>(this.flightPostPath +"/Capacity/"+id, requestOptions);
+    return this.http.get<string>(this.flightPostPath + "/Capacity/" + id, requestOptions);
   }
 
 
-  getBaggage(){
+  getBaggage() {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -116,7 +159,7 @@ export class ApiService {
     return this.http.get<string>(this.baggagePath, requestOptions);
   }
 
-  getAirplanes(){
+  getAirplanes() {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -133,7 +176,7 @@ export class ApiService {
 
   }
 
-  getRoutes(){
+  getRoutes() {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -149,7 +192,7 @@ export class ApiService {
     return this.http.get<string>(this.routesPath, requestOptions);
   }
 
-  getRouteId(id:number){
+  getRouteId(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -162,10 +205,10 @@ export class ApiService {
       headers: new HttpHeaders(headerDict),
     };
 
-    return this.http.get<string>(this.routesPath+"/"+id, requestOptions);
+    return this.http.get<string>(this.routesPath + "/" + id, requestOptions);
   }
 
-  getScales(id:number){
+  getScales(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -178,10 +221,10 @@ export class ApiService {
       headers: new HttpHeaders(headerDict),
     };
 
-    return this.http.get<string>(this.scalesPath+ id, requestOptions);
+    return this.http.get<string>(this.scalesPath + id, requestOptions);
   }
 
-  getUsers(){
+  getUsers() {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -197,7 +240,7 @@ export class ApiService {
     return this.http.get<string>(this.userPath, requestOptions);
   }
 
-  getFlightPromo(id: number){
+  getFlightPromo(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -210,9 +253,9 @@ export class ApiService {
       headers: new HttpHeaders(headerDict),
     };
 
-    return this.http.get<string>(this.flightPromoPath+ id, requestOptions);
+    return this.http.get<string>(this.flightPromoPath + id, requestOptions);
   }
-  getFlightPassengers(id: number){
+  getFlightPassengers(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -225,9 +268,9 @@ export class ApiService {
       headers: new HttpHeaders(headerDict),
     };
 
-    return this.http.get<string>(this.passengersPath+ id, requestOptions);
+    return this.http.get<string>(this.passengersPath + id, requestOptions);
   }
-  getFlightBaggage(id: number){
+  getFlightBaggage(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -240,17 +283,17 @@ export class ApiService {
       headers: new HttpHeaders(headerDict),
     };
 
-    return this.http.get<string>(this.flightBaggagePath+ id, requestOptions);
+    return this.http.get<string>(this.flightBaggagePath + id, requestOptions);
   }
 
   //PUTS
 
-  putRoute(form:Routes){
+  putRoute(form: Routes) {
     return this.http.put<Routes>(this.routesPath, form);
   }
 
   // Deletes
-  deleteFlightPromo(id: number){
+  deleteFlightPromo(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -263,9 +306,9 @@ export class ApiService {
       headers: new HttpHeaders(headerDict),
     };
 
-    return this.http.delete<string>(this.deletePromoPath + id,requestOptions);
+    return this.http.delete<string>(this.deletePromoPath + id, requestOptions);
   }
-  deleteFlightPassenger(id: number){
+  deleteFlightPassenger(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -278,9 +321,9 @@ export class ApiService {
       headers: new HttpHeaders(headerDict),
     };
 
-    return this.http.delete<string>(this.booksPath + id,requestOptions);
+    return this.http.delete<string>(this.booksPath + id, requestOptions);
   }
-  deleteHasBaggage(userId: number, flightId:number){
+  deleteHasBaggage(userId: number, flightId: number) {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -293,9 +336,9 @@ export class ApiService {
       headers: new HttpHeaders(headerDict),
     };
 
-    return this.http.delete<string>(this.haspath + "/"+userId + "/"+flightId,requestOptions);
+    return this.http.delete<string>(this.haspath + "/" + userId + "/" + flightId, requestOptions);
   }
-  deleteHas(id:number){
+  deleteHas(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -308,9 +351,9 @@ export class ApiService {
       headers: new HttpHeaders(headerDict),
     };
 
-    return this.http.delete<string>(this.haspath + "/Baggage/"+ id,requestOptions);
+    return this.http.delete<string>(this.haspath + "/Baggage/" + id, requestOptions);
   }
-  deleteBaggage(id: number){
+  deleteBaggage(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -323,7 +366,7 @@ export class ApiService {
       headers: new HttpHeaders(headerDict),
     };
 
-    return this.http.delete<string>(this.baggagePath + "/"+id,requestOptions);
+    return this.http.delete<string>(this.baggagePath + "/" + id, requestOptions);
   }
 }
 

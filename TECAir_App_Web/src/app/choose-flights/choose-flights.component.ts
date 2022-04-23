@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
@@ -8,6 +8,11 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
 import { default as _rollupMoment } from 'moment';
+import { DataService } from '../services/data.service';
+import { FlightI } from '../models/flight.interface';
+import { ApiService } from '../services/api.service';
+import { StopOverI } from '../models/stopOver.interface';
+import { StopOver } from '../models/stopOver';
 
 const moment = _rollupMoment || _moment;
 
@@ -38,16 +43,141 @@ export const MY_FORMATS = {
 })
 export class ChooseFlightsComponent implements OnInit {
 
-  flights: string[] = ["info1", "price1", "info2", "price2"];
   date = new FormControl(moment());
+  availableFlights: FlightI[] = [];
+  from: string = "";
+  to: string = "";
+  bookingForm = new FormGroup({
+    origin: new FormControl('', Validators.required),
+    destination: new FormControl('', Validators.required)
+  });
+  stepOvers: StopOver[][] = [];
+  numberOfStops: number[] = [];
+  hasStopOvers: boolean = false;
+  flightNumber: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private data: DataService, private api: ApiService) {
+
+    this.initiateValues();
+  }
 
   ngOnInit(): void {
   }
 
-  chooseFlight() {
+  setFlightNumber(city: string, country: string) {
+    let min = 100;
+    let max = 999;
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    let randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+    let flightNumber = city[0] + country[0] + "-" + randomNumber.toString();
+    return flightNumber;
+  }
+
+  async getStopOvers(flight_ids: string[]) {
+    for (let i = 0; i < flight_ids.length; i++) {
+      console.log("id: " + flight_ids[0]);
+      this.api.getStopOvers(flight_ids[i]).subscribe(data => {
+        let stopOvers: StopOver[] = [];
+        let numberOfStops = 0;
+        //let stops: number[] = [];
+        for (let is = 0; is < data.length; is++) {
+          var splitted = data[is].split(",");
+          let city = splitted[0];
+          let country = splitted[1];
+          let duration = splitted[2];
+          let flightNumber = this.setFlightNumber(city, country);
+          let flightID: number = +flight_ids[i];
+          // console.log("Iteration n: "+ i+);
+          var stopOver = new StopOver(city, country, duration, flightNumber, flightID);
+          stopOvers.push(stopOver);
+          numberOfStops++;
+        }
+        this.numberOfStops.push(numberOfStops);
+        this.stepOvers.push(stopOvers);
+      })
+
+      await new Promise(f => setTimeout(f, 500));
+      this.hasStopOvers = true;
+    }
+
+    // console.log("iatrue?" + this.hasStopOvers);
+    // console.log(flight_ids[0]);
+    // console.log(this.stepOvers);
+  }
+
+  initiateValues() {
+
+    this.availableFlights = this.data.availableFlights;
+    // console.log(this.availableFlights);
+    if (this.availableFlights.length == 0) {
+      this.bookingForm.patchValue({ origin: "From" });
+      this.bookingForm.patchValue({ destination: "To" });
+    } else {
+      this.bookingForm.patchValue({ origin: this.availableFlights[0].origin });
+      this.bookingForm.patchValue({ destination: this.availableFlights[0].destination });
+      this.from = this.availableFlights[0].origin;
+      this.to = this.availableFlights[0].destination;
+      let flight_ids: string[] = [];
+      for (let i = 0; i < this.availableFlights.length; i++) {
+        flight_ids.push(this.availableFlights[i].id.toString());
+      }
+
+      this.flightNumber = this.setFlightNumber(this.from, this.to);
+
+      this.getStopOvers(flight_ids);
+    }
+
+  }
+
+  async findFlights(form: FlightI) {
+
+    //TODO: if dont get the data, refresh the method.
+
+    let from = form.origin;
+    let to = form.destination;
+    this.api.searchFlights(from, to).subscribe(data => {
+      this.data.availableFlights = data;
+      this.availableFlights = this.data.availableFlights;
+      console.log(this.availableFlights);
+    });
+    await new Promise(f => setTimeout(f, 500));
+    if (this.availableFlights[0] != undefined) {
+      this.from = this.availableFlights[0].origin;
+      this.to = this.availableFlights[0].destination;
+    }
+    let flight_ids: string[] = [];
+    for (let i = 0; i < this.availableFlights.length; i++) {
+      flight_ids.push(this.availableFlights[i].id.toString());
+    }
+
+    //TODO: flightNumber for all direct flights
+    if (this.flightNumber == '') {
+      this.flightNumber = this.setFlightNumber(this.from, this.to);
+    }
+
+    this.getStopOvers(flight_ids);
+
+
+  }
+
+  chooseFlight(id: number) {
+    this.data.iDflightSelected = id;
+    this.data.stopOvers = this.setStopsOfSelectedFlight(id);
+    this.data.flightNumber = this.flightNumber;
     this.router.navigateByUrl("/choose-travelers");
+  }
+
+  setStopsOfSelectedFlight(id: number): StopOver[] {
+    let stopOvers: StopOver[] = [];
+    this.stepOvers.forEach(flight => {
+      flight.forEach(stopOver => {
+        if (stopOver.flightID == id) {
+          stopOvers.push(stopOver);
+        }
+      })
+    });
+    return stopOvers;
   }
 
 }

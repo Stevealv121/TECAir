@@ -4,22 +4,22 @@
             <h2>Select seats</h2>
         </div>
     </div>
-    <div class="row mb-4">
+    <!-- <div class="row mb-4">
         <div class="col" *ngFor="let flight of flights; index as i;">
             Flight {{i+1}}
         </div>
-    </div>
+    </div> -->
     <div class="row mb-4">
-        <div class="col"><strong>Date</strong> Fri, Jun 3, 2022</div>
-        <div class="col"><strong>Flight</strong> UA 1682</div>
-        <div class="col"><strong>Aircraft</strong> Boeing 737-800</div>
+        <div class="col"><strong>Date</strong> {{date}}</div>
+        <div class="col"><strong>Flight</strong> {{flight}}</div>
+        <div class="col"><strong>Aircraft</strong> {{airplane}}</div>
         <div class="col"><strong>Duration</strong> 3h 41m</div>
     </div>
     <div class="row">
         <div class="col">
             <div class="row mb-3">
                 <div class="col">
-                    <h5>Select seats for San Jose to Houston</h5>
+                    <h5>Select seats for {{origin}} to {{destination}}</h5>
                 </div>
             </div>
             <div class="row">
@@ -58,14 +58,17 @@
                     </ng-container>
                     <ng-template #seatTemplate>
                         <ng-container *ngIf="rowItem === 0; else unavailable">
-                            <a (click)="pickSeat(i,j)">
+                            <a (click)="pickSeat()">
                                 <div class="square">
+                                    <p>{{seatCol[j]}}-{{seatRow[i]}}</p>
                                 </div>
                             </a>
                         </ng-container>
                     </ng-template>
                     <ng-template #unavailable>
-                        <div class="x"></div>
+                        <div class="x">
+                            <p>{{seatCol[j]}}-{{seatRow[i]}}</p>
+                        </div>
                     </ng-template>
 
                 </div>

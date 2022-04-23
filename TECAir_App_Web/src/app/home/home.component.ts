@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
@@ -8,8 +8,13 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
 import { default as _rollupMoment } from 'moment';
+import { ApiService } from '../services/api.service';
+import { FlightI } from '../models/flight.interface';
+import { DataService } from '../services/data.service';
+import { PromotionI } from '../models/promotion.interface';
 
 const moment = _rollupMoment || _moment;
+declare var bootstrap: any;
 
 export const MY_FORMATS = {
   parse: {
@@ -38,51 +43,71 @@ export const MY_FORMATS = {
 })
 export class HomeComponent implements OnInit {
 
-  promos: number[] = [1, 2];
+  promos: PromotionI[] = [];
+  filled: boolean = false;
   date = new FormControl(moment());
+  bookingForm = new FormGroup({
+    origin: new FormControl('', Validators.required),
+    destination: new FormControl('', Validators.required),
+    travelers: new FormControl('', Validators.required)
+  });
+  block: string = "block"
+  none: string = "none"
+  display1: string = this.block;
+  display2: string = this.none;
+  display3: string = this.none;
+  color: string = "red";
+  // availableFlights: FlightI[] = [];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private api: ApiService, private data: DataService) {
+    this.retrievePromotions();
+  }
 
   ngOnInit(): void {
-    this.changeIndicator();
-  }
 
-  changeIndicator() {
-    let slide1 = document.getElementById("s1");
-    let slide2 = document.getElementById("s2");
-    let slide3 = document.getElementById("s3");
-
-    slide1?.addEventListener("click", this.setIndicator1);
-    slide2?.addEventListener("click", this.setIndicator2);
-    slide3?.addEventListener("click", this.setIndicator3);
-  }
-  setIndicator1(this: HTMLElement) {
-    let indicators = document.getElementById("indicators")?.children;
-
-    indicators?.item(1)?.classList.remove("active");
-    indicators?.item(2)?.classList.remove("active");
-    this.classList.add("active");
-
-  }
-  setIndicator2(this: HTMLElement) {
-    let indicators = document.getElementById("indicators")?.children;
-
-    indicators?.item(0)?.classList.remove("active");
-    indicators?.item(2)?.classList.remove("active");
-    this.classList.add("active");
-
-  }
-  setIndicator3(this: HTMLElement) {
-    let indicators = document.getElementById("indicators")?.children;
-
-    indicators?.item(0)?.classList.remove("active");
-    indicators?.item(1)?.classList.remove("active");
-    this.classList.add("active");
 
   }
 
-  findFlights() {
+  setDisplay1() {
+    this.display1 = this.block;
+    this.display2 = this.none;
+    this.display3 = this.none;
+  }
+  setDisplay2() {
+    this.display2 = this.block;
+    this.display1 = this.none;
+    this.display3 = this.none;
+  }
+
+  setDisplay3() {
+    this.display3 = this.block;
+    this.display1 = this.none;
+    this.display2 = this.none;
+  }
+
+  async findFlights(form: FlightI) {
+    let from = form.origin;
+    let to = form.destination;
+    let travelers = form.travelers;
+    this.data.setNumberTravelers(travelers);
+    this.api.searchFlights(from, to).subscribe(data => {
+      this.data.availableFlights = data;
+
+    });
+    await new Promise(f => setTimeout(f, 100));
+
     this.router.navigateByUrl("/choose-flights");
+  }
+
+  async retrievePromotions() {
+    this.api.getPromotions().subscribe(data => {
+      for (let i = 0; i < 3; i++) {
+        this.promos.push(data[i]);
+      }
+
+    })
+    await new Promise(f => setTimeout(f, 500));
+    this.filled = true;
   }
 
 }

@@ -10,7 +10,7 @@ import { RoutesComponent } from './routes/routes.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { ChooseFlightsComponent } from './choose-flights/choose-flights.component';
 import { ChooseTravelersComponent } from './choose-travelers/choose-travelers.component';
-import { HomeComponent } from './home/home.component';
+
 import { LoginComponent } from './login/login.component';
 import { SeatMapComponent } from './seat-map/seat-map.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
@@ -18,6 +18,8 @@ import { CreateRouteComponent } from './routes/create-route/create-route.compone
 import { RouteEditComponent } from './routes/route-edit/route-edit.component';
 import { FlightOpenComponent } from './reports/flight-open/flight-open.component';
 import { FlightClosedComponent } from './reports/flight-closed/flight-closed.component';
+import { HomeComponent } from './home/home.component';
+import { DealsComponent } from './deals/deals.component';
 
 const routes: Routes = [
   { path: "baggage", component: BaggageComponent },
@@ -35,10 +37,11 @@ const routes: Routes = [
   { path: "choose-travelers", component: ChooseTravelersComponent },
   { path: "seat-map", component: SeatMapComponent },
   { path: "check-out", component: CheckOutComponent },
-  {path: "routeCreation", component: CreateRouteComponent},
-  {path: "RouteEdit", component: RouteEditComponent},
-  {path: "OpenFlight", component: FlightOpenComponent},
-  {path: "ClosedFlight", component: FlightClosedComponent}
+  { path: "routeCreation", component: CreateRouteComponent },
+  { path: "RouteEdit", component: RouteEditComponent },
+  { path: "OpenFlight", component: FlightOpenComponent },
+  { path: "ClosedFlight", component: FlightClosedComponent },
+  { path: "deals", component: DealsComponent }
 
 ];
 
