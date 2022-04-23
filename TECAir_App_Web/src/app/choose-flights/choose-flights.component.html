@@ -54,7 +54,7 @@
             </ng-template>
 
             <div id="time">
-                <h4 id="time-from">{{info.hours}}:{{info.minutes}} AM</h4>
+                <h4 id="time-from">{{info.hours}}:{{info?.minutes}} AM</h4>
                 <h4 id="time-to">0:00 PM</h4>
             </div>
             <h6 class="flight-time">SJO ------------ 8H,32M ------------ MIA</h6>
@@ -63,7 +63,7 @@
                     Details
                 </summary>
                 <div class="container-details">
-                    <ng-container *ngIf="stepOvers[i].length === 0; else stopOversTemplate">
+                    <ng-container *ngIf="stepOvers[i]?.length === 0; else stopOversTemplate">
                         <div class="row row-bottom-margin">
                             <div class="col">
                                 <h6>{{info.origin}} to {{info.destination}}</h6>

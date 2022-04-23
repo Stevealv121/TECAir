@@ -39,6 +39,8 @@ export class ChooseTravelersComponent implements OnInit {
   numberOfStops: number = 0;
   hasStopOvers: boolean = false;
   flightNumber: string = '';
+  admin: boolean = true;//default:false
+  users: UserI[] = [];
 
   constructor(private data: DataService, private formBuilder: FormBuilder, private router: Router, private api: ApiService) {
     this.user = this.data.getUser();
@@ -99,6 +101,7 @@ export class ChooseTravelersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTravelers();
+    this.getUsers();
   }
 
   getTravelers() {
@@ -106,6 +109,21 @@ export class ChooseTravelersComponent implements OnInit {
     for (let i = 1; i < travelers; i++) {
       this.travelers.push(i);
     }
+  }
+
+  getUsers() {
+    this.api.getUsers().subscribe((data: any) => {
+      this.users = data;
+    })
+  }
+
+  selectUser() {
+    let option: any = (<HTMLInputElement>document.getElementById('select')).value;
+    console.log(option);
+    this.user = this.users[option];
+    this.travelerForm.patchValue({ first_name: this.user.first_name });
+    // this.travelerForm.patchValue({ middle_name: this.user.second_name });
+    this.travelerForm.patchValue({ last_name: this.user.first_surname });
   }
 
   continueSeats(form: TravelerI) {

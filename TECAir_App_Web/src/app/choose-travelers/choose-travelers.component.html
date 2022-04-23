@@ -4,6 +4,14 @@
             <h2>Traveler Information</h2>
         </div>
     </div>
+    <div class="dropdown" *ngIf="admin===true">
+        <h4>Choose a Traveler</h4>
+        <select class="form-select mb-4" id="select" (change)="selectUser()">
+            <option selected>Select user</option>
+            <option *ngFor="let user of users; index as i" value="{{i}}">{{user.first_name}}, {{user.first_surname}}
+            </option>
+        </select>
+    </div>
     <div class="row">
         <div class="col col-md-8" [formGroup]="travelerForm">
             <div class="card mb-4">

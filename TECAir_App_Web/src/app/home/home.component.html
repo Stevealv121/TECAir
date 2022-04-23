@@ -86,9 +86,9 @@
 <div class="container p1" id="promos-container" [style.display]="display1">
     <div class="card" style="width: 18rem;" id="promo-content">
         <div class="card-body" *ngIf="filled">
-            <h5 class="card-title mb-4">{{promos[0].title}}</h5>
+            <h5 class="card-title mb-4">{{promos[0]?.title}}</h5>
 
-            <h2 class="card-text mb-4">{{promos[0].description}}</h2>
+            <h2 class="card-text mb-4">{{promos[0]?.description}}</h2>
             <a href="#" class="card-link">Book now</a>
             <div class="carousel-indicators" id="indicators">
 
@@ -106,9 +106,9 @@
 <div class="container p2" id="promos-container" [style.display]="display2">
     <div class="card" style="width: 18rem;" id="promo-content">
         <div class="card-body" *ngIf="filled">
-            <h5 class="card-title mb-4">{{promos[1].title}}</h5>
+            <h5 class="card-title mb-4">{{promos[1]?.title}}</h5>
 
-            <h2 class="card-text mb-4">{{promos[1].description}}</h2>
+            <h2 class="card-text mb-4">{{promos[1]?.description}}</h2>
             <a href="#" class="card-link">Book now</a>
             <div class="carousel-indicators" id="indicators">
 
@@ -126,8 +126,8 @@
 <div class="container p3" id="promos-container" [style.display]="display3">
     <div class="card" style="width: 18rem;" id="promo-content">
         <div class="card-body" *ngIf="filled">
-            <h5 class="card-title mb-4">{{promos[2].title}}</h5>
-            <h2 class="card-text mb-4">{{promos[2].description}}</h2>
+            <h5 class="card-title mb-4">{{promos[2]?.title}}</h5>
+            <h2 class="card-text mb-4">{{promos[2]?.description}}</h2>
             <a href="#" class="card-link">Book now</a>
             <div class="carousel-indicators" id="indicators">
 
