@@ -115,7 +115,7 @@ namespace TECAir_API_Data.Repositories
                         INNER JOIN public.""Has"" using (user_id)
                         INNER JOIN public.""BAGGAGE"" ON public.""Has"".baggage_id = public.""BAGGAGE"".id
                         INNER JOIN public.""USER"" ON public.""Has"".user_id = public.""USER"".id
-                        WHERE flight_id= @flight_id";
+                        WHERE public.""Has"".flight_id= @flight_id";
             var result = await db.QueryAsync<Flight_Baggage>(sql, new
             {
                 flight_id = id
