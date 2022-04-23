@@ -1,1 +1,60 @@
+<div id="content"class="content" #content>
+  <h1>TecAIR Conciliation</h1><br>
+  <div class="row align-items-center">
+    <div id="col1" class="col">
+      <h3>Passengers</h3>
+      <table id="table" class="table "> <!--Se debe llenar con el la informacion de la BD-->
+        <thead id="head">
+          <tr>
+            <th scope="col">User ID</th>
+            <th scope="col">Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let passenger of passengers">
+            <th scope="row">{{passenger.user_id}}</th>
+            <td>{{passenger.first_name}} {{passenger.first_surname}} {{passenger.second_surname}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="col2" class="col">
+      <h3>Baggage</h3>
+      <table id="table" class="table "> <!--Se debe llenar con el la informacion de la BD-->
+        <thead id="head">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let suitcase of baggage">
+            <th scope="row">{{suitcase.baggage_id}}</th>
+            <td>{{suitcase.first_name}} {{suitcase.first_surname}} {{suitcase.second_surname}}</td>
+            <td> $ {{suitcase.price}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row align-items-center">
+    <div id ="container2" class="container">
+      <div class="row">
+        <label>Total Passengers : {{passengers.length}} </label>
+      </div>
+      <div class="row">
+        <label>Capacity : {{capacity}}</label>
+      </div>
+      <div class="row">
+        <label>Total Baggage : {{baggage.length}}</label>
+      </div>
+      <br>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button id="buttons" class="btn btn-primary me-md-2" (click)="goBack()" type="button">Cancel</button>
+        <button id="buttons" class="btn btn-primary me-md-2" (click)="downloadPDF()" type="button">Print</button>
+      </div>
 
+    </div>
+  </div>
+</div>

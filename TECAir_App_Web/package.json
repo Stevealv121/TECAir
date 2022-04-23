@@ -25,6 +25,7 @@
     "boostrap": "^2.0.0",
     "bootstrap": "^5.1.3",
     "jquery": "^3.6.0",
+    "jspdf": "^2.5.1",
     "moments": "0.0.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
