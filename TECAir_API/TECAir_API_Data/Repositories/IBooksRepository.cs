@@ -11,6 +11,7 @@ namespace TECAir_API_Data.Repositories
     {
         Task<IEnumerable<Books>> GetAllReservation();
         Task<Books> GetReservationDetails(int flght_id);
+        Task<Books> GetReservationDetailsbyUser(int usr_id);
         Task<bool> InsertReservation(Books reservation);
         Task<bool> UpdateReservation(Books reservation);
         Task<bool> DeleteReservation(Books reservation);

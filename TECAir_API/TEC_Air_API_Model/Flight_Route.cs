@@ -24,6 +24,7 @@ namespace TEC_Air_API_Model
         public int promotion_code { get; set; }
         public int flight_id { get; set; }
         public int final_price { get; set; }
+        public string duration { get; set; }
 
     }
 }

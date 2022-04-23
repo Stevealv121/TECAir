@@ -57,6 +57,14 @@ namespace TECAir_API_Data.Repositories
                        WHERE flight_id = @flight_id";
             return await db.QueryFirstOrDefaultAsync<Books>(sql, new { flight_id = flght_id });
         }
+        public async Task<Books> GetReservationDetailsbyUser(int usr_id)
+        {
+            var db = dbConnection();
+            var sql = @"SELECT user_id,flight_id
+                       FROM public.""Books"" 
+                       WHERE user_id = @user_id";
+            return await db.QueryFirstOrDefaultAsync<Books>(sql, new { user_id = usr_id });
+        }
 
         public async Task<bool> InsertReservation(Books reservation)
         {
