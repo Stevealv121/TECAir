@@ -1,6 +1,8 @@
 package com.example.tecairmobile.entities;
 
-public class FlightsandRoutes {
+import java.io.Serializable;
+
+public class FlightsandRoutes implements Serializable {
 
     private Integer id;
     private Integer boarding_gate;

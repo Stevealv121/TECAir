@@ -16,6 +16,10 @@ public class Seats {
         this.airplane_plate = airplane_plate;
     }
 
+    public Seats(){
+
+    }
+
     public Integer getId() {
         return id;
     }

@@ -28,6 +28,7 @@ public class flightSearch extends AppCompatActivity {
     Spinner routes;
     ArrayList<String> showRoutes;
     ArrayList<FlightsandRoutes> farList;
+    int uindex;
     SQLitehelper conn;
 
     @Override
@@ -52,11 +53,12 @@ public class flightSearch extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 if(i!=0){
+                    uindex = i;
                     f1.setText("Flight ID: " + farList.get(i-1).getFlight_id());
                     f2.setText("Boarding Gate: " + farList.get(i-1).getBoarding_gate());
                     f3.setText("Flight Date: " + farList.get(i-1).getDay() + "/" + farList.get(i-1).getMonth() + "/" + farList.get(i-1).getYear());
                     f4.setText("Departure at: "+farList.get(i-1).getHours() + ":" + farList.get(i-1).getMinutes());
-                    f5.setText("Promotion: " + farList.get(i-1).getPromotion_code());
+                    f5.setText("Airplane Plate: " + farList.get(i-1).getAirplane_plate());
 
                 }
 
@@ -120,7 +122,15 @@ public class flightSearch extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        Intent myintent = new Intent(flightSearch.this,FlightReservation.class);
-        startActivity(myintent);
+        if(f1.getText()==""){
+            Toast.makeText(flightSearch.this,"Please select flight",Toast.LENGTH_LONG).show();
+        }else{
+            FlightsandRoutes far = farList.get(uindex-1);
+            Intent myintent = new Intent(flightSearch.this,FlightReservation.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("far",far);
+            myintent.putExtras(bundle);
+            startActivity(myintent);
+        }
     }
 }
