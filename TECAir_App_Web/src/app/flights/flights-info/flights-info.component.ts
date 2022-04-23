@@ -57,7 +57,7 @@ export class FlightsInfoComponent implements OnInit {
     this.router.navigate(['ClosedFlight'])
   }
 
-  createPromo(title:string, description: string, date: string, discount:string){
+  async createPromo(title:string, description: string, date: string, discount:string){
     var splitted = date.split("-", 3)
     this.newPromo = {
       promotion_code : 0,
@@ -80,21 +80,17 @@ export class FlightsInfoComponent implements OnInit {
         console.log(data)
       })
     })
-
-
-
-    this.router.navigate(['flights'])
+    await new Promise(f => setTimeout(f, 500))
+    this.ngOnInit()
 
   }
 
-  deletePromo(){ // Delete a promo for a Flight
+  async deletePromo(){ // Delete a promo for a Flight
     this.api.deleteFlightPromo(this.data.getFlightId()).subscribe((data: any) => {
       console.log(data);
     })
-    this.router.navigate(['flights'])
-  }
-  postPromo(){
-
+    await new Promise(f => setTimeout(f, 500))
+    this.ngOnInit()
   }
 
 }

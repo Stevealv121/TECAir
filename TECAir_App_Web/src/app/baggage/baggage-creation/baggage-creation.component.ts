@@ -49,7 +49,7 @@ export class BaggageCreationComponent implements OnInit {
   /**
    * Post the suitcase in the Data Base
    */
-  postSuitCase(user:string, color:string, weight:string, flightId:string){
+  async postSuitCase(user:string, color:string, weight:string, flightId:string){
     var splitted = user.split(" ", 3);
     this.baggage ={
       id:0,
@@ -68,7 +68,7 @@ export class BaggageCreationComponent implements OnInit {
         console.log(data);
       })
     })
-
+    await new Promise(f => setTimeout(f, 500))
     this.goBack()
   }
 

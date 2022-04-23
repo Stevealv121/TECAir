@@ -47,7 +47,7 @@ export class FlightManagementComponent implements OnInit {
     })
   }
 
-  createFlight(plate:string, route:string, boardingGate:string, price:string,status:string, scale1: string, scale2:string){
+  async createFlight(plate:string, route:string, boardingGate:string, price:string,status:string, scale1: string, scale2:string, duration:string){
     var bol: boolean = true;
     var splitted = route.split(" ",2);
     if (status == "Enable"){
@@ -61,7 +61,8 @@ export class FlightManagementComponent implements OnInit {
       price: Number(price),
       status: bol,
       route_code: Number(splitted[0]),
-      airplane_plate:plate
+      airplane_plate:plate,
+      duration:duration
     }
     this.api.postFlight(this.newFlight).subscribe((data: any) => {
       if (scale1 !=""){
@@ -82,6 +83,7 @@ export class FlightManagementComponent implements OnInit {
         })
       }
     })
+    await new Promise(f => setTimeout(f, 500))
     this.goBack()
   }
 

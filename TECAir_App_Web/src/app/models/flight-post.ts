@@ -5,4 +5,5 @@ export interface FlightPost {
   status:boolean,
   route_code:number,
   airplane_plate:string
+  duration:string;
 }
