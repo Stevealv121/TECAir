@@ -39,7 +39,7 @@ export class ChooseTravelersComponent implements OnInit {
   numberOfStops: number = 0;
   hasStopOvers: boolean = false;
   flightNumber: string = '';
-  admin: boolean = true;//default:false
+  admin: boolean = false;//default:false
   users: UserI[] = [];
 
   constructor(private data: DataService, private formBuilder: FormBuilder, private router: Router, private api: ApiService) {

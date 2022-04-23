@@ -30,7 +30,8 @@
                                                 <h5 class="card-title">{{deal.title}}</h5>
                                                 <p class="card-text">{{deal.description}}</p>
                                                 <p class="card-text">Discount: {{deal.discount}}%</p>
-                                                <a href="#" class="btn btn-primary">Book now</a>
+                                                <a (click)="bookNow(deal.promotion_code)" class="btn btn-primary">Book
+                                                    now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -46,7 +47,8 @@
                                                 <h5 class="card-title">{{promo.title}}</h5>
                                                 <p class="card-text">{{promo.description}}</p>
                                                 <p class="card-text">Discount: {{promo.discount}}%</p>
-                                                <a href="#" class="btn btn-primary">Book now</a>
+                                                <a (click)="bookNow(promo.promotion_code)" class="btn btn-primary">Book
+                                                    now</a>
                                             </div>
                                         </div>
                                     </div>

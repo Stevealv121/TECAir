@@ -86,6 +86,11 @@ export class ApiService {
     return this.http.get<PromotionI[]>(dealsPath)
   }
 
+  getAppliesTo(promo_code: number): Observable<string[]> {
+    let p = this.applyToPath + "/" + promo_code;
+    return this.http.get<string[]>(p);
+  }
+
   getSeats(): Observable<SeatI[]> {
     let seatPath = this.url + "Seat";
     return this.http.get<SeatI[]>(seatPath)
