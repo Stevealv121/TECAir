@@ -4,6 +4,10 @@ import { SeatI } from '../models/seat.interface';
 import { ApiService } from '../services/api.service';
 import { DataService } from '../services/data.service';
 
+let selectedSeats: string[] = [];
+let countSelectedSeats: number = 0;
+let numberOfTravelers: number = 0;
+
 @Component({
   selector: 'app-seat-map',
   templateUrl: './seat-map.component.html',
@@ -37,6 +41,8 @@ export class SeatMapComponent implements OnInit {
   airplane: string = "";
   origin: string = "";
   destination: string = "";
+  seatRow: string[] = ["1", "2", "3", "F", "1", "2", "3"];
+  seatCol: string[] = ["A", "B", "C", "N", "D", "E", "F"];
 
 
   constructor(private api: ApiService, private data: DataService) {
@@ -45,6 +51,7 @@ export class SeatMapComponent implements OnInit {
     this.airplane = this.data.selectedAirplane;
     this.origin = this.data.origin;
     this.destination = this.data.destination;
+    numberOfTravelers = this.data.getNumberTravelers();
   }
 
   ngOnInit(): void {
@@ -81,17 +88,35 @@ export class SeatMapComponent implements OnInit {
   }
 
   pickSeat() {
+
     let seat = document.getElementsByClassName('square') as HTMLCollectionOf<HTMLElement>;
     var i;
 
     for (i = 0; i < seat.length; ++i) {
-      seat[i].addEventListener('click', changeColor)
+      seat[i].addEventListener('click', selectedSeat);
     }
+
+    this.setDataSeats();
+    console.log(selectedSeats);
+
+  }
+
+  setDataSeats() {
+    this.data.selectedSeats = selectedSeats;
   }
 
 }
 
-function changeColor(this: any) {
-  this.style.backgroundColor = "#213dad";
+function selectedSeat(this: any) {
+  if (numberOfTravelers <= countSelectedSeats) {
+    alert("You already have selected the seats for all the travelers.");
+  } else {
+    this.style.backgroundColor = "#213dad";
+    this.style.color = "white";
+    let seatName = this.getElementsByTagName('p')[0].innerHTML;
+    selectedSeats.push(seatName);
+    countSelectedSeats++;
+  }
+
 }
 

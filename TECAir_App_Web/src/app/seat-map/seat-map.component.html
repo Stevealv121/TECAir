@@ -60,12 +60,15 @@
                         <ng-container *ngIf="rowItem === 0; else unavailable">
                             <a (click)="pickSeat()">
                                 <div class="square">
+                                    <p>{{seatCol[j]}}-{{seatRow[i]}}</p>
                                 </div>
                             </a>
                         </ng-container>
                     </ng-template>
                     <ng-template #unavailable>
-                        <div class="x"></div>
+                        <div class="x">
+                            <p>{{seatCol[j]}}-{{seatRow[i]}}</p>
+                        </div>
                     </ng-template>
 
                 </div>

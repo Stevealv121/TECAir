@@ -20,7 +20,7 @@ export class DataService {
   origin!: string;
   destination!: string;
   numberOfStops: number = 0;
-  //seatID
+  selectedSeats: string[] = [];
 
   constructor() {
     this.availableFlights = [];

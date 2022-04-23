@@ -101,9 +101,9 @@ export class ChooseFlightsComponent implements OnInit {
       this.hasStopOvers = true;
     }
 
-    console.log("iatrue?" + this.hasStopOvers);
-    console.log(flight_ids[0]);
-    console.log(this.stepOvers);
+    // console.log("iatrue?" + this.hasStopOvers);
+    // console.log(flight_ids[0]);
+    // console.log(this.stepOvers);
   }
 
   initiateValues() {
