@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StopOver } from '../models/stopOver';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-check-out',
@@ -8,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 export class CheckOutComponent implements OnInit {
 
   isVisible = false;
-  constructor() { }
+  date: string = "";
+  flight: string = "";
+  airplane: string = "";
+  origin: string = "";
+  destination: string = "";
+  stepOvers: StopOver[] = [];
+  numberOfStops: number = 0;
+  hasStopOvers: boolean = false;
+
+  constructor(private data: DataService) {
+    this.date = this.data.date;
+    this.flight = this.data.flightNumber;
+    this.airplane = this.data.selectedAirplane;
+    this.origin = this.data.origin;
+    this.destination = this.data.destination;
+    this.numberOfStops = this.data.numberOfStops;
+  }
 
   ngOnInit(): void {
+    this.getStopOvers();
   }
 
   choosePaymentMethod() {
@@ -23,5 +42,14 @@ export class CheckOutComponent implements OnInit {
       this.isVisible = false;
     }
 
+  }
+
+  getStopOvers() {
+    if (this.data.stopOvers.length > 0) {
+      this.stepOvers = this.data.stopOvers;
+      this.hasStopOvers = true;
+    } else {
+      this.hasStopOvers = false;
+    }
   }
 }

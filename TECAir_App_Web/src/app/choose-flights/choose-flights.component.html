@@ -1,11 +1,11 @@
 <div class="container-fluid">
-    <div id="book" class="row mb-4 p-3">
+    <div id="book" class="row mb-4 p-3" [formGroup]="bookingForm">
         <div class="col-md-1"></div>
         <div class="col">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" formControlName="origin">
         </div>
         <div class="col">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" formControlName="destination">
         </div>
         <div class="col">
             <mat-form-field color="accent" appeareance="fill">
@@ -19,14 +19,16 @@
             </mat-form-field>
         </div>
         <div class="col">
-            <button id="find" class="btn btn-light">Find Flight</button>
+            <button type="submit" id="find" class="btn btn-light" (click)="findFlights(bookingForm.value)">Find
+                Flight</button>
         </div>
+
     </div>
 </div>
 <div class="container">
 
     <div class="row mb-3">
-        <h2>Depart: city,country to city,country</h2>
+        <h2>Depart: {{from}} to {{to}}</h2>
     </div>
     <div class="row">
         <div class="col">
@@ -37,11 +39,22 @@
         </div>
     </div>
     <!-- Flights -->
-    <div class="card-data" *ngFor="let info of flights">
+    <div class="card-data" *ngFor="let info of availableFlights; index as i;">
         <div class="card">
-            <h5 id="stop-h5">1 STOP</h5>
+            <ng-container *ngIf="numberOfStops[i] === 1; else zeroTemplate">
+                <h5 id="stop-h5">1 STOP</h5>
+            </ng-container>
+            <ng-template #zeroTemplate>
+                <ng-container *ngIf="numberOfStops[i] === 0; else stopsTemplate">
+                    <h5 id="stop-h5">NON-STOP</h5>
+                </ng-container>
+            </ng-template>
+            <ng-template #stopsTemplate>
+                <h5 id="stop-h5">{{numberOfStops[i]}} STOPS</h5>
+            </ng-template>
+
             <div id="time">
-                <h4 id="time-from">0:00 AM</h4>
+                <h4 id="time-from">{{info.hours}}:{{info.minutes}} AM</h4>
                 <h4 id="time-to">0:00 PM</h4>
             </div>
             <h6 class="flight-time">SJO ------------ 8H,32M ------------ MIA</h6>
@@ -50,50 +63,51 @@
                     Details
                 </summary>
                 <div class="container-details">
-                    <div class="row mb-2">
-                        <div class="col">
-                            <div class="line-1"></div>
+                    <ng-container *ngIf="stepOvers[i].length === 0; else stopOversTemplate">
+                        <div class="row row-bottom-margin">
+                            <div class="col">
+                                <h6>{{info.origin}} to {{info.destination}}</h6>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row row-bottom-margin">
-                        <div class="col">
-                            <h6>San Jose to Houston</h6>
+                        <div class="row gy-1">
+                            <div class="col">{{info.month}}/{{info.day}}/{{info.year}}</div>
                         </div>
-                    </div>
-                    <div class="row gy-1">
-                        <div class="col">Jun 3 * 3:05 am to 7:46 am</div>
-                    </div>
-                    <div class="row gy-1">
-                        <div class="col"><strong>Duration:</strong> 3h 41m</div>
-                    </div>
-                    <div class="row gy-1">
-                        <div class="col"><strong>Flight number:</strong> UA 1682</div>
-                    </div>
-                    <div class="row gy-1">
-                        <div class="col"><strong>Aircraft type:</strong> Boeing 737-800</div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col">
-                            <div class="line-dotted"></div>
+                        <div class="row gy-1">
+                            <div class="col"><strong>Duration:</strong> 3h 41m</div>
                         </div>
-                    </div>
-                    <div class="row row-bottom-margin">
-                        <div class="col">
-                            <h6>Houston to Miami</h6>
+                        <div class="row gy-1">
+                            <div class="col"><strong>Flight number:</strong> {{flightNumber}}</div>
                         </div>
-                    </div>
-                    <div class="row gy-1">
-                        <div class="col">Jun 3 * 3:05 am to 7:46 am</div>
-                    </div>
-                    <div class="row gy-1">
-                        <div class="col"><strong>Duration:</strong> 3h 41m</div>
-                    </div>
-                    <div class="row gy-1">
-                        <div class="col"><strong>Flight number:</strong> UA 1682</div>
-                    </div>
-                    <div class="row gy-1">
-                        <div class="col"><strong>Aircraft type:</strong> Boeing 737-800</div>
-                    </div>
+                        <div class="row gy-1">
+                            <div class="col"><strong>Aircraft type:</strong> {{info.model}}</div>
+                        </div>
+                    </ng-container>
+                    <ng-template #stopOversTemplate>
+                        <div class="stopOvers" *ngFor="let stepOver of stepOvers[i]">
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <div class="line-dotted"></div>
+                                </div>
+                            </div>
+                            <div class="row row-bottom-margin">
+                                <div class="col">
+                                    <h6>Stop: {{stepOver.city}}, {{stepOver.country}}</h6>
+                                </div>
+                            </div>
+                            <div class="row gy-1">
+                                <div class="col">{{info.month}}/{{info.day}}/{{info.year}}</div>
+                            </div>
+                            <div class="row gy-1">
+                                <div class="col"><strong>Duration:</strong> {{stepOver.duration}}</div>
+                            </div>
+                            <div class="row gy-1">
+                                <div class="col"><strong>Flight number:</strong> {{stepOver.flightNumber}}</div>
+                            </div>
+                            <div class="row gy-1">
+                                <div class="col"><strong>Aircraft type:</strong> {{info.model}}</div>
+                            </div>
+                        </div>
+                    </ng-template>
 
                 </div>
 
@@ -102,7 +116,7 @@
         </div>
         <div id="price-card" class="card">
             <p class="card-text" style="transform: rotate(0);">
-                <a routerLink="/choose-travelers" class="text-warning stretched-link"></a>100 $
+                <a (click)="chooseFlight(info.id)" class="text-warning stretched-link"></a>{{info.price}} $
             </p>
         </div>
     </div>
