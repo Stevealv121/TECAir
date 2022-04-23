@@ -15,7 +15,7 @@ namespace TEC_Air_API_Model
         public int month { get; set; }
         public int day { get; set; }
         public int hours { get; set; }
-        public int minutes { get; set; }
+        public string minutes { get; set; }
 
     }
 }

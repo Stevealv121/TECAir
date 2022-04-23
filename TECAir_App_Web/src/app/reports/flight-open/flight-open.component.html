@@ -11,10 +11,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Manuel Osorio</td>
-            <td> <a id="buttons" class="btn btn-primary btn-sm " role="button">Delete </a></td>
+          <tr *ngFor="let passenger of passengers">
+            <th scope="row">{{passenger.user_id}}</th>
+            <td>{{passenger.first_name}} {{passenger.first_surname}} {{passenger.second_surname}}</td>
+            <td> <a id="buttons" class="btn btn-primary btn-sm " role="button" (click)="deletePassenger(passenger.user_id)">Delete </a></td>
           </tr>
         </tbody>
       </table>
@@ -31,11 +31,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Manuel Osorio</td>
-            <td> $50</td>
-            <td> <a id="buttons" class="btn btn-primary btn-sm " role="button">Delete </a></td>
+          <tr *ngFor="let suitcase of baggage">
+            <th scope="row">{{suitcase.baggage_id}}</th>
+            <td>{{suitcase.first_name}} {{suitcase.first_surname}} {{suitcase.second_surname}}</td>
+            <td> $ {{suitcase.price}}</td>
+            <td> <a id="buttons" class="btn btn-primary btn-sm " role="button" (click)="suitcase.baggage_id">Delete </a></td>
           </tr>
         </tbody>
       </table>
@@ -44,13 +44,13 @@
   <div class="row align-items-center">
     <div id ="container2" class="container">
       <div class="row">
-        <label>Total Passengers : </label>
+        <label>Total Passengers : {{passengers.length}} </label>
       </div>
       <div class="row">
-        <label>Capacity : </label>
+        <label>Capacity : {{capacity}}</label>
       </div>
       <div class="row">
-        <label>Total Baggage : </label>
+        <label>Total Baggage : {{baggage.length}}</label>
       </div>
       <br>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">

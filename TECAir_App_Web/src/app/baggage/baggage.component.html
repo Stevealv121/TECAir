@@ -8,7 +8,7 @@
           <thead>
             <tr>
               <th scope="col">Id</th>
-              <th scope="col">Owner</th>
+              <!--th scope="col">Owner</th--->
               <th scope="col">Color</th>
               <th scope="col">Weight</th>
               <th scope="col">Price</th>
@@ -16,13 +16,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mario Calderon Montero</td>
-              <td>Green</td>
-              <td>20 Kg</td>
+            <tr *ngFor="let suitcase of baggage">
+              <th scope="row">{{suitcase.id}}</th>
+              <!--td>Mario Calderon Montero</td--->
+              <td>{{suitcase.color}}</td>
+              <td>{{suitcase.weight}} Kg</td>
               <td>--</td>
-              <td> <a id="buttons" class="btn btn-primary btn-sm "  role="button">Delete</a></td>
+              <td> <a id="buttons" class="btn btn-primary btn-sm "  (click)="deleteBaggage(suitcase.id)" role="button">Delete</a></td>
             </tr>
           </tbody>
         </table>

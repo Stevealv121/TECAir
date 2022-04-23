@@ -10,27 +10,27 @@
     <h3>Create a New Route</h3>
     <div class="input-group">
       <span id="span" class="input-group-text">Origin</span>
-      <input type="text" aria-label="Color" class="form-control" placeholder="Example: San Jose, CR">
+      <input #origin type="text" aria-label="Color" class="form-control" placeholder="Example: San Jose, CR">
     </div>
     <br>
     <div class="input-group">
       <span id="span" class="input-group-text">Destination</span>
-      <input type="text" aria-label="Color" class="form-control" placeholder="Example: London, England">
+      <input #destination type="text" aria-label="Color" class="form-control" placeholder="Example: London, England">
     </div>
     <br>
     <div class="input-group">
       <span id="span" class="input-group-text">Departure Date</span>
-      <input type="date" aria-label="Color" class="form-control">
+      <input #date type="date" aria-label="Color" class="form-control">
     </div>
     <br>
     <div class="input-group">
       <span id="span" class="input-group-text">Departure Hour</span>
-      <input type="time" aria-label="Color" class="form-control">
+      <input #hour type="time" aria-label="Color" class="form-control">
     </div>
     <br>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button id="buttons" class="btn btn-primary me-md-2" type="button" (click)="goBack()">Cancel</button>
-      <button id="buttons" class="btn btn-primary" type="button" (click)="goBack()">Create</button>
+      <button id="buttons" class="btn btn-primary" type="button" (click)="createRoute(origin.value, destination.value, date.value, hour.value)">Create</button>
     </div>
   </div>
 </div>

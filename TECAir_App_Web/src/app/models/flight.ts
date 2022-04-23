@@ -12,4 +12,7 @@ export interface Flight {
   day: number;
   hours: number;
   minutes: number;
+  promotion_code: number;
+  flight_id: number;
+  final_price:number;
 }

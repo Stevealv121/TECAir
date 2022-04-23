@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Routes } from 'src/app/models/routes';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-create-route',
@@ -8,11 +10,34 @@ import { Router } from '@angular/router';
 })
 export class CreateRouteComponent implements OnInit {
 
-  constructor(private router:Router) {
+  route:Routes|null;
+
+  constructor(private router:Router, private api:ApiService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.route = null;
   }
 
   ngOnInit(): void {
+  }
+
+  createRoute(origin:string, destination: string, date:string, hour:string){
+    var splitted = date.split("-",3);
+    var splitted2 = hour.split(":",2);
+    this.route={
+      route_code: 0,
+      origin: origin,
+      destination: destination,
+      year: Number(splitted[0]),
+      month: Number(splitted[1]),
+      day: Number(splitted[2]),
+      hours: Number(splitted2[0]),
+      minutes: Number(splitted2[1]),
+    }
+    this.api.postRoute(this.route).subscribe((data: any) => {
+      console.log(data)
+    })
+    this.goBack();
+
   }
   goBack(){
     this.router.navigate(['routes'])

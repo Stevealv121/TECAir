@@ -28,7 +28,12 @@ export class FlightsComponent implements OnInit {
     this.api.getFlights().subscribe((data: any) => {
       this.information =data;
     })
+    console.log(this.information)
 
+  }
+
+  reload(){
+    window.location.reload();
   }
 
   getInfo(id:number, origin:string, departure: string, year: number, month: number, day:number, hour:number, minutes:number){

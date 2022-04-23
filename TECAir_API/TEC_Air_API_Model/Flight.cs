@@ -14,6 +14,7 @@ namespace TEC_Air_API_Model
         public bool status { get; set; }
         public int route_code { get; set; }
         public string airplane_plate { get; set; }
+        public string duration  { get; set; }
 
     }
 }

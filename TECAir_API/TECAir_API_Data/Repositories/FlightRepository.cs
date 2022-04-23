@@ -53,7 +53,7 @@ namespace TECAir_API_Data.Repositories
         public async Task<Flight> GetFlightDetails(int ID)
         {
             var db = dbConnection();
-            var sql = @"SELECT id,boarding_gate,price,status,route_code,airplane_plate
+            var sql = @"SELECT *
                        FROM public.""FLIGHT"" 
                        WHERE id = @id";
             return await db.QueryFirstOrDefaultAsync<Flight>(sql, new { id = ID });
@@ -76,7 +76,7 @@ namespace TECAir_API_Data.Repositories
         public async Task<IEnumerable<Flight_Route_Airplane>> GetFlightAirplaneByLocation(string _origin, string _destination)
         {
             var db = dbConnection();
-            var sql = @"SELECT route_code, id, boarding_gate, price, status, airplane_plate, origin, destination, year, month,hours,minutes,model
+            var sql = @"SELECT route_code, id, boarding_gate, price, status, airplane_plate, origin, destination, year, month,hours,minutes,model,duration
                         FROM public.""FLIGHT""
                         NATURAL JOIN public.""ROUTE""
                         INNER JOIN public.""AIRPLANE"" ON public.""FLIGHT"".airplane_plate = public.""AIRPLANE"".plate
@@ -115,7 +115,7 @@ namespace TECAir_API_Data.Repositories
                         INNER JOIN public.""Has"" using (user_id)
                         INNER JOIN public.""BAGGAGE"" ON public.""Has"".baggage_id = public.""BAGGAGE"".id
                         INNER JOIN public.""USER"" ON public.""Has"".user_id = public.""USER"".id
-                        WHERE flight_id= @flight_id";
+                        WHERE public.""Has"".flight_id= @flight_id";
             var result = await db.QueryAsync<Flight_Baggage>(sql, new
             {
                 flight_id = id
@@ -142,8 +142,8 @@ namespace TECAir_API_Data.Repositories
         {
             var db = dbConnection();
             var sql = @"
-                        INSERT INTO public.""FLIGHT"" (boarding_gate,price,status,route_code,airplane_plate)
-                        VALUES (@boarding_gate,@price,@status,@route_code,@airplane_plate) RETURNING id";
+                        INSERT INTO public.""FLIGHT"" (boarding_gate,price,status,route_code,airplane_plate,duration)
+                        VALUES (@boarding_gate,@price,@status,@route_code,@airplane_plate, @duration) RETURNING id";
             var result = await db.QueryFirstOrDefaultAsync<int>(sql, new
             {
 
@@ -151,7 +151,8 @@ namespace TECAir_API_Data.Repositories
                 flight.price,
                 flight.status,
                 flight.route_code,
-                flight.airplane_plate
+                flight.airplane_plate,
+                flight.duration
             });
             return result ;
         }
@@ -167,6 +168,7 @@ namespace TECAir_API_Data.Repositories
                             status = @status,
                             route_code = @route_code,
                             airplane_plate = @airplane_plate
+                            duration = @duration
 
                         WHERE id = @id";
             var result = await db.ExecuteAsync(sql, new
@@ -177,6 +179,7 @@ namespace TECAir_API_Data.Repositories
                 flight.status,
                 flight.route_code,
                 flight.airplane_plate,
+                flight.duration,
                 flight.id
 
             });

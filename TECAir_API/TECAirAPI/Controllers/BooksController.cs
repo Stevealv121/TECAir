@@ -25,6 +25,11 @@ namespace TECAirAPI.Controllers
         {
             return Ok(await _booksRepository.GetReservationDetails(flight_id));
         }
+        [HttpGet("ByUser/{user_id}")]
+        public async Task<IActionResult> GetReservationDetailsbyUser(int user_id)
+        {
+            return Ok(await _booksRepository.GetReservationDetailsbyUser(user_id));
+        }
         [HttpPost]
         public async Task<IActionResult> CreateFlight([FromBody] Books reservation)
         {

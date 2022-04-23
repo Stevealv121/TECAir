@@ -15,6 +15,7 @@
               <th scope="col">Airplane</th>
               <th scope="col">Status</th>
               <th scope="col">Price</th>
+              <th scope="col">Discounted Price</th>
               <th><a id="buttons" class="btn btn-primary btn-sm " href="/flightsManagement" role="button"> Create Flight</a></th>
             </tr>
           </thead>
@@ -28,6 +29,8 @@
               <td>{{item.airplane_plate}}</td>
               <td>{{item.status}}</td>
               <td>${{item.price}}</td>
+              <td *ngIf="item.final_price ==0"> No discount</td>
+              <td *ngIf="item.final_price !=0">$ {{item.final_price}}</td>
               <td> <a id="buttons" class="btn btn-primary btn-sm " (click)="getInfo(item.id, item.origin, item.destination,item.year,item.month,item.day,item.hours,item.minutes)" role="button">Info </a></td>
             </tr>
           </tbody>
