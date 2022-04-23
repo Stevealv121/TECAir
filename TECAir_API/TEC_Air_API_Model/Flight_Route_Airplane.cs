@@ -22,5 +22,6 @@ namespace TEC_Air_API_Model
         public int hours { get; set; }
         public string minutes { get; set; }
         public string model { get; set; }
+        public string duration { get; set; }
     }
 }
