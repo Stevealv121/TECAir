@@ -27,7 +27,7 @@ export class RouteEditComponent implements OnInit {
       month:0,
       day:0,
       hours:0,
-      minutes:0,
+      minutes:"",
     };
     this.date1="";
     this.hour1="";
@@ -49,7 +49,7 @@ export class RouteEditComponent implements OnInit {
     })
   }
 
-  editRoute(origin:string, destination: string, date:string, hour:string){
+  async editRoute(origin:string, destination: string, date:string, hour:string){
     var splitted = date.split("-",3);
     var splitted2 = hour.split(":",2);
     this.route={
@@ -60,11 +60,12 @@ export class RouteEditComponent implements OnInit {
       month: Number(splitted[1]),
       day: Number(splitted[2]),
       hours: Number(splitted2[0]),
-      minutes: Number(splitted2[1]),
+      minutes: splitted2[1],
     }
     this.api.putRoute(this.route).subscribe((data: any) => {
       console.log(data)
     })
+    await new Promise(f => setTimeout(f, 500))
     this.goBack();
 
   }
