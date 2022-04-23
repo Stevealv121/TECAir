@@ -54,7 +54,6 @@ export class FlightClosedComponent implements OnInit {
         pdf.save("Informe del Vuelo.pdf");
       }
     })
-    this.goBack();
   }
   goBack(){
     this.router.navigate(['flightsInfo'])
