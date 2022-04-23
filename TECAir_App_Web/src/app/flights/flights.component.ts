@@ -32,6 +32,10 @@ export class FlightsComponent implements OnInit {
 
   }
 
+  reload(){
+    window.location.reload();
+  }
+
   getInfo(id:number, origin:string, departure: string, year: number, month: number, day:number, hour:number, minutes:number){
     this.data.setFlightId(id);
     this.data.setFlightInfo([origin,departure,String(day)+"/"+String(month)+ "/"+ String(year), String(hour)+":"+String(minutes)+"0"]);

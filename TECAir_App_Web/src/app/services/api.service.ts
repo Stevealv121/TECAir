@@ -280,6 +280,36 @@ export class ApiService {
 
     return this.http.delete<string>(this.booksPath + id,requestOptions);
   }
+  deleteHasBaggage(userId: number, flightId:number){
+    const headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Access-Control-Allow-Credentials': 'true'
+    }
+
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+
+    return this.http.delete<string>(this.haspath + "/"+userId + "/"+flightId,requestOptions);
+  }
+  deleteHas(id:number){
+    const headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Access-Control-Allow-Credentials': 'true'
+    }
+
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+
+    return this.http.delete<string>(this.haspath + "/Baggage/"+ id,requestOptions);
+  }
   deleteBaggage(id: number){
     const headerDict = {
       'Content-Type': 'application/json',

@@ -49,10 +49,18 @@ export class FlightOpenComponent implements OnInit {
     this.api.deleteFlightPassenger(userId).subscribe((data: any) => {
       console.log(data)
     })
+    this.api.deleteHasBaggage(userId, this.data.flightId).subscribe((data: any) => {
+      console.log(data)
+    })
     this.goBack();
   }
   deleteBaggage(baggage_id: number){
-
+    this.api.deleteHas(baggage_id).subscribe((data: any) => {
+      console.log(data)
+    })
+    this.api.deleteBaggage(baggage_id).subscribe((data:any)=>{
+      console.log(data)
+    })
   }
   goBack(){
     this.router.navigate(['flightsInfo'])

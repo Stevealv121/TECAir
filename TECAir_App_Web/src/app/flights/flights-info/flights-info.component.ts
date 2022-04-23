@@ -82,6 +82,7 @@ export class FlightsInfoComponent implements OnInit {
     })
 
 
+
     this.router.navigate(['flights'])
 
   }
