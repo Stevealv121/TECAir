@@ -89,7 +89,7 @@
             <h5 class="card-title mb-4">{{promos[0]?.title}}</h5>
 
             <h2 class="card-text mb-4">{{promos[0]?.description}}</h2>
-            <a href="#" class="card-link">Book now</a>
+            <a (click)="bookNow(promos[0]?.promotion_code)" class="card-link">Book now</a>
             <div class="carousel-indicators" id="indicators">
 
                 <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
@@ -109,7 +109,7 @@
             <h5 class="card-title mb-4">{{promos[1]?.title}}</h5>
 
             <h2 class="card-text mb-4">{{promos[1]?.description}}</h2>
-            <a href="#" class="card-link">Book now</a>
+            <a (click)="bookNow(promos[0]?.promotion_code)" class="card-link">Book now</a>
             <div class="carousel-indicators" id="indicators">
 
                 <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" aria-label="Slide 1"
@@ -128,7 +128,7 @@
         <div class="card-body" *ngIf="filled">
             <h5 class="card-title mb-4">{{promos[2]?.title}}</h5>
             <h2 class="card-text mb-4">{{promos[2]?.description}}</h2>
-            <a href="#" class="card-link">Book now</a>
+            <a (click)="bookNow(promos[0]?.promotion_code)" class="card-link">Book now</a>
             <div class="carousel-indicators" id="indicators">
 
                 <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" aria-label="Slide 1"

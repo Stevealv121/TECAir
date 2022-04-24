@@ -67,7 +67,7 @@ import { DealsComponent } from './deals/deals.component';
     MatMomentDateModule
 
   ],
-  providers: [],
+  providers: [DealsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
