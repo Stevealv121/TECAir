@@ -16,11 +16,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tecairmobile.Interfaces.SeatAPI;
 import com.example.tecairmobile.Utilities.Utilities;
 import com.example.tecairmobile.entities.FlightsandRoutes;
 import com.example.tecairmobile.entities.Seats;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FlightReservation extends AppCompatActivity {
 
@@ -33,7 +40,7 @@ public class FlightReservation extends AppCompatActivity {
     ArrayList<Seats> fseatList;
     ArrayList<String> showSeats;
     FlightsandRoutes far;
-    int index;
+    int index,id;
 
 
     @Override
@@ -122,19 +129,61 @@ public class FlightReservation extends AppCompatActivity {
 
     public void onClick(View view) {
         updateT();
+        createOBJ();
         Intent myintent = new Intent(FlightReservation.this,MainMenu.class);
+        myintent.putExtra("id",id);
         startActivity(myintent);
     }
 
     private void updateT() {
+        Intent rintent = getIntent();
+        id = rintent.getIntExtra("id",0);
         SQLiteDatabase db = conn.getWritableDatabase();
         String[] param = {fseatList.get(index-1).getId().toString()};
         ContentValues values = new ContentValues();
         values.put(Utilities.FIELD_STATUS, false);
+        values.put(Utilities.FIELD_UID,id);
 
         db.update(Utilities.TABLE_SEATS,values,Utilities.FIELD_ID+"=?",param);
-
-        Toast.makeText(FlightReservation.this,"Ticket Purchased, thank you for choosing TecAir",Toast.LENGTH_LONG).show();
         db.close();
+    }
+
+    private void createOBJ() {
+        SQLiteDatabase db = conn.getReadableDatabase();
+        Seats seats;
+        String[] consult = {fseatList.get(index-1).getId().toString()};
+        String[] result = {Utilities.FIELD_ID, Utilities.FIELD_DESCRIPTION, Utilities.FIELD_STATUS, Utilities.FIELD_UID, Utilities.FIELD_APLATE};
+        try{
+            Cursor cursor = db.query(Utilities.TABLE_SEATS,result,Utilities.FIELD_ID+"=?",consult,null,null,null);
+            cursor.moveToFirst();
+            boolean value = cursor.getInt(2) > 0;
+            seats = new Seats();
+            seats.setId(cursor.getInt(0));
+            seats.setDescription(cursor.getString(1));
+            seats.setState(value);
+            seats.setUser_id(cursor.getInt(3));
+            seats.setAirplane_plate(cursor.getString(4));
+            updateDB(seats);
+        }catch(Exception e){
+            Toast.makeText(getApplicationContext(),"Error in object", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void updateDB(Seats seats){
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5104/")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        SeatAPI seatAPI = retrofit.create(SeatAPI.class);
+        Call<Seats> call = seatAPI.update(seats);
+        call.enqueue(new Callback<Seats>() {
+            @Override
+            public void onResponse(Call<Seats> call, Response<Seats> response) {
+                Toast.makeText(FlightReservation.this,"Ticket Purchased, thank you for choosing TecAir",Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<Seats> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),"Error updating", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

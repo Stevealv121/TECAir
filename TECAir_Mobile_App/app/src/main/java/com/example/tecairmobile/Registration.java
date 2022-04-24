@@ -13,15 +13,24 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.tecairmobile.Interfaces.UserAPI;
 import com.example.tecairmobile.Utilities.Utilities;
+import com.example.tecairmobile.entities.User;
 
 import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Registration extends AppCompatActivity {
 
     EditText name, mail, college, studentID,secondname,firstsurname,secondsurname,pass,id;
     Spinner student;
+    String role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +58,13 @@ public class Registration extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String state = student.getSelectedItem().toString();
-                if(state == "Regular"){
+                if(state.equals("Regular")){
+                    role = "Regular";
                     college.setVisibility(View.INVISIBLE);
                     studentID.setVisibility(View.INVISIBLE);
                 }
                 else{
+                    role = "Student";
                     college.setVisibility(View.VISIBLE);
                     studentID.setVisibility(View.VISIBLE);
                 }
@@ -66,11 +77,63 @@ public class Registration extends AppCompatActivity {
     }
 
     public void onClick(View view){
+        createObject();
         singUserUp();
         Intent myintent = new Intent(Registration.this,intro.class);
         startActivity(myintent);
 
     }
+
+    private void createObject() {
+        User user;
+        user = new User();
+        if(role.equals("Regular")){
+            user.setId(Integer.parseInt(id.getText().toString()));
+            user.setFirst_name(name.getText().toString());
+            user.setSecond_name(secondname.getText().toString());
+            user.setFirst_surname(firstsurname.getText().toString());
+            user.setSecond_surname(secondsurname.getText().toString());
+            user.setEmail(mail.getText().toString());
+            user.setUniversity(null);
+            user.setStudent_id(null);
+            user.setRole_name(role);
+            user.setPassword(pass.getText().toString());
+            user.setPhone(1);
+            posttodb(user);
+        }else{
+            user.setId(Integer.parseInt(id.getText().toString()));
+            user.setFirst_name(name.getText().toString());
+            user.setSecond_name(secondname.getText().toString());
+            user.setFirst_surname(firstsurname.getText().toString());
+            user.setSecond_surname(secondsurname.getText().toString());
+            user.setEmail(mail.getText().toString());
+            user.setUniversity(college.getText().toString());
+            user.setStudent_id(Integer.parseInt(studentID.getText().toString()));
+            user.setRole_name(role);
+            user.setPassword(pass.getText().toString());
+            user.setPhone(1);
+            posttodb(user);
+        }
+    }
+
+    private void posttodb(User user) {
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5104/")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        UserAPI userAPI = retrofit.create(UserAPI.class);
+        Call<User> call = userAPI.postUser(user);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                Toast.makeText(getApplicationContext(), "User Succesfully Added", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Request Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void singUserUp(){
         SQLitehelper conn = new SQLitehelper(this, "TecAir_BD", null,1);
 
@@ -85,11 +148,10 @@ public class Registration extends AppCompatActivity {
         values.put(Utilities.FIELD_EMAIL, mail.getText().toString());
         values.put(Utilities.FIELD_UNIVERSITY, college.getText().toString());
         values.put(Utilities.FIELD_STID, studentID.getText().toString());
+        values.put(Utilities.FIELD_RNAME,role);
         values.put(Utilities.FIELD_PASS, pass.getText().toString());
 
-        Long idResult = db.insert(Utilities.TABLE_USER, Utilities.FIELD_ID, values);
-
-        Toast.makeText(getApplicationContext(), "Id Registro: " +idResult, Toast.LENGTH_SHORT).show();
+        db.insert(Utilities.TABLE_USER, Utilities.FIELD_ID, values);
         db.close();
 
     }

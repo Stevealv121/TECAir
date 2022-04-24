@@ -28,7 +28,7 @@ public class flightSearch extends AppCompatActivity {
     Spinner routes;
     ArrayList<String> showRoutes;
     ArrayList<FlightsandRoutes> farList;
-    int uindex;
+    int uindex, id;
     SQLitehelper conn;
 
     @Override
@@ -101,10 +101,11 @@ public class flightSearch extends AppCompatActivity {
             far.setMonth(cursor.getInt(9));
             far.setDay(cursor.getInt(10));
             far.setHours(cursor.getInt(11));
-            far.setMinutes(cursor.getInt(12));
+            far.setMinutes(cursor.getString(12));
             far.setPromotion_code(cursor.getInt(13));
             far.setFlight_id(cursor.getInt(14));
             far.setFinal_price(cursor.getInt(15));
+            far.setDuration(cursor.getString(16));
 
             farList.add(far);
 
@@ -125,11 +126,14 @@ public class flightSearch extends AppCompatActivity {
         if(f1.getText()==""){
             Toast.makeText(flightSearch.this,"Please select flight",Toast.LENGTH_LONG).show();
         }else{
+            Intent rintent = getIntent();
+            id = rintent.getIntExtra("id",0);
             FlightsandRoutes far = farList.get(uindex-1);
             Intent myintent = new Intent(flightSearch.this,FlightReservation.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("far",far);
             myintent.putExtras(bundle);
+            myintent.putExtra("id",id);
             startActivity(myintent);
         }
     }
