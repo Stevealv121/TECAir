@@ -42,6 +42,8 @@ export class ChooseTravelersComponent implements OnInit {
   flightNumber: string = '';
   admin: boolean = false;//default:false
   users: UserI[] = [];
+  tax: number = 0;
+  total_due: number = 0;
 
   constructor(private data: DataService, private app: AppComponent, private router: Router, private api: ApiService) {
     this.user = this.data.getUser();
@@ -61,9 +63,8 @@ export class ChooseTravelersComponent implements OnInit {
       router.navigateByUrl("/choose-flights");
     }
     this.getFlightInfo();
-
-
   }
+
   async getFlightInfo() {
     //console.log(this.data.iDflightSelected);
     this.api.selectFlight(this.data.iDflightSelected.toString()).subscribe(data => {
@@ -89,9 +90,20 @@ export class ChooseTravelersComponent implements OnInit {
     });
     await new Promise(f => (setTimeout(f, 500)));
     this.flightNumber = this.data.flightNumber;
+    this.data.duration = this.flight.duration;
+    this.flight.final_price = this.data.final_price;
+    console.log(this.flight.final_price);
+    this.setTaxes();
   }
   setDate(): string {
     return this.route.month.toString() + "/" + this.route.day.toString() + "/" + this.route.year.toString();
+  }
+
+  setTaxes() {
+    this.tax = (this.flight.final_price * 100) / 13;
+    this.total_due = this.flight.final_price + this.tax;
+    this.data.tax = this.tax;
+    this.data.total_due = this.total_due;
   }
 
   getStopOvers() {

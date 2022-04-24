@@ -24,6 +24,10 @@ export class DataService {
   navbar!: string;
   admin: boolean = false;
   home: boolean = false;
+  tax!: number;
+  total_due!: number;
+  final_price!: number;
+  duration!: string;
 
   constructor() {
     this.availableFlights = [];

@@ -54,10 +54,12 @@
             </ng-template>
 
             <div id="time">
-                <h4 id="time-from">{{info.hours}}:{{info?.minutes}} AM</h4>
-                <h4 id="time-to">0:00 PM</h4>
+                <h4 id="time-from">{{info.hours}}:{{info?.minutes}}</h4>
             </div>
-            <h6 class="flight-time">SJO ------------ 8H,32M ------------ MIA</h6>
+            <h6 class="flight-time">{{info.abbreOrigin}} ------------
+                {{info?.duration}} ------------ {{info.abbreDest}}
+
+            </h6>
             <details>
                 <summary>
                     Details
@@ -73,7 +75,7 @@
                             <div class="col">{{info.month}}/{{info.day}}/{{info.year}}</div>
                         </div>
                         <div class="row gy-1">
-                            <div class="col"><strong>Duration:</strong> 3h 41m</div>
+                            <div class="col"><strong>Duration:</strong> {{info?.duration}</div>
                         </div>
                         <div class="row gy-1">
                             <div class="col"><strong>Flight number:</strong> {{flightNumber}}</div>
@@ -116,7 +118,8 @@
         </div>
         <div id="price-card" class="card">
             <p class="card-text" style="transform: rotate(0);">
-                <a (click)="chooseFlight(info.id)" class="text-warning stretched-link"></a>{{info.final_price}} $
+                <a (click)="chooseFlight(info.id,info.final_price)"
+                    class="text-warning stretched-link"></a>{{info.final_price}} $
             </p>
         </div>
     </div>

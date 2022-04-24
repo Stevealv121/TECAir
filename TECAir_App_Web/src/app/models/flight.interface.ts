@@ -14,5 +14,8 @@ export interface FlightI {
     minutes: string,
     travelers: number,
     model: string,
-    final_price: number
+    final_price: number,
+    duration: string,
+    abbreOrigin: string;
+    abbreDest: string
 }

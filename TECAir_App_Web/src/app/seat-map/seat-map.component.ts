@@ -27,6 +27,7 @@ export class SeatMapComponent implements OnInit {
   seatCol: string[] = ["A", "B", "C", "N", "D", "E", "F"];
   seats: SeatI[] = [];
   seatsNames: string[] = [];
+  subTotal: number = 0;
 
 
   constructor(public api: ApiService, private data: DataService, private app: AppComponent) {
@@ -41,6 +42,7 @@ export class SeatMapComponent implements OnInit {
     this.origin = this.data.origin;
     this.destination = this.data.destination;
     numberOfTravelers = this.data.getNumberTravelers();
+    this.subTotal = this.data.total_due;
   }
 
   ngOnInit(): void {

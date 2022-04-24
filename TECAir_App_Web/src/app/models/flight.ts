@@ -3,7 +3,7 @@ export interface Flight {
   boarding_gate: number;
   price: number;
   status: boolean;
-  route_code:number;
+  route_code: number;
   airplane_plate: string;
   origin: string;
   destination: string;
@@ -14,5 +14,6 @@ export interface Flight {
   minutes: number;
   promotion_code: number;
   flight_id: number;
-  final_price:number;
+  final_price: number;
+  duration: string;
 }
