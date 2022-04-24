@@ -1,5 +1,14 @@
 #content{
-  padding: 30px;
+  width:  550px;
+  align-items: center;
+  position: center;
+  margin-left: 20px;
+}
+#row{
+  padding-top: 20px;
+}
+#table{
+  padding-top: 20px;
 }
 #head{
   background-color:#a14ea3;
@@ -10,12 +19,13 @@
   background-color: #a14ea3;
   border-color: #a14ea3;
 }
-#col2{
-  border-left: #a14ea3 solid;
+#row2{
+  padding-top: 20px;
+  border: #a14ea3 solid 3px;
 }
-#container2{
-  margin-top: 30px;
-  width: 500px;
-  border: #a14ea3 dashed;
-  border-radius: 0.2cm;
+#grid{
+  width: 550px;
+}
+#table{
+  align-items: center;
 }

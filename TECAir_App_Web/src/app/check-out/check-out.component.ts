@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { StopOver } from '../models/stopOver';
 import { DataService } from '../services/data.service';
 
@@ -19,7 +20,8 @@ export class CheckOutComponent implements OnInit {
   numberOfStops: number = 0;
   hasStopOvers: boolean = false;
 
-  constructor(private data: DataService) {
+  constructor(private data: DataService, private router:Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.date = this.data.date;
     this.flight = this.data.flightNumber;
     this.airplane = this.data.selectedAirplane;
@@ -51,5 +53,9 @@ export class CheckOutComponent implements OnInit {
     } else {
       this.hasStopOvers = false;
     }
+  }
+
+  generateBill(){
+    this.router.navigate(['bill']);
   }
 }

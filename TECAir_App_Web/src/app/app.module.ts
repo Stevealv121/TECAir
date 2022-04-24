@@ -30,6 +30,7 @@ import { FlightOpenComponent } from './reports/flight-open/flight-open.component
 import { FlightClosedComponent } from './reports/flight-closed/flight-closed.component';
 import { HomeComponent } from './home/home.component';
 import { DealsComponent } from './deals/deals.component';
+import { BillComponent } from './bill/bill.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { DealsComponent } from './deals/deals.component';
     RouteEditComponent,
     FlightOpenComponent,
     FlightClosedComponent,
-    DealsComponent
+    DealsComponent,
+    BillComponent
   ],
   imports: [
     BrowserModule,

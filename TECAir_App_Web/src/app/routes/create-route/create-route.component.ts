@@ -20,7 +20,7 @@ export class CreateRouteComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  createRoute(origin:string, destination: string, date:string, hour:string){
+  async createRoute(origin:string, destination: string, date:string, hour:string){
     var splitted = date.split("-",3);
     var splitted2 = hour.split(":",2);
     this.route={
@@ -31,11 +31,12 @@ export class CreateRouteComponent implements OnInit {
       month: Number(splitted[1]),
       day: Number(splitted[2]),
       hours: Number(splitted2[0]),
-      minutes: Number(splitted2[1]),
+      minutes: splitted2[1],
     }
     this.api.postRoute(this.route).subscribe((data: any) => {
       console.log(data)
     })
+    await new Promise(f => setTimeout(f, 500))
     this.goBack();
 
   }

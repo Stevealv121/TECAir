@@ -6,5 +6,5 @@ export interface Routes {
   month: number;
   day: number;
   hours: number;
-  minutes: number;
+  minutes: string;
 }

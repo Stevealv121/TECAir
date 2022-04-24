@@ -36,6 +36,11 @@
       <input #price type="number" aria-label="Id" class="form-control"  placeholder="$">
     </div>
     <br>
+    <div class="input-group">
+      <span id="span"  class="input-group-text">Duration</span>
+      <input #duration type="time" aria-label="Id" class="form-control">
+    </div>
+    <br>
     <div class="input-group mb-3">
       <label  id="span" class="input-group-text" for="inputGroupSelect01">Status</label>
       <select #status class="form-select" id="inputGroupSelect01">
@@ -56,7 +61,7 @@
     <br>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button id="buttons" class="btn btn-primary me-md-2" type="button" (click)="goBack()">Cancel</button>
-      <button id="buttons" class="btn btn-primary" type="button" (click)="createFlight(plate.value,route.value, gate.value,price.value,status.value,scale1.value,scale2.value)">Create</button>
+      <button id="buttons" class="btn btn-primary" type="button" (click)="createFlight(plate.value,route.value, gate.value,price.value,status.value,scale1.value,scale2.value,duration.value)">Create</button>
     </div>
   </div>
 </div>
