@@ -16,12 +16,13 @@ public class FlightsandRoutes implements Serializable {
     private int month;
     private int day;
     private int hours;
-    private int minutes;
+    private String minutes;
     private Integer promotion_code;
     private Integer flight_id;
     private Integer final_price;
+    private String duration;
 
-    public FlightsandRoutes(Integer id, Integer boarding_gate, Integer price, boolean status, Integer route_code, String airplane_plate, String origin, String destination, int year, int month, int day, int hours, int minutes, Integer promotion_code, Integer flight_id, Integer final_price) {
+    public FlightsandRoutes(Integer id, Integer boarding_gate, Integer price, boolean status, Integer route_code, String airplane_plate, String origin, String destination, int year, int month, int day, int hours, String minutes, Integer promotion_code, Integer flight_id, Integer final_price, String duration) {
         this.id = id;
         this.boarding_gate = boarding_gate;
         this.price = price;
@@ -38,6 +39,7 @@ public class FlightsandRoutes implements Serializable {
         this.promotion_code = promotion_code;
         this.flight_id = flight_id;
         this.final_price = final_price;
+        this.duration = duration;
     }
 
     public FlightsandRoutes(){
@@ -140,11 +142,11 @@ public class FlightsandRoutes implements Serializable {
         this.hours = hours;
     }
 
-    public int getMinutes() {
+    public String getMinutes() {
         return minutes;
     }
 
-    public void setMinutes(int minutes) {
+    public void setMinutes(String minutes) {
         this.minutes = minutes;
     }
 
@@ -170,5 +172,13 @@ public class FlightsandRoutes implements Serializable {
 
     public void setFinal_price(Integer final_price) {
         this.final_price = final_price;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 }

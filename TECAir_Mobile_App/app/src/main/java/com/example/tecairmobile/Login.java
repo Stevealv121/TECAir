@@ -34,15 +34,18 @@ public class Login extends AppCompatActivity {
     }
 
     private void consult() {
+        int id;
         SQLiteDatabase db = conn.getReadableDatabase();
         String[] consult = {mail.getText().toString(), password.getText().toString()};
-        String[] result = {Utilities.FIELD_FNAME, Utilities.FIELD_FSNAME};
+        String[] result = {Utilities.FIELD_ID, Utilities.FIELD_FNAME, Utilities.FIELD_FSNAME};
         try{
             Cursor cursor = db.query(Utilities.TABLE_USER,result,Utilities.FIELD_EMAIL+"=?"+" AND "+Utilities.FIELD_PASS+"=?",consult,null,null,null);
             cursor.moveToFirst();
-            Toast.makeText(getApplicationContext(),"Welcome " + cursor.getString(0) + " " + cursor.getString(1), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Welcome " + cursor.getString(1) + " " + cursor.getString(2), Toast.LENGTH_LONG).show();
+            id = cursor.getInt(0);
             cursor.close();
             Intent myintent = new Intent(Login.this,MainMenu.class);
+            myintent.putExtra("id",id);
             startActivity(myintent);
 
         }catch(Exception e){

@@ -71,6 +71,7 @@ public class intro extends AppCompatActivity {
                         values.put(Utilities.FIELD_PCODE, far.getPromotion_code());
                         values.put(Utilities.FIELD_FID, far.getFlight_id());
                         values.put(Utilities.FIELD_FPRICE, far.getFinal_price());
+                        values.put(Utilities.FIELD_DURATION, far.getFinal_price());
 
                         db.insert(Utilities.TABLE_FAR, null, values);
                         db.close();

@@ -33,7 +33,7 @@ public class FlightReservation extends AppCompatActivity {
     ArrayList<Seats> fseatList;
     ArrayList<String> showSeats;
     FlightsandRoutes far;
-    int index;
+    int index,id;
 
 
     @Override
@@ -123,14 +123,18 @@ public class FlightReservation extends AppCompatActivity {
     public void onClick(View view) {
         updateT();
         Intent myintent = new Intent(FlightReservation.this,MainMenu.class);
+        myintent.putExtra("id",id);
         startActivity(myintent);
     }
 
     private void updateT() {
+        Intent rintent = getIntent();
+        id = rintent.getIntExtra("id",0);
         SQLiteDatabase db = conn.getWritableDatabase();
         String[] param = {fseatList.get(index-1).getId().toString()};
         ContentValues values = new ContentValues();
         values.put(Utilities.FIELD_STATUS, false);
+        values.put(Utilities.FIELD_UID,id);
 
         db.update(Utilities.TABLE_SEATS,values,Utilities.FIELD_ID+"=?",param);
 
