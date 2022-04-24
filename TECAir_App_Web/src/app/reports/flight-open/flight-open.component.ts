@@ -15,7 +15,7 @@ export class FlightOpenComponent implements OnInit {
 
   passengers: FlightPassengers[];
   baggage: FlightBaggage[];
-  capacity:number;
+  capacity: number;
   /**
    * This funcition is the contructor of the component
    * @param router Router object type. Injects the Router to the component
@@ -24,14 +24,15 @@ export class FlightOpenComponent implements OnInit {
    */
   constructor(private router: Router, private data: DataServiceService, private api: ApiService, private app: AppComponent) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.passengers =[];
-    this.baggage =[];
-    this.capacity=0;
-   }
-   /**
-   * This function intialize the elements of the component
-   */
+    this.passengers = [];
+    this.baggage = [];
+    this.capacity = 0;
     this.app.registerView = 'regView2';
+  }
+  /**
+  * This function intialize the elements of the component
+  */
+
   ngOnInit(): void {
     this.getPassengers();
     this.getBaggage();
@@ -40,7 +41,7 @@ export class FlightOpenComponent implements OnInit {
   /**
    * This function asks the API for the flight's passengers in the data base
    */
-  getPassengers(){
+  getPassengers() {
     this.api.getFlightPassengers(this.data.getFlightId()).subscribe((data: any) => {
       this.passengers = data;
     })
@@ -49,7 +50,7 @@ export class FlightOpenComponent implements OnInit {
   /**
    * This function asks the API for the flight's capacity in the data base
    */
-  getCapacity(){
+  getCapacity() {
     this.api.getFlightCapacity(this.data.getFlightId()).subscribe((data: any) => {
       this.capacity = data;
     })
@@ -57,7 +58,7 @@ export class FlightOpenComponent implements OnInit {
   /**
    * This function asks the API for the flight's baggage in the data base
    */
-  getBaggage(){
+  getBaggage() {
     this.api.getFlightBaggage(this.data.getFlightId()).subscribe((data: any) => {
       this.baggage = data;
     })
@@ -66,7 +67,7 @@ export class FlightOpenComponent implements OnInit {
    * This funcion deletes an user of a flight by the id
    * @param userId id of the user
    */
-  async deletePassenger(userId : number){
+  async deletePassenger(userId: number) {
     this.api.deleteFlightPassenger(userId).subscribe((data: any) => {
       console.log(data)
     })
@@ -80,7 +81,7 @@ export class FlightOpenComponent implements OnInit {
    * This function deletes a baggage of a flight
    * @param baggage_id number of the baggage
    */
-  async deleteBaggage(baggage_id: number){
+  async deleteBaggage(baggage_id: number) {
     this.api.deleteHas(baggage_id).subscribe((data: any) => {
       console.log(data)
     })
@@ -93,7 +94,8 @@ export class FlightOpenComponent implements OnInit {
   /**
    * This function takes the html and makes a pdf with the information
    */
-  goBack(){
+  goBack() {
     this.router.navigate(['flightsInfo'])
   }
 }
+

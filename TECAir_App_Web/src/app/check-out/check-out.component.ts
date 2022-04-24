@@ -25,7 +25,7 @@ export class CheckOutComponent implements OnInit {
   total_due: number = 0;
   fare: number = 0;
 
-  constructor(private data: DataService, private app: AppComponent) {
+  constructor(private data: DataService, private app: AppComponent, private router: Router) {
     if (this.data.admin) {
       this.app.registerView = 'regView2';
     } else {
@@ -69,7 +69,7 @@ export class CheckOutComponent implements OnInit {
     }
   }
 
-  generateBill(){
+  generateBill() {
     this.router.navigate(['bill']);
   }
 }
