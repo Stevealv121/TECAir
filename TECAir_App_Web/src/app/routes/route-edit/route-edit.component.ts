@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 import { Routes } from 'src/app/models/routes';
 import { ApiService } from 'src/app/services/api.service';
 import { DataServiceService } from 'src/app/services/data-service.service';
@@ -11,14 +12,14 @@ import { DataServiceService } from 'src/app/services/data-service.service';
 })
 export class RouteEditComponent implements OnInit {
 
-  routeId:number;
-  route:Routes;
-  date1:string;
-  hour1:string;
+  routeId: number;
+  route: Routes;
+  date1: string;
+  hour1: string;
 
-  constructor(private router:Router, private api:ApiService, private dataService:DataServiceService) {
+  constructor(private router: Router, private api: ApiService, private dataService: DataServiceService, private app: AppComponent) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.routeId= this.dataService.getRouteId();
+    this.routeId = this.dataService.getRouteId();
     this.route = {
       route_code:0,
       origin:"",
@@ -29,8 +30,9 @@ export class RouteEditComponent implements OnInit {
       hours:0,
       minutes:"",
     };
-    this.date1="";
-    this.hour1="";
+    this.date1 = "";
+    this.hour1 = "";
+    this.app.registerView = 'regView2';
   }
 
   ngOnInit(): void {
@@ -38,12 +40,12 @@ export class RouteEditComponent implements OnInit {
 
   }
 
-  getDate(){
-    this.date1 = this.route.day +"-"+this.route.month +"-" +this.route.year;
-    this.hour1= this.route.hours +":" + this.route.minutes;
+  getDate() {
+    this.date1 = this.route.day + "-" + this.route.month + "-" + this.route.year;
+    this.hour1 = this.route.hours + ":" + this.route.minutes;
   }
 
-  getRoute(){
+  getRoute() {
     this.api.getRouteId(this.dataService.getRouteId()).subscribe((data: any) => {
       this.route = data;
     })
@@ -69,7 +71,7 @@ export class RouteEditComponent implements OnInit {
     this.goBack();
 
   }
-  goBack(){
+  goBack() {
     this.router.navigate(['routes'])
   }
 

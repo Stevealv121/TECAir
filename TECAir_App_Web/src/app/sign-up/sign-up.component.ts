@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { UserI } from '../models/user.interface';
 import { ApiService } from '../services/api.service';
 
@@ -27,7 +28,9 @@ export class SignUpComponent implements OnInit {
     fullName: new FormControl('')
   })
 
-  constructor(private api: ApiService, private router: Router) { }
+  constructor(private api: ApiService, private router: Router, private app: AppComponent) {
+    this.app.registerView = 'regView3';
+  }
 
   ngOnInit(): void {
   }

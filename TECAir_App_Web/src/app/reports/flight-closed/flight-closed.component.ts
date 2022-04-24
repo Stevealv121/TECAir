@@ -5,6 +5,7 @@ import { FlightPassengers } from 'src/app/models/flight-passengers';
 import { ApiService } from 'src/app/services/api.service';
 import jsPDF from 'jspdf';
 import { DataServiceService } from 'src/app/services/data-service.service';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-flight-closed',
@@ -12,7 +13,7 @@ import { DataServiceService } from 'src/app/services/data-service.service';
   styleUrls: ['./flight-closed.component.css']
 })
 export class FlightClosedComponent implements OnInit {
-  @ViewChild('content', {static: false}) el!: ElementRef;
+  @ViewChild('content', { static: false }) el!: ElementRef;
 
   passengers: FlightPassengers[];
   baggage: FlightBaggage[];
@@ -23,7 +24,7 @@ export class FlightClosedComponent implements OnInit {
    * @param data DataService object type. Injects the data service to the component
    * @param api Api object type. Injects the API service to the component
    */
-  constructor(private router: Router, private data:DataServiceService, private api:ApiService) {
+  constructor(private router: Router, private data: DataServiceService, private api: ApiService, private app: AppComponent) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.passengers =[];
     this.baggage =[];
@@ -42,7 +43,7 @@ export class FlightClosedComponent implements OnInit {
    */
   getPassengers(){
     this.api.getFlightPassengers(this.data.getFlightId()).subscribe((data: any) => {
-      this.passengers =data;
+      this.passengers = data;
     })
 
   }
@@ -51,7 +52,7 @@ export class FlightClosedComponent implements OnInit {
    */
   getCapacity(){
     this.api.getFlightCapacity(this.data.getFlightId()).subscribe((data: any) => {
-      this.capacity =data;
+      this.capacity = data;
     })
   }
   /**
@@ -59,7 +60,7 @@ export class FlightClosedComponent implements OnInit {
    */
   getBaggage(){
     this.api.getFlightBaggage(this.data.getFlightId()).subscribe((data: any) => {
-      this.baggage =data;
+      this.baggage = data;
     })
   }
   /**

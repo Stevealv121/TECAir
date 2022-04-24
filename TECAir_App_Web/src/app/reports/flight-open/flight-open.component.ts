@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 import { FlightBaggage } from 'src/app/models/flight-baggage';
 import { FlightPassengers } from 'src/app/models/flight-passengers';
 import { ApiService } from 'src/app/services/api.service';
@@ -21,7 +22,7 @@ export class FlightOpenComponent implements OnInit {
    * @param data DataService object type. Injects the data service to the component
    * @param api Api object type. Injects the API service to the component
    */
-  constructor(private router: Router, private data:DataServiceService, private api:ApiService) {
+  constructor(private router: Router, private data: DataServiceService, private api: ApiService, private app: AppComponent) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.passengers =[];
     this.baggage =[];
@@ -30,6 +31,7 @@ export class FlightOpenComponent implements OnInit {
    /**
    * This function intialize the elements of the component
    */
+    this.app.registerView = 'regView2';
   ngOnInit(): void {
     this.getPassengers();
     this.getBaggage();
@@ -40,7 +42,7 @@ export class FlightOpenComponent implements OnInit {
    */
   getPassengers(){
     this.api.getFlightPassengers(this.data.getFlightId()).subscribe((data: any) => {
-      this.passengers =data;
+      this.passengers = data;
     })
 
   }
@@ -49,7 +51,7 @@ export class FlightOpenComponent implements OnInit {
    */
   getCapacity(){
     this.api.getFlightCapacity(this.data.getFlightId()).subscribe((data: any) => {
-      this.capacity =data;
+      this.capacity = data;
     })
   }
   /**
@@ -57,7 +59,7 @@ export class FlightOpenComponent implements OnInit {
    */
   getBaggage(){
     this.api.getFlightBaggage(this.data.getFlightId()).subscribe((data: any) => {
-      this.baggage =data;
+      this.baggage = data;
     })
   }
   /**
@@ -82,7 +84,7 @@ export class FlightOpenComponent implements OnInit {
     this.api.deleteHas(baggage_id).subscribe((data: any) => {
       console.log(data)
     })
-    this.api.deleteBaggage(baggage_id).subscribe((data:any)=>{
+    this.api.deleteBaggage(baggage_id).subscribe((data: any) => {
       console.log(data)
     })
     await new Promise(f => setTimeout(f, 500))

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { LoginI } from '../models/login.interface';
 import { UserI } from '../models/user.interface';
 import { ApiService } from '../services/api.service';
@@ -15,13 +16,14 @@ export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
     email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-    access: new FormControl('Admin', Validators.required)
+    password: new FormControl('', Validators.required)
   })
 
   user!: UserI;
 
-  constructor(private api: ApiService, private router: Router, private data: DataService) { }
+  constructor(private api: ApiService, private router: Router, private data: DataService, private app: AppComponent) {
+    this.app.registerView = 'regView3';
+  }
 
   ngOnInit(): void {
   }
@@ -37,7 +39,11 @@ export class LoginComponent implements OnInit {
         credentials = true;
         this.user = data;
         this.data.setUser(data);
+        if (this.user.role_name == "Worker") {
+          this.data.admin = true;
+        }
       }
+      console.log(this.user);
       console.log(data)
     });
 
@@ -47,6 +53,8 @@ export class LoginComponent implements OnInit {
 
     if (credentials) {
       this.router.navigateByUrl("home");
+      //this.router.navigateByUrl("choose-flights");
+      //this.router.navigateByUrl("deals");
     }
 
   }

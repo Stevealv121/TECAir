@@ -69,7 +69,7 @@ import { BillComponent } from './bill/bill.component';
     MatMomentDateModule
 
   ],
-  providers: [],
+  providers: [DealsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,7 +8,6 @@ import { UserI } from '../models/user.interface';
 })
 export class DataService {
 
-
   public availableFlights: FlightI[];
   private _numberTravelers: number;
   user!: UserI;
@@ -16,11 +15,19 @@ export class DataService {
   stopOvers: StopOver[] = [];
   flightNumber!: string;
   selectedAirplane!: string;
+  airplane_plate!: string;
   date!: string;
   origin!: string;
   destination!: string;
   numberOfStops: number = 0;
   selectedSeats: string[] = [];
+  navbar!: string;
+  admin: boolean = false;
+  home: boolean = false;
+  tax!: number;
+  total_due!: number;
+  final_price!: number;
+  duration!: string;
 
   constructor() {
     this.availableFlights = [];

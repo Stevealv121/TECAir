@@ -220,6 +220,10 @@
     background-color: rgb(5, 6, 63);
 }
 
+a {
+    cursor: pointer;
+}
+
 /* @media (max-height:600px) {
 
     #promos-container {

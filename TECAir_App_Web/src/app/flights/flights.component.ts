@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { Flight } from '../models/flight';
 import { ApiService } from '../services/api.service';
 import { DataServiceService } from '../services/data-service.service';
@@ -18,9 +19,10 @@ export class FlightsComponent implements OnInit {
    * @param data DataService object type. Injects the data service to the component
    * @param api Api object type. Injects the API service to the component
    */
-  constructor(private router:Router, private api: ApiService, private data: DataServiceService) {
+  constructor(private router: Router, private api: ApiService, private data: DataServiceService, private app: AppComponent) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.information =[];
+    this.information = [];
+    this.app.registerView = 'regView2';
 
    }
   /**
@@ -35,7 +37,7 @@ export class FlightsComponent implements OnInit {
    */
   cargarTabla(){
     this.api.getFlights().subscribe((data: any) => {
-      this.information =data;
+      this.information = data;
     })
 
   }

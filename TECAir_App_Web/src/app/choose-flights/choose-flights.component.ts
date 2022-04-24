@@ -13,6 +13,7 @@ import { FlightI } from '../models/flight.interface';
 import { ApiService } from '../services/api.service';
 import { StopOverI } from '../models/stopOver.interface';
 import { StopOver } from '../models/stopOver';
+import { AppComponent } from '../app.component';
 
 const moment = _rollupMoment || _moment;
 
@@ -56,12 +57,53 @@ export class ChooseFlightsComponent implements OnInit {
   hasStopOvers: boolean = false;
   flightNumber: string = '';
 
-  constructor(private router: Router, private data: DataService, private api: ApiService) {
+  constructor(private router: Router, private data: DataService, private api: ApiService, private app: AppComponent) {
+    if (this.data.admin) {
+      this.app.registerView = 'regView2';
+    } else {
+      this.app.registerView = 'regView1';
+    }
+    console.log(this.data.home);
+    if (this.data.home) {
+      this.initiateValues();
+    }
 
-    this.initiateValues();
+    if (this.availableFlights.length == 0) {
+      this.bookingForm.patchValue({ origin: "From" });
+      this.bookingForm.patchValue({ destination: "To" });
+    }
+    //this.initiateValues();
+
   }
 
   ngOnInit(): void {
+  }
+
+  async getFinalPrice() {
+    for (let i = 0; i < this.availableFlights.length; i++) {
+      this.api.getAppliesToByFlightID(this.availableFlights[i].id.toString()).subscribe((data: any) => {
+        if (data[i] == undefined) {
+          this.availableFlights[i].final_price = this.availableFlights[i].price;
+        } else {
+          this.availableFlights[i].final_price = data[i].final_price;
+          console.log(data);
+        }
+
+      });
+      await new Promise(f => (setTimeout(f, 500)));
+      console.log(this.availableFlights);
+    }
+  }
+
+  setAbbreviationNames() {
+    for (let i = 0; i < this.availableFlights.length; i++) {
+      let splitO = this.availableFlights[i].origin.split(",");
+      let splitD = this.availableFlights[i].destination.split(",");
+      let abOr = splitO[0];
+      let abDt = splitD[0];
+      this.availableFlights[i].abbreOrigin = abOr;
+      this.availableFlights[i].abbreDest = abDt;
+    }
   }
 
   setFlightNumber(city: string, country: string) {
@@ -109,24 +151,23 @@ export class ChooseFlightsComponent implements OnInit {
   initiateValues() {
 
     this.availableFlights = this.data.availableFlights;
+    this.setAbbreviationNames();
+    this.getFinalPrice();
     // console.log(this.availableFlights);
-    if (this.availableFlights.length == 0) {
-      this.bookingForm.patchValue({ origin: "From" });
-      this.bookingForm.patchValue({ destination: "To" });
-    } else {
-      this.bookingForm.patchValue({ origin: this.availableFlights[0].origin });
-      this.bookingForm.patchValue({ destination: this.availableFlights[0].destination });
-      this.from = this.availableFlights[0].origin;
-      this.to = this.availableFlights[0].destination;
-      let flight_ids: string[] = [];
-      for (let i = 0; i < this.availableFlights.length; i++) {
-        flight_ids.push(this.availableFlights[i].id.toString());
-      }
 
-      this.flightNumber = this.setFlightNumber(this.from, this.to);
-
-      this.getStopOvers(flight_ids);
+    this.bookingForm.patchValue({ origin: this.availableFlights[0].origin });
+    this.bookingForm.patchValue({ destination: this.availableFlights[0].destination });
+    this.from = this.availableFlights[0].origin;
+    this.to = this.availableFlights[0].destination;
+    let flight_ids: string[] = [];
+    for (let i = 0; i < this.availableFlights.length; i++) {
+      flight_ids.push(this.availableFlights[i].id.toString());
     }
+
+    this.flightNumber = this.setFlightNumber(this.from, this.to);
+
+    this.getStopOvers(flight_ids);
+
 
   }
 
@@ -158,13 +199,16 @@ export class ChooseFlightsComponent implements OnInit {
 
     this.getStopOvers(flight_ids);
 
+    this.setAbbreviationNames();
+    this.getFinalPrice();
 
   }
 
-  chooseFlight(id: number) {
+  chooseFlight(id: number, final_price: number) {
     this.data.iDflightSelected = id;
     this.data.stopOvers = this.setStopsOfSelectedFlight(id);
     this.data.flightNumber = this.flightNumber;
+    this.data.final_price = final_price;
     this.router.navigateByUrl("/choose-travelers");
   }
 

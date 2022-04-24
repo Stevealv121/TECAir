@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { Airplane } from '../models/airplane';
 import { Flight } from '../models/flight';
 import { Routes } from '../models/routes';
@@ -39,9 +40,19 @@ export class ChooseTravelersComponent implements OnInit {
   numberOfStops: number = 0;
   hasStopOvers: boolean = false;
   flightNumber: string = '';
+  admin: boolean = false;//default:false
+  users: UserI[] = [];
+  tax: number = 0;
+  total_due: number = 0;
 
-  constructor(private data: DataService, private formBuilder: FormBuilder, private router: Router, private api: ApiService) {
+  constructor(private data: DataService, private app: AppComponent, private router: Router, private api: ApiService) {
     this.user = this.data.getUser();
+    this.admin = this.data.admin;
+    if (this.admin) {
+      this.app.registerView = 'regView2';
+    } else {
+      this.app.registerView = 'regView1';
+    }
     if (this.user !== undefined) {
       this.travelerForm.patchValue({ first_name: this.user.first_name });
       // this.travelerForm.patchValue({ middle_name: this.user.second_name });
@@ -52,9 +63,8 @@ export class ChooseTravelersComponent implements OnInit {
       router.navigateByUrl("/choose-flights");
     }
     this.getFlightInfo();
-
-
   }
+
   async getFlightInfo() {
     //console.log(this.data.iDflightSelected);
     this.api.selectFlight(this.data.iDflightSelected.toString()).subscribe(data => {
@@ -76,12 +86,24 @@ export class ChooseTravelersComponent implements OnInit {
     this.api.getAirplane(this.flight.airplane_plate).subscribe(data => {
       this.airplane = data;
       this.data.selectedAirplane = this.airplane.model;
+      this.data.airplane_plate = this.airplane.plate;
     });
     await new Promise(f => (setTimeout(f, 500)));
     this.flightNumber = this.data.flightNumber;
+    this.data.duration = this.flight.duration;
+    this.flight.final_price = this.data.final_price;
+    console.log(this.flight.final_price);
+    this.setTaxes();
   }
   setDate(): string {
     return this.route.month.toString() + "/" + this.route.day.toString() + "/" + this.route.year.toString();
+  }
+
+  setTaxes() {
+    this.tax = (this.flight.final_price * 100) / 13;
+    this.total_due = this.flight.final_price + this.tax;
+    this.data.tax = this.tax;
+    this.data.total_due = this.total_due;
   }
 
   getStopOvers() {
@@ -99,6 +121,7 @@ export class ChooseTravelersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTravelers();
+    this.getUsers();
   }
 
   getTravelers() {
@@ -106,6 +129,21 @@ export class ChooseTravelersComponent implements OnInit {
     for (let i = 1; i < travelers; i++) {
       this.travelers.push(i);
     }
+  }
+
+  getUsers() {
+    this.api.getUsers().subscribe((data: any) => {
+      this.users = data;
+    })
+  }
+
+  selectUser() {
+    let option: any = (<HTMLInputElement>document.getElementById('select')).value;
+    console.log(option);
+    this.user = this.users[option];
+    this.travelerForm.patchValue({ first_name: this.user.first_name });
+    // this.travelerForm.patchValue({ middle_name: this.user.second_name });
+    this.travelerForm.patchValue({ last_name: this.user.first_surname });
   }
 
   continueSeats(form: TravelerI) {

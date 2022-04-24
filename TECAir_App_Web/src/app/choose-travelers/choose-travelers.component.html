@@ -4,6 +4,14 @@
             <h2>Traveler Information</h2>
         </div>
     </div>
+    <div class="dropdown" *ngIf="admin===true">
+        <h4>Choose a Traveler</h4>
+        <select class="form-select mb-4" id="select" (change)="selectUser()">
+            <option selected>Select user</option>
+            <option *ngFor="let user of users; index as i" value="{{i}}">{{user.first_name}}, {{user.first_surname}}
+            </option>
+        </select>
+    </div>
     <div class="row">
         <div class="col col-md-8" [formGroup]="travelerForm">
             <div class="card mb-4">
@@ -102,20 +110,21 @@
             <div class="card">
                 <h5 class="card-header">Your Trip</h5>
                 <div class="card-body" id="trip-card">
-                    <h5 class="card-title">Type of Flight</h5>
+                    <h5 class="card-title">Information</h5>
                     <div class="card" id="city-card">
-                        <h6>{{route.origin}} to {{route.destination}}</h6>
+                        <h6>{{route?.origin}} to {{route?.destination}}</h6>
                         <ng-container *ngIf="numberOfStops===1; else zeroTemplate">
-                            <p>{{route.month}}/{{route.day}}/{{route.year}} - 3:00am to 1:10pm - 1 Stop</p>
+                            <p>{{route.month}}/{{route.day}}/{{route.year}} - {{flight.duration}} - 1 Stop</p>
                         </ng-container>
                         <ng-template #zeroTemplate>
                             <ng-container *ngIf="numberOfStops===0; else stopsTemplate">
-                                <p>{{route.month}}/{{route.day}}/{{route.year}} - 3:00am to 1:10pm - Direct
+                                <p>{{route?.month}}/{{route?.day}}/{{route?.year}} - {{flight?.duration}} - Direct
                                 </p>
                             </ng-container>
                         </ng-template>
                         <ng-template #stopsTemplate>
-                            <p>{{route.month}}/{{route.day}}/{{route.year}} - 3:00am to 1:10pm - {{numberOfStops}}
+                            <p>{{route?.month}}/{{route?.day}}/{{route?.year}} - {{flight?.duration}} -
+                                {{numberOfStops}}
                                 Stops
                             </p>
                         </ng-template>
@@ -131,7 +140,7 @@
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col">
-                                            <h6>{{route.origin}} to {{route.destination}}</h6>
+                                            <h6>{{route?.origin}} to {{route?.destination}}</h6>
                                         </div>
                                     </div>
                                     <!-- <div class="row mb-2">
@@ -144,7 +153,7 @@
                                         <div class="col"><strong>Flight number:</strong> {{flightNumber}}</div>
                                     </div>
                                     <div class="row mb-2">
-                                        <div class="col"><strong>Aircraft type:</strong> {{airplane.model}}</div>
+                                        <div class="col"><strong>Aircraft type:</strong> {{airplane?.model}}</div>
                                     </div>
                                 </ng-container>
                                 <ng-template #stopOversTemplate>
@@ -169,7 +178,7 @@
                                             <div class="col"><strong>Flight number:</strong> {{stop.flightNumber}}</div>
                                         </div>
                                         <div class="row mb-2">
-                                            <div class="col"><strong>Aircraft type:</strong> {{airplane.model}}</div>
+                                            <div class="col"><strong>Aircraft type:</strong> {{airplane?.model}}</div>
                                         </div>
                                     </div>
                                 </ng-template>
@@ -180,15 +189,15 @@
                     </div>
                     <div class="row">
                         <div class="col">Fare</div>
-                        <div class="col">000 CRC</div>
+                        <div class="col">{{flight?.final_price}} $</div>
                     </div>
                     <div class="row">
                         <div class="col">Taxes & fees</div>
-                        <div class="col">000 CRC</div>
+                        <div class="col">{{tax}} $</div>
                     </div>
                     <div class="row">
                         <div class="col"><strong>Total due</strong></div>
-                        <div class="col">000 CRC</div>
+                        <div class="col">{{total_due}} $</div>
                     </div>
                     <a type="submit" (click)="continueSeats(travelerForm.value)" id="seats-btn"
                         class="btn btn-primary">Continue to

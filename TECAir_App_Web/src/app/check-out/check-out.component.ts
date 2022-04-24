@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
 import { StopOver } from '../models/stopOver';
 import { DataService } from '../services/data.service';
@@ -19,8 +20,17 @@ export class CheckOutComponent implements OnInit {
   stepOvers: StopOver[] = [];
   numberOfStops: number = 0;
   hasStopOvers: boolean = false;
+  duration: string = "";
+  tax: number = 0;
+  total_due: number = 0;
+  fare: number = 0;
 
-  constructor(private data: DataService, private router:Router) {
+  constructor(private data: DataService, private app: AppComponent) {
+    if (this.data.admin) {
+      this.app.registerView = 'regView2';
+    } else {
+      this.app.registerView = 'regView1';
+    }
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.date = this.data.date;
     this.flight = this.data.flightNumber;
@@ -28,6 +38,10 @@ export class CheckOutComponent implements OnInit {
     this.origin = this.data.origin;
     this.destination = this.data.destination;
     this.numberOfStops = this.data.numberOfStops;
+    this.duration = this.data.duration;
+    this.fare = this.data.final_price;
+    this.tax = this.data.tax;
+    this.total_due = this.data.total_due;
   }
 
   ngOnInit(): void {

@@ -18,6 +18,7 @@ import { Scales } from '../models/scales';
 import { Airplane } from '../models/airplane';
 //import { StopOverI } from '../models/stopOver.interface';
 import { StopOver } from '../models/stopOver';
+import { Promotion } from '../models/promotion';
 
 @Injectable({
   providedIn: 'root'
@@ -74,6 +75,10 @@ export class ApiService {
   postRoute(form: Routes) {
     return this.http.post<Routes>(this.routesPath, form);
   }
+  UpdateSeat(seat: SeatI) {
+    let seatPath = this.url + "Seat";
+    return this.http.put<SeatI>(seatPath, seat)
+  }
   //gets
 
   searchFlights(origin: string, destination: string): Observable<FlightI[]> {
@@ -86,8 +91,18 @@ export class ApiService {
     return this.http.get<PromotionI[]>(dealsPath)
   }
 
-  getSeats(): Observable<SeatI[]> {
-    let seatPath = this.url + "Seat";
+  getAppliesTo(promo_code: number): Observable<string[]> {
+    let p = this.applyToPath + "/" + promo_code;
+    return this.http.get<string[]>(p);
+  }
+  getAppliesToByFlightID(flight_id: string): Observable<string[]> {
+    let p = this.url + "AppliesTo/PromotionandAppliesTo/" + flight_id;
+    //let p = this.url + "AppliesTo/PromotionandAppliesTo/3"
+    return this.http.get<string[]>(p);
+  }
+
+  getSeats(plate: string): Observable<SeatI[]> {
+    let seatPath = this.url + "Seat/Plate/" + plate;
     return this.http.get<SeatI[]>(seatPath)
   }
 

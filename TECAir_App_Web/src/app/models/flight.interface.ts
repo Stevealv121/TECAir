@@ -11,7 +11,11 @@ export interface FlightI {
     month: number,
     day: number,
     hours: number,
-    minutes: number,
+    minutes: string,
     travelers: number,
-    model: string
+    model: string,
+    final_price: number,
+    duration: string,
+    abbreOrigin: string;
+    abbreDest: string
 }

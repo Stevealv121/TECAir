@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { BaggageModel } from '../models/baggage-model';
 import { ApiService } from '../services/api.service';
 
@@ -17,11 +18,12 @@ export class BaggageComponent implements OnInit {
    * @param api Api object type. Injects the API service to the component
    * @param router Router object type. Injects the Router to the component
    */
-  constructor(private api:ApiService, private router: Router) {
+  constructor(private api: ApiService, private router: Router, private app: AppComponent) {
 
 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.baggage=[];
+    this.baggage = [];
+    this.app.registerView = 'regView2';
 
    }
    /**

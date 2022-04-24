@@ -12,6 +12,8 @@ import { ApiService } from '../services/api.service';
 import { FlightI } from '../models/flight.interface';
 import { DataService } from '../services/data.service';
 import { PromotionI } from '../models/promotion.interface';
+import { AppComponent } from '../app.component';
+import { DealsComponent } from '../deals/deals.component';
 
 const moment = _rollupMoment || _moment;
 declare var bootstrap: any;
@@ -59,12 +61,13 @@ export class HomeComponent implements OnInit {
   color: string = "red";
   // availableFlights: FlightI[] = [];
 
-  constructor(private router: Router, private api: ApiService, private data: DataService) {
+  constructor(private router: Router, private api: ApiService, private data: DataService, private app: AppComponent, private deal: DealsComponent) {
     this.retrievePromotions();
+    this.app.registerView = 'regView1';
+    this.data.home = true;
   }
 
   ngOnInit(): void {
-
 
   }
 
@@ -96,7 +99,8 @@ export class HomeComponent implements OnInit {
     });
     await new Promise(f => setTimeout(f, 100));
 
-    this.router.navigateByUrl("/choose-flights");
+    this.router.navigateByUrl("choose-flights");
+    // this.router.navigate(['choose-flights']);
   }
 
   async retrievePromotions() {
@@ -108,6 +112,12 @@ export class HomeComponent implements OnInit {
     })
     await new Promise(f => setTimeout(f, 500));
     this.filled = true;
+  }
+
+  bookNow(promotion_code: any) {
+    if (promotion_code !== undefined) {
+      this.deal.bookNow(promotion_code);
+    }
   }
 
 }

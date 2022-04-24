@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 import { BaggageModel } from 'src/app/models/baggage-model';
 import { Flight } from 'src/app/models/flight';
 import { Has } from 'src/app/models/has';
@@ -14,8 +15,8 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class BaggageCreationComponent implements OnInit {
 
-  baggage:BaggageModel|null;
-  owner:Has|null;
+  baggage: BaggageModel | null;
+  owner: Has | null;
   users: UserI[];
   flights: Flight[];
   /**
@@ -23,11 +24,12 @@ export class BaggageCreationComponent implements OnInit {
    * @param router Router type object.
    * @param api  injects the api service to the component
    */
-  constructor(private router:Router, private api:ApiService) {
+  constructor(private router: Router, private api: ApiService, private app: AppComponent) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.baggage=null;
+    this.baggage = null;
     this.users = [];
     this.owner = null;
+    this.app.registerView = 'regView2';
     this.flights=[];
   }
   /**
@@ -40,7 +42,7 @@ export class BaggageCreationComponent implements OnInit {
   /**
    * This function takes back to the Baggage component
    */
-  goBack(){
+  goBack() {
     this.router.navigate(['baggage']);
   }
   /**
@@ -48,7 +50,7 @@ export class BaggageCreationComponent implements OnInit {
    */
   getUsers(){
     this.api.getUsers().subscribe((data: any) => {
-      this.users=data;
+      this.users = data;
     })
   }
   /**
@@ -64,8 +66,8 @@ export class BaggageCreationComponent implements OnInit {
    */
   async postSuitCase(user:string, color:string, weight:string, flightId:string){
     var splitted = user.split(" ", 3);
-    this.baggage ={
-      id:0,
+    this.baggage = {
+      id: 0,
       color: color,
       weight: Number(weight)
     }
@@ -80,7 +82,7 @@ export class BaggageCreationComponent implements OnInit {
         baggage:null,
         user:null
       }
-      this.api.postHas(this.owner).subscribe((data: any)=>{
+      this.api.postHas(this.owner).subscribe((data: any) => {
         console.log(data);
       })
     })
