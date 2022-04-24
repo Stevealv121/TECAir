@@ -75,7 +75,10 @@ export class BaggageCreationComponent implements OnInit {
         baggage_id:data,
         user_id: Number(splitted[0]),
         price:0,
-        flight_id:Number(id[0])
+        flight_id:Number(id[0]),
+        flight: null,
+        baggage:null,
+        user:null
       }
       this.api.postHas(this.owner).subscribe((data: any)=>{
         console.log(data);

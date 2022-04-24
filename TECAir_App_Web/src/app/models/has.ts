@@ -3,4 +3,7 @@ export interface Has {
   user_id:number,
   price:number,
   flight_id: number,
+  flight:null,
+  baggage:null,
+  user:null
 }
