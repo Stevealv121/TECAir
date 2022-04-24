@@ -74,6 +74,10 @@ export class ApiService {
   postRoute(form: Routes) {
     return this.http.post<Routes>(this.routesPath, form);
   }
+  UpdateSeat(seat: SeatI) {
+    let seatPath = this.url + "Seat";
+    return this.http.put<SeatI>(seatPath, seat)
+  }
   //gets
 
   searchFlights(origin: string, destination: string): Observable<FlightI[]> {
@@ -91,8 +95,8 @@ export class ApiService {
     return this.http.get<string[]>(p);
   }
 
-  getSeats(): Observable<SeatI[]> {
-    let seatPath = this.url + "Seat";
+  getSeats(plate: string): Observable<SeatI[]> {
+    let seatPath = this.url + "Seat/Plate/" + plate;
     return this.http.get<SeatI[]>(seatPath)
   }
 

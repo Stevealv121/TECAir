@@ -15,6 +15,7 @@ export class DataService {
   stopOvers: StopOver[] = [];
   flightNumber!: string;
   selectedAirplane!: string;
+  airplane_plate!: string;
   date!: string;
   origin!: string;
   destination!: string;

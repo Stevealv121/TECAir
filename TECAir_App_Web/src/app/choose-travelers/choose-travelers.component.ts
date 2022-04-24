@@ -78,6 +78,7 @@ export class ChooseTravelersComponent implements OnInit {
     this.api.getAirplane(this.flight.airplane_plate).subscribe(data => {
       this.airplane = data;
       this.data.selectedAirplane = this.airplane.model;
+      this.data.airplane_plate = this.airplane.plate;
     });
     await new Promise(f => (setTimeout(f, 500)));
     this.flightNumber = this.data.flightNumber;
