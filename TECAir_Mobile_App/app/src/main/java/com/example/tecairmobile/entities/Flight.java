@@ -18,6 +18,9 @@ public class Flight {
         this.airplane_plate = airplane_plate;
     }
 
+    public Flight(){}
+
+
     public Integer getId() {
         return id;
     }

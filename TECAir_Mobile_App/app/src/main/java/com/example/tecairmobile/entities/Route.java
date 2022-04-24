@@ -2,16 +2,18 @@ package com.example.tecairmobile.entities;
 
 public class Route {
 
-    private Integer route_code;
+    private int route_code;
     private String origin;
     private String destination;
-    private Integer year;
-    private Integer month;
-    private Integer day;
-    private Integer hours;
-    private Integer minutes;
+    private int year;
+    private int month;
+    private int day;
+    private int hours;
+    private int minutes;
 
-    public Route(Integer route_code, String origin, String destination, Integer year, Integer month, Integer day, Integer hours, Integer minutes) {
+    public Route(){}
+
+    public Route(int route_code, String origin, String destination, int year, int month, int day, int hours, int minutes) {
         this.route_code = route_code;
         this.origin = origin;
         this.destination = destination;
@@ -22,11 +24,11 @@ public class Route {
         this.minutes = minutes;
     }
 
-    public Integer getRoute_code() {
+    public int getRoute_code() {
         return route_code;
     }
 
-    public void setRoute_code(Integer route_code) {
+    public void setRoute_code(int route_code) {
         this.route_code = route_code;
     }
 
@@ -46,43 +48,43 @@ public class Route {
         this.destination = destination;
     }
 
-    public Integer getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(Integer year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
-    public Integer getMonth() {
+    public int getMonth() {
         return month;
     }
 
-    public void setMonth(Integer month) {
+    public void setMonth(int month) {
         this.month = month;
     }
 
-    public Integer getDay() {
+    public int getDay() {
         return day;
     }
 
-    public void setDay(Integer day) {
+    public void setDay(int day) {
         this.day = day;
     }
 
-    public Integer getHours() {
+    public int getHours() {
         return hours;
     }
 
-    public void setHours(Integer hours) {
+    public void setHours(int hours) {
         this.hours = hours;
     }
 
-    public Integer getMinutes() {
+    public int getMinutes() {
         return minutes;
     }
 
-    public void setMinutes(Integer minutes) {
+    public void setMinutes(int minutes) {
         this.minutes = minutes;
     }
 }

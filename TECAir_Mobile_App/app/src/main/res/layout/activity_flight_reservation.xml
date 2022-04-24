@@ -5,7 +5,7 @@
     android:id="@+id/res"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#169186"
+    android:background="@color/white"
     tools:context=".FlightReservation">
 
     <TextView
@@ -15,7 +15,7 @@
         android:layout_marginTop="64dp"
         android:text="Your flight was found, proceding with payment"
         android:textAlignment="center"
-        android:textColor="#EAE9E5"
+        android:textColor="@color/purple_500"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -23,35 +23,49 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/tarjeta"
-        android:layout_width="404dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="160dp"
+        android:id="@+id/card"
+        android:layout_width="333dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="300dp"
         android:hint="Insert credit card number"
+        android:textColor="@color/purple_500"
+        android:textColorHint="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frt1" />
 
     <TextView
-        android:id="@+id/frt2"
-        android:layout_width="224dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="48dp"
+        android:id="@+id/fprice"
+        android:layout_width="387dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="72dp"
+        android:textColor="@color/purple_500"
+        android:textColorHint="@color/purple_500"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frt1" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/pay"
         android:layout_width="156dp"
         android:layout_height="66dp"
-        android:layout_marginTop="88dp"
-        android:text="Pay"
+        android:layout_marginTop="52dp"
         android:onClick="onClick"
+        android:text="Pay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tarjeta" />
+        app:layout_constraintTop_toBottomOf="@+id/card" />
+
+    <Spinner
+        android:id="@+id/seats"
+        android:layout_width="342dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fprice" />
 </androidx.constraintlayout.widget.ConstraintLayout>

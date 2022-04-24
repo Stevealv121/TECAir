@@ -2,37 +2,38 @@ package com.example.tecairmobile.entities;
 
 public class Applies_to {
 
-    private int flightid;
-    private int promotioncode;
-    private int finalprice;
+    private Integer promotion_code;
+    private Integer flight_id;
+    private Integer final_price;
 
-    public Applies_to(int flightid, int promotioncode, int finalprice) {
-        this.flightid = flightid;
-        this.promotioncode = promotioncode;
-        this.finalprice = finalprice;
+    public Applies_to(Integer promotion_code, Integer flight_id, Integer final_price) {
+        this.promotion_code = promotion_code;
+        this.flight_id = flight_id;
+        this.final_price = final_price;
     }
 
-    public int getFlightid() {
-        return flightid;
+    public Integer getPromotion_code() {
+        return promotion_code;
     }
 
-    public void setFlightid(int flightid) {
-        this.flightid = flightid;
+    public void setPromotion_code(Integer promotion_code) {
+        this.promotion_code = promotion_code;
     }
 
-    public int getPromotioncode() {
-        return promotioncode;
+    public Integer getFlight_id() {
+        return flight_id;
     }
 
-    public void setPromotioncode(int promotioncode) {
-        this.promotioncode = promotioncode;
+    public void setFlight_id(Integer flight_id) {
+        this.flight_id = flight_id;
     }
 
-    public int getFinalprice() {
-        return finalprice;
+    public Integer getFinal_price() {
+        return final_price;
     }
 
-    public void setFinalprice(int finalprice) {
-        this.finalprice = finalprice;
+    public void setFinal_price(Integer final_price) {
+        this.final_price = final_price;
     }
+
 }
