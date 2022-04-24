@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainMenu extends AppCompatActivity {
 
@@ -17,7 +18,6 @@ public class MainMenu extends AppCompatActivity {
     public void onClick(View view){
 
         Intent myintent = null;
-
         switch(view.getId()){
             case R.id.booking:
                 myintent = new Intent(MainMenu.this,flightSearch.class);

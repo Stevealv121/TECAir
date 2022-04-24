@@ -2,6 +2,7 @@ package com.example.tecairmobile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -29,8 +30,10 @@ public class FlightReservation extends AppCompatActivity {
     SQLitehelper conn;
     Spinner seats;
     ArrayList<Seats> seatList;
+    ArrayList<Seats> fseatList;
     ArrayList<String> showSeats;
     FlightsandRoutes far;
+    int index;
 
 
     @Override
@@ -58,6 +61,7 @@ public class FlightReservation extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
+                    index = i;
                     card.setVisibility(View.VISIBLE);
                     pay.setVisibility(View.VISIBLE);
                 }
@@ -94,23 +98,43 @@ public class FlightReservation extends AppCompatActivity {
             seatList.add(seats);
         }
         db.close();
-        getListS(far.getAirplane_plate());
+        getFListS(far.getAirplane_plate());
 
     }
 
-    private void getListS(String a_plate) {
+    private void getFListS(String a_plate) {
+        fseatList =new ArrayList<>();
+        for(int i=0; i<seatList.size();i++){
+            if(seatList.get(i).getAirplane_plate().equals(a_plate) && seatList.get(i).isState()){
+                fseatList.add(seatList.get(i));
+            }
+        }
+        getListS();
+    }
+
+    private void getListS() {
         showSeats = new ArrayList<>();
         showSeats.add("Please select your seat");
-        for(int i=0;i<seatList.size();i++){
-            if(seatList.get(i).getAirplane_plate().equals(a_plate) && seatList.get(i).isState()){
-                showSeats.add("Seat Number: "+seatList.get(i).getId()+" - "+seatList.get(i).getDescription());
-            }
+        for(int i=0;i<fseatList.size();i++){
+            showSeats.add("Seat Number: "+fseatList.get(i).getId()+" - "+fseatList.get(i).getDescription());
         }
     }
 
     public void onClick(View view) {
-        Toast.makeText(FlightReservation.this,"Ticket Purchased, thank you for choosing TecAir",Toast.LENGTH_LONG).show();
+        updateT();
         Intent myintent = new Intent(FlightReservation.this,MainMenu.class);
         startActivity(myintent);
+    }
+
+    private void updateT() {
+        SQLiteDatabase db = conn.getWritableDatabase();
+        String[] param = {fseatList.get(index-1).getId().toString()};
+        ContentValues values = new ContentValues();
+        values.put(Utilities.FIELD_STATUS, false);
+
+        db.update(Utilities.TABLE_SEATS,values,Utilities.FIELD_ID+"=?",param);
+
+        Toast.makeText(FlightReservation.this,"Ticket Purchased, thank you for choosing TecAir",Toast.LENGTH_LONG).show();
+        db.close();
     }
 }
