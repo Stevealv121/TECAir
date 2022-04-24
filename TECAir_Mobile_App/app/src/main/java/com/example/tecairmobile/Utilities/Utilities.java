@@ -55,8 +55,6 @@ public class Utilities {
     public static final String FIELD_PASS = "password";
     public static final String FIELD_DURATION = "duration";
 
-
-
     public static final String CREATE_AIRPLANE_TABLE = "CREATE TABLE "+TABLE_AIRPLANE+" ("+FIELD_PLATE+" TEXT, "+FIELD_MODEL+" TEXT)";
     public static final String CREATE_APTO_TABLE = "CREATE TABLE "+TABLE_APTO+" ("+FIELD_FID+" INTEGER, "+FIELD_PCODE+" INTEGER, "+FIELD_FPRICE+" INTEGER)";
     public static final String CREATE_BAGGAGE_TABLE = "CREATE TABLE "+TABLE_BAGGAGE+" ("+FIELD_ID+" INTEGER, "+FIELD_COLOR+" TEXT, "+FIELD_WEIGHT+" INTEGER)";
