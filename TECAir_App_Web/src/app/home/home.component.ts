@@ -69,7 +69,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-
   }
 
   setDisplay1() {
@@ -100,7 +99,8 @@ export class HomeComponent implements OnInit {
     });
     await new Promise(f => setTimeout(f, 100));
 
-    this.router.navigateByUrl("/choose-flights");
+    this.router.navigateByUrl("choose-flights");
+    // this.router.navigate(['choose-flights']);
   }
 
   async retrievePromotions() {

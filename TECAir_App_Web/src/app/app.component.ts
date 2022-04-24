@@ -24,7 +24,7 @@ import { DataService } from './services/data.service';
               </div>
             </div>
           </nav>
-          <router-outlet></router-outlet></div>
+          </div>
           <div class="open-card-BG" *ngIf="registerView == 'regView2'"><nav id="navbar"class="navbar navbar-expand-lg navbar-dark ">
           <div class="container-fluid">
             <a id = "nav-item" class="navbar-brand" href="#">TECAir</a>
@@ -61,7 +61,6 @@ import { DataService } from './services/data.service';
             </div>
           </div>
         </nav>
-        <router-outlet></router-outlet>
         </div>
         <div class="open-card-BG" *ngIf="registerView == 'regView3'"><nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(5, 6, 63);">
             <div class="container-fluid">
@@ -77,7 +76,8 @@ import { DataService } from './services/data.service';
               </div>
             </div>
           </nav>
-          <router-outlet></router-outlet></div>`,
+          </div>
+          <router-outlet></router-outlet>`,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {

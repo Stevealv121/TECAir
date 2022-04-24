@@ -63,13 +63,16 @@ export class ChooseFlightsComponent implements OnInit {
     } else {
       this.app.registerView = 'regView1';
     }
+    console.log(this.data.home);
     if (this.data.home) {
       this.initiateValues();
     }
+
     if (this.availableFlights.length == 0) {
       this.bookingForm.patchValue({ origin: "From" });
       this.bookingForm.patchValue({ destination: "To" });
     }
+    //this.initiateValues();
 
   }
 

@@ -16,8 +16,7 @@ export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
     email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-    access: new FormControl('Admin', Validators.required)
+    password: new FormControl('', Validators.required)
   })
 
   user!: UserI;
@@ -44,6 +43,7 @@ export class LoginComponent implements OnInit {
           this.data.admin = true;
         }
       }
+      console.log(this.user);
       console.log(data)
     });
 
@@ -53,6 +53,8 @@ export class LoginComponent implements OnInit {
 
     if (credentials) {
       this.router.navigateByUrl("home");
+      //this.router.navigateByUrl("choose-flights");
+      //this.router.navigateByUrl("deals");
     }
 
   }
