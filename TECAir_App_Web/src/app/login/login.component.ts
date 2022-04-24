@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { LoginI } from '../models/login.interface';
 import { UserI } from '../models/user.interface';
 import { ApiService } from '../services/api.service';
@@ -21,7 +22,9 @@ export class LoginComponent implements OnInit {
 
   user!: UserI;
 
-  constructor(private api: ApiService, private router: Router, private data: DataService) { }
+  constructor(private api: ApiService, private router: Router, private data: DataService, private app: AppComponent) {
+    this.app.registerView = 'regView3';
+  }
 
   ngOnInit(): void {
   }
@@ -37,6 +40,9 @@ export class LoginComponent implements OnInit {
         credentials = true;
         this.user = data;
         this.data.setUser(data);
+        if (this.user.role_name == "Worker") {
+          this.data.admin = true;
+        }
       }
       console.log(data)
     });

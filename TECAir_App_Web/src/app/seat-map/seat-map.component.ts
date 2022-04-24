@@ -1,6 +1,7 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { elementAt } from 'rxjs';
+import { AppComponent } from '../app.component';
 import { SeatI } from '../models/seat.interface';
 import { ApiService } from '../services/api.service';
 import { DataService } from '../services/data.service';
@@ -28,7 +29,12 @@ export class SeatMapComponent implements OnInit {
   seatsNames: string[] = [];
 
 
-  constructor(public api: ApiService, private data: DataService) {
+  constructor(public api: ApiService, private data: DataService, private app: AppComponent) {
+    if (this.data.admin) {
+      this.app.registerView = 'regView2';
+    } else {
+      this.app.registerView = 'regView1';
+    }
     this.date = this.data.date;
     this.flight = this.data.flightNumber;
     this.airplane = this.data.selectedAirplane;

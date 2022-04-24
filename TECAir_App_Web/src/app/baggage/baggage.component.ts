@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { BaggageModel } from '../models/baggage-model';
 import { ApiService } from '../services/api.service';
 
@@ -11,25 +12,26 @@ import { ApiService } from '../services/api.service';
 export class BaggageComponent implements OnInit {
 
 
-  baggage:BaggageModel[];
-  constructor(private api:ApiService, private router: Router) {
+  baggage: BaggageModel[];
+  constructor(private api: ApiService, private router: Router, private app: AppComponent) {
 
 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.baggage=[];
+    this.baggage = [];
+    this.app.registerView = 'regView2';
 
-   }
+  }
 
   ngOnInit(): void {
     this.getBaggage();
   }
 
-  getBaggage(){
+  getBaggage() {
     this.api.getBaggage().subscribe((data: any) => {
       this.baggage = data;
     })
   }
-  deleteBaggage(id:number){
+  deleteBaggage(id: number) {
     //this.api.getBaggage().subscribe((data: any) => {
 
     //})

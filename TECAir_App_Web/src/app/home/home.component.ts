@@ -12,6 +12,7 @@ import { ApiService } from '../services/api.service';
 import { FlightI } from '../models/flight.interface';
 import { DataService } from '../services/data.service';
 import { PromotionI } from '../models/promotion.interface';
+import { AppComponent } from '../app.component';
 
 const moment = _rollupMoment || _moment;
 declare var bootstrap: any;
@@ -59,8 +60,9 @@ export class HomeComponent implements OnInit {
   color: string = "red";
   // availableFlights: FlightI[] = [];
 
-  constructor(private router: Router, private api: ApiService, private data: DataService) {
+  constructor(private router: Router, private api: ApiService, private data: DataService, private app: AppComponent) {
     this.retrievePromotions();
+    this.app.registerView = 'regView1';
   }
 
   ngOnInit(): void {

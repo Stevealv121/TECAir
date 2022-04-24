@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { Airplane } from '../models/airplane';
 import { Flight } from '../models/flight';
 import { PromotionI } from '../models/promotion.interface';
@@ -29,8 +30,9 @@ export class DealsComponent implements OnInit {
   flightNumber: string = '';
   stopOvers: StopOver[] = [];
 
-  constructor(private api: ApiService, private router: Router, private data: DataService) {
+  constructor(private api: ApiService, private router: Router, private data: DataService, private app: AppComponent) {
     // this.dealsMatrix = [];
+    this.app.registerView = 'regView1';
   }
 
   ngOnInit(): void {

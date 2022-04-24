@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 import { FlightBaggage } from 'src/app/models/flight-baggage';
 import { FlightPassengers } from 'src/app/models/flight-passengers';
 import { ApiService } from 'src/app/services/api.service';
@@ -14,14 +15,15 @@ export class FlightOpenComponent implements OnInit {
 
   passengers: FlightPassengers[];
   baggage: FlightBaggage[];
-  capacity:number;
+  capacity: number;
 
-  constructor(private router: Router, private data:DataServiceService, private api:ApiService) {
+  constructor(private router: Router, private data: DataServiceService, private api: ApiService, private app: AppComponent) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.passengers =[];
-    this.baggage =[];
-    this.capacity=0;
-   }
+    this.passengers = [];
+    this.baggage = [];
+    this.capacity = 0;
+    this.app.registerView = 'regView2';
+  }
 
   ngOnInit(): void {
     this.getPassengers();
@@ -29,23 +31,23 @@ export class FlightOpenComponent implements OnInit {
     this.getCapacity();
   }
 
-  getPassengers(){
+  getPassengers() {
     this.api.getFlightPassengers(this.data.getFlightId()).subscribe((data: any) => {
-      this.passengers =data;
+      this.passengers = data;
     })
 
   }
-  getCapacity(){
+  getCapacity() {
     this.api.getFlightCapacity(this.data.getFlightId()).subscribe((data: any) => {
-      this.capacity =data;
+      this.capacity = data;
     })
   }
-  getBaggage(){
+  getBaggage() {
     this.api.getFlightBaggage(this.data.getFlightId()).subscribe((data: any) => {
-      this.baggage =data;
+      this.baggage = data;
     })
   }
-  deletePassenger(userId : number){
+  deletePassenger(userId: number) {
     this.api.deleteFlightPassenger(userId).subscribe((data: any) => {
       console.log(data)
     })
@@ -54,15 +56,15 @@ export class FlightOpenComponent implements OnInit {
     })
     this.goBack();
   }
-  deleteBaggage(baggage_id: number){
+  deleteBaggage(baggage_id: number) {
     this.api.deleteHas(baggage_id).subscribe((data: any) => {
       console.log(data)
     })
-    this.api.deleteBaggage(baggage_id).subscribe((data:any)=>{
+    this.api.deleteBaggage(baggage_id).subscribe((data: any) => {
       console.log(data)
     })
   }
-  goBack(){
+  goBack() {
     this.router.navigate(['flightsInfo'])
   }
 }

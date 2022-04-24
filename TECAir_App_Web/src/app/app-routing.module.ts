@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: "flightsManagement", component: FlightManagementComponent },
   { path: "flightsInfo", component: FlightsInfoComponent },
   { path: "routes", component: RoutesComponent },
-  { path: "", pathMatch: "full", redirectTo: "/sign-up" },
+  { path: "", pathMatch: "full", redirectTo: "/login" },
   { path: "sign-up", component: SignUpComponent },
   { path: "login", component: LoginComponent },
   { path: "home", component: HomeComponent },

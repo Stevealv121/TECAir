@@ -5,6 +5,7 @@ import { FlightPassengers } from 'src/app/models/flight-passengers';
 import { ApiService } from 'src/app/services/api.service';
 import jsPDF from 'jspdf';
 import { DataServiceService } from 'src/app/services/data-service.service';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-flight-closed',
@@ -12,18 +13,19 @@ import { DataServiceService } from 'src/app/services/data-service.service';
   styleUrls: ['./flight-closed.component.css']
 })
 export class FlightClosedComponent implements OnInit {
-  @ViewChild('content', {static: false}) el!: ElementRef;
+  @ViewChild('content', { static: false }) el!: ElementRef;
 
   passengers: FlightPassengers[];
   baggage: FlightBaggage[];
-  capacity:number;
+  capacity: number;
 
-  constructor(private router: Router, private data:DataServiceService, private api:ApiService) {
+  constructor(private router: Router, private data: DataServiceService, private api: ApiService, private app: AppComponent) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.passengers =[];
-    this.baggage =[];
-    this.capacity=0;
-   }
+    this.passengers = [];
+    this.baggage = [];
+    this.capacity = 0;
+    this.app.registerView = 'regView2';
+  }
 
   ngOnInit(): void {
     this.getPassengers();
@@ -31,32 +33,32 @@ export class FlightClosedComponent implements OnInit {
     this.getCapacity();
   }
 
-  getPassengers(){
+  getPassengers() {
     this.api.getFlightPassengers(this.data.getFlightId()).subscribe((data: any) => {
-      this.passengers =data;
+      this.passengers = data;
     })
 
   }
-  getCapacity(){
+  getCapacity() {
     this.api.getFlightCapacity(this.data.getFlightId()).subscribe((data: any) => {
-      this.capacity =data;
+      this.capacity = data;
     })
   }
-  getBaggage(){
+  getBaggage() {
     this.api.getFlightBaggage(this.data.getFlightId()).subscribe((data: any) => {
-      this.baggage =data;
+      this.baggage = data;
     })
   }
-  downloadPDF(){
-    let pdf = new jsPDF('p','pt','a4');
-    pdf.html(this.el.nativeElement,{
+  downloadPDF() {
+    let pdf = new jsPDF('p', 'pt', 'a4');
+    pdf.html(this.el.nativeElement, {
       callback: (pdf) => {
         pdf.save("Informe del Vuelo.pdf");
       }
     })
     this.goBack();
   }
-  goBack(){
+  goBack() {
     this.router.navigate(['flightsInfo'])
   }
 

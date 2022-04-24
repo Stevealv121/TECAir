@@ -21,6 +21,8 @@ export class DataService {
   destination!: string;
   numberOfStops: number = 0;
   selectedSeats: string[] = [];
+  navbar!: string;
+  admin: boolean = false;
 
   constructor() {
     this.availableFlights = [];

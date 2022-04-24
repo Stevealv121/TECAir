@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 import { Routes } from 'src/app/models/routes';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -10,20 +11,21 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class CreateRouteComponent implements OnInit {
 
-  route:Routes|null;
+  route: Routes | null;
 
-  constructor(private router:Router, private api:ApiService) {
+  constructor(private router: Router, private api: ApiService, private app: AppComponent) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.route = null;
+    this.app.registerView = 'regView2';
   }
 
   ngOnInit(): void {
   }
 
-  createRoute(origin:string, destination: string, date:string, hour:string){
-    var splitted = date.split("-",3);
-    var splitted2 = hour.split(":",2);
-    this.route={
+  createRoute(origin: string, destination: string, date: string, hour: string) {
+    var splitted = date.split("-", 3);
+    var splitted2 = hour.split(":", 2);
+    this.route = {
       route_code: 0,
       origin: origin,
       destination: destination,
@@ -39,7 +41,7 @@ export class CreateRouteComponent implements OnInit {
     this.goBack();
 
   }
-  goBack(){
+  goBack() {
     this.router.navigate(['routes'])
   }
 

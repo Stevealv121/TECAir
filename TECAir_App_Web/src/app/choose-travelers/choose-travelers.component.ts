@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { Airplane } from '../models/airplane';
 import { Flight } from '../models/flight';
 import { Routes } from '../models/routes';
@@ -42,8 +43,14 @@ export class ChooseTravelersComponent implements OnInit {
   admin: boolean = false;//default:false
   users: UserI[] = [];
 
-  constructor(private data: DataService, private formBuilder: FormBuilder, private router: Router, private api: ApiService) {
+  constructor(private data: DataService, private app: AppComponent, private router: Router, private api: ApiService) {
     this.user = this.data.getUser();
+    this.admin = this.data.admin;
+    if (this.admin) {
+      this.app.registerView = 'regView2';
+    } else {
+      this.app.registerView = 'regView1';
+    }
     if (this.user !== undefined) {
       this.travelerForm.patchValue({ first_name: this.user.first_name });
       // this.travelerForm.patchValue({ middle_name: this.user.second_name });

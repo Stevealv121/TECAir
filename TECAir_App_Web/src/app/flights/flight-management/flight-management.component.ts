@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 import { Airplane } from 'src/app/models/airplane';
 import { FlightPost } from 'src/app/models/flight-post';
 import { Routes } from 'src/app/models/routes';
@@ -16,17 +17,18 @@ export class FlightManagementComponent implements OnInit {
 
   airplanes: Airplane[];
   routes: Routes[];
-  newFlight:FlightPost |null;
-  scale1: Scales|null;
-  scale2: Scales|null;
+  newFlight: FlightPost | null;
+  scale1: Scales | null;
+  scale2: Scales | null;
 
-  constructor(private router: Router, private data: DataServiceService, private api:ApiService) {
+  constructor(private router: Router, private data: DataServiceService, private api: ApiService, private app: AppComponent) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.airplanes =[];
-    this.routes=[];
-    this.newFlight=null;
-    this.scale1=null;
-    this.scale2=null;
+    this.airplanes = [];
+    this.routes = [];
+    this.newFlight = null;
+    this.scale1 = null;
+    this.scale2 = null;
+    this.app.registerView = 'regView2';
   }
 
   ngOnInit(): void {
@@ -34,46 +36,46 @@ export class FlightManagementComponent implements OnInit {
     this.getRoutes();
   }
 
-  getPlates(){
+  getPlates() {
     this.api.getAirplanes().subscribe((data: any) => {
-      this.airplanes =data;
+      this.airplanes = data;
     })
 
   }
-  getRoutes(){
+  getRoutes() {
     this.api.getRoutes().subscribe((data: any) => {
-      this.routes =data;
+      this.routes = data;
       console.log(this.routes);
     })
   }
 
-  createFlight(plate:string, route:string, boardingGate:string, price:string,status:string, scale1: string, scale2:string){
+  createFlight(plate: string, route: string, boardingGate: string, price: string, status: string, scale1: string, scale2: string) {
     var bol: boolean = true;
-    var splitted = route.split(" ",2);
-    if (status == "Enable"){
+    var splitted = route.split(" ", 2);
+    if (status == "Enable") {
       bol = true;
-    }else{
+    } else {
       bol = false
     }
-    this.newFlight ={
+    this.newFlight = {
       id: 0,
       boarding_gate: Number(boardingGate),
       price: Number(price),
       status: bol,
       route_code: Number(splitted[0]),
-      airplane_plate:plate
+      airplane_plate: plate
     }
     this.api.postFlight(this.newFlight).subscribe((data: any) => {
-      if (scale1 !=""){
-        this.scale1= {
+      if (scale1 != "") {
+        this.scale1 = {
           flight_Id: data,
           stopover: scale1
         }
         this.api.postScale(this.scale1).subscribe((data1: any) => {
           console.log(data1);
         })
-      }if(scale2 != ""){
-        this.scale2= {
+      } if (scale2 != "") {
+        this.scale2 = {
           flight_Id: data,
           stopover: scale2
         }
@@ -85,7 +87,7 @@ export class FlightManagementComponent implements OnInit {
     this.goBack()
   }
 
-  goBack(){
+  goBack() {
     this.router.navigate(['flights'])
   }
 

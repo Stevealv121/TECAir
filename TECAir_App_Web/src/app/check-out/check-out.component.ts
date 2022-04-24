@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../app.component';
 import { StopOver } from '../models/stopOver';
 import { DataService } from '../services/data.service';
 
@@ -19,7 +20,12 @@ export class CheckOutComponent implements OnInit {
   numberOfStops: number = 0;
   hasStopOvers: boolean = false;
 
-  constructor(private data: DataService) {
+  constructor(private data: DataService, private app: AppComponent) {
+    if (this.data.admin) {
+      this.app.registerView = 'regView2';
+    } else {
+      this.app.registerView = 'regView1';
+    }
     this.date = this.data.date;
     this.flight = this.data.flightNumber;
     this.airplane = this.data.selectedAirplane;

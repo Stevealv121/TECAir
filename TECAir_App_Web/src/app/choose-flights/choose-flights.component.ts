@@ -13,6 +13,7 @@ import { FlightI } from '../models/flight.interface';
 import { ApiService } from '../services/api.service';
 import { StopOverI } from '../models/stopOver.interface';
 import { StopOver } from '../models/stopOver';
+import { AppComponent } from '../app.component';
 
 const moment = _rollupMoment || _moment;
 
@@ -56,8 +57,12 @@ export class ChooseFlightsComponent implements OnInit {
   hasStopOvers: boolean = false;
   flightNumber: string = '';
 
-  constructor(private router: Router, private data: DataService, private api: ApiService) {
-
+  constructor(private router: Router, private data: DataService, private api: ApiService, private app: AppComponent) {
+    if (this.data.admin) {
+      this.app.registerView = 'regView2';
+    } else {
+      this.app.registerView = 'regView1';
+    }
     this.initiateValues();
   }
 
