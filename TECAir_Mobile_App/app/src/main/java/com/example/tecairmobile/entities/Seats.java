@@ -2,25 +2,29 @@ package com.example.tecairmobile.entities;
 
 public class Seats {
 
-    private int id;
+    private Integer id;
     private String description;
     private boolean state;
-    private int userid;
-    private String airplaneplate;
+    private Integer user_id;
+    private String airplane_plate;
 
-    public Seats(int id, String description, boolean state, int userid, String airplaneplate) {
+    public Seats(Integer id, String description, boolean state, Integer user_id, String airplane_plate) {
         this.id = id;
         this.description = description;
         this.state = state;
-        this.userid = userid;
-        this.airplaneplate = airplaneplate;
+        this.user_id = user_id;
+        this.airplane_plate = airplane_plate;
     }
 
-    public int getId() {
+    public Seats(){
+
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -40,19 +44,19 @@ public class Seats {
         this.state = state;
     }
 
-    public int getUserid() {
-        return userid;
+    public Integer getUser_id() {
+        return user_id;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
-    public String getAirplaneplate() {
-        return airplaneplate;
+    public String getAirplane_plate() {
+        return airplane_plate;
     }
 
-    public void setAirplaneplate(String airplaneplate) {
-        this.airplaneplate = airplaneplate;
+    public void setAirplane_plate(String airplane_plate) {
+        this.airplane_plate = airplane_plate;
     }
 }

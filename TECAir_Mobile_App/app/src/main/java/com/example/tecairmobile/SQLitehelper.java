@@ -30,6 +30,7 @@ public class SQLitehelper extends SQLiteOpenHelper {
         db.execSQL(Utilities.CREATE_ROUTE_TABLE);
         db.execSQL(Utilities.CREATE_SEATS_TABLE);
         db.execSQL(Utilities.CREATE_USER_TABLE);
+        db.execSQL(Utilities.CREATE_FAR_TABLE);
 
     }
 
@@ -47,6 +48,7 @@ public class SQLitehelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS route");
         db.execSQL("DROP TABLE IF EXISTS seats");
         db.execSQL("DROP TABLE IF EXISTS user");
+        db.execSQL("DROP TABLE IF EXISTS flights_and_routes");
         onCreate(db);
 
     }

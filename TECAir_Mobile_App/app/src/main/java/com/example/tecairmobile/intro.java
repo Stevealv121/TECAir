@@ -9,14 +9,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.tecairmobile.Interfaces.FlightsAPI;
+import com.example.tecairmobile.Interfaces.FlightsandroutesAPI;
 import com.example.tecairmobile.Interfaces.PromotionAPI;
-import com.example.tecairmobile.Interfaces.RouteAPI;
+import com.example.tecairmobile.Interfaces.SeatAPI;
 import com.example.tecairmobile.Interfaces.UserAPI;
 import com.example.tecairmobile.Utilities.Utilities;
-import com.example.tecairmobile.entities.Flight;
+import com.example.tecairmobile.entities.FlightsandRoutes;
 import com.example.tecairmobile.entities.Promotion;
-import com.example.tecairmobile.entities.Route;
+import com.example.tecairmobile.entities.Seats;
 import com.example.tecairmobile.entities.User;
 
 import java.util.List;
@@ -36,49 +36,94 @@ public class intro extends AppCompatActivity {
         if(savedInstanceState == null){
             sincP();
             sincUser();
-            sincFlight();
-            sincRoute();
+            sincSeat();
+            sincFAR();
         }
     }
 
-    private void sincRoute() {
+    private void sincFAR(){
         SQLitehelper conn = new SQLitehelper(this, "TecAir_BD", null,1);
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5104/")
                 .addConverterFactory(GsonConverterFactory.create()).build();
-        RouteAPI routeAPI = retrofit.create(RouteAPI.class);
-        Call<List<Route>> call = routeAPI.findR();
-        call.enqueue(new Callback<List<Route>>() {
+        FlightsandroutesAPI flightsandroutesAPI = retrofit.create(FlightsandroutesAPI.class);
+        Call<List<FlightsandRoutes>> call = flightsandroutesAPI.findFAR();
+        call.enqueue(new Callback<List<FlightsandRoutes>>() {
             @Override
-            public void onResponse(Call<List<Route>> call, Response<List<Route>> response) {
+            public void onResponse(Call<List<FlightsandRoutes>> call, Response<List<FlightsandRoutes>> response) {
                 try{
-                    List<Route> routeList = response.body();
-                    for(Route r: routeList){
+                    List<FlightsandRoutes> flightsandRoutesList = response.body();
+                    for(FlightsandRoutes far: flightsandRoutesList){
                         SQLiteDatabase db = conn.getWritableDatabase();
                         ContentValues values = new ContentValues();
-                        values.put(Utilities.FIELD_RCODE, r.getRoute_code());
-                        values.put(Utilities.FIELD_ORIGIN, r.getOrigin());
-                        values.put(Utilities.FIELD_DESTINATION, r.getDestination());
-                        values.put(Utilities.FIELD_YEAR, r.getYear());
-                        values.put(Utilities.FIELD_MONTH, r.getMonth());
-                        values.put(Utilities.FIELD_DAY, r.getDay());
-                        values.put(Utilities.FIELD_HOUR, r.getHours());
-                        values.put(Utilities.FIELD_MINUTES, r.getMinutes());
+                        values.put(Utilities.FIELD_ID, far.getId());
+                        values.put(Utilities.FIELD_BGATE, far.getBoarding_gate());
+                        values.put(Utilities.FIELD_PRICE, far.getPrice());
+                        values.put(Utilities.FIELD_STATUS, far.isStatus());
+                        values.put(Utilities.FIELD_RCODE, far.getRoute_code());
+                        values.put(Utilities.FIELD_APLATE, far.getAirplane_plate());
+                        values.put(Utilities.FIELD_ORIGIN, far.getOrigin());
+                        values.put(Utilities.FIELD_DESTINATION, far.getDestination());
+                        values.put(Utilities.FIELD_YEAR, far.getYear());
+                        values.put(Utilities.FIELD_MONTH, far.getMonth());
+                        values.put(Utilities.FIELD_DAY, far.getDay());
+                        values.put(Utilities.FIELD_HOUR, far.getHours());
+                        values.put(Utilities.FIELD_MINUTES, far.getMinutes());
+                        values.put(Utilities.FIELD_PCODE, far.getPromotion_code());
+                        values.put(Utilities.FIELD_FID, far.getFlight_id());
+                        values.put(Utilities.FIELD_FPRICE, far.getFinal_price());
 
-                        db.insert(Utilities.TABLE_ROUTE, null, values);
+                        db.insert(Utilities.TABLE_FAR, null, values);
                         db.close();
+
+
                     }
+
                 }catch (Exception ex){
                     Toast.makeText(intro.this,ex.getMessage(),Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
-            public void onFailure(Call<List<Route>> call, Throwable t) {
+            public void onFailure(Call<List<FlightsandRoutes>> call, Throwable t) {
                 Toast.makeText(intro.this,"Connection Error",Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
+    private void sincSeat() {
+        SQLitehelper conn = new SQLitehelper(this, "TecAir_BD", null,1);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5104/")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        SeatAPI seatAPI = retrofit.create(SeatAPI.class);
+        Call<List<Seats>> call = seatAPI.findS();
+        call.enqueue(new Callback<List<Seats>>() {
+            @Override
+            public void onResponse(Call<List<Seats>> call, Response<List<Seats>> response) {
+                 try{
+                     List<Seats> seatsList = response.body();
+                     for(Seats s: seatsList){
+                         SQLiteDatabase db = conn.getWritableDatabase();
+                         ContentValues values = new ContentValues();
+                         values.put(Utilities.FIELD_ID, s.getId());
+                         values.put(Utilities.FIELD_DESCRIPTION, s.getDescription());
+                         values.put(Utilities.FIELD_STATUS, s.isState());
+                         values.put(Utilities.FIELD_UID, s.getUser_id());
+                         values.put(Utilities.FIELD_APLATE, s.getAirplane_plate());
+
+                         db.insert(Utilities.TABLE_SEATS, null, values);
+                         db.close();
+                     }
+                 }catch (Exception ex){
+                     Toast.makeText(intro.this,ex.getMessage(),Toast.LENGTH_SHORT).show();
+                 }
+            }
+
+            @Override
+            public void onFailure(Call<List<Seats>> call, Throwable t) {
+                Toast.makeText(intro.this,"Connection Error",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     private void sincP() {
         SQLitehelper conn = new SQLitehelper(this, "TecAir_BD", null,1);
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5104/")
@@ -111,44 +156,6 @@ public class intro extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Promotion>> call, Throwable t) {
-                Toast.makeText(intro.this,"Connection Error",Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void sincFlight() {
-        SQLitehelper conn = new SQLitehelper(this, "TecAir_BD", null,1);
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5104/")
-                .addConverterFactory(GsonConverterFactory.create()).build();
-        FlightsAPI flightsAPI = retrofit.create(FlightsAPI.class);
-        Call<List<Flight>> call = flightsAPI.findF();
-        call.enqueue(new Callback<List<Flight>>() {
-            @Override
-            public void onResponse(Call<List<Flight>> call, Response<List<Flight>> response) {
-                try{
-                    List<Flight> flightList = response.body();
-                    for(Flight f:flightList){
-                        SQLiteDatabase db = conn.getWritableDatabase();
-                        ContentValues values = new ContentValues();
-                        values.put(Utilities.FIELD_ID, f.getId());
-                        values.put(Utilities.FIELD_BGATE, f.getBoarding_gate());
-                        values.put(Utilities.FIELD_PRICE, f.getPrice());
-                        values.put(Utilities.FIELD_STATUS, f.isStatus());
-                        values.put(Utilities.FIELD_RCODE, f.getRoute_code());
-                        values.put(Utilities.FIELD_APLATE, f.getAirplane_plate());
-
-                        db.insert(Utilities.TABLE_FLIGHTS, null, values);
-                        db.close();
-
-                    }
-
-                }catch(Exception ex){
-                    Toast.makeText(intro.this,ex.getMessage(),Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Flight>> call, Throwable t) {
                 Toast.makeText(intro.this,"Connection Error",Toast.LENGTH_SHORT).show();
             }
         });
@@ -195,7 +202,6 @@ public class intro extends AppCompatActivity {
             }
         });
     }
-
     public void onClick(View view) {
         Intent myintent = null;
 
