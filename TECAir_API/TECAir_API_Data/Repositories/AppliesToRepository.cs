@@ -26,7 +26,7 @@ namespace TECAir_API_Data.Repositories
         {
             var db = dbConnection();
             var sql = @"DELETE
-                        FROM public.""Applies to""
+                        FROM public.""AppliesTo""
                         WHERE flight_id = @flight_id";
             var result = await db.ExecuteAsync(sql, new { flight_id = applies_to.flight_id });
             return result > 0;
@@ -37,7 +37,7 @@ namespace TECAir_API_Data.Repositories
         {
             var db = dbConnection();
             var sql = @"SELECT *
-                       FROM public.""Applies to"" ";
+                       FROM public.""AppliesTo"" ";
             return await db.QueryAsync<AppliesTo>(sql, new { });
         }
 
@@ -45,7 +45,7 @@ namespace TECAir_API_Data.Repositories
         {
             var db = dbConnection();
             var sql = @"SELECT flight_id
-                       FROM public.""Applies to"" 
+                       FROM public.""AppliesTo"" 
                        WHERE promotion_code = @promotion_code";
             var result = await db.QueryAsync<string>(sql, new { promotion_code = promo_code });
 
@@ -56,7 +56,7 @@ namespace TECAir_API_Data.Repositories
         {
             var db = dbConnection();
             var sql = @"SELECT *
-                        FROM public.""Applies to"" 
+                        FROM public.""AppliesTo"" 
                         NATURAL JOIN public.""PROMOTION""
                         WHERE flight_id = @flight_id";
             var result = await db.QueryAsync<Promotion_AppliesTo>(sql, new { flight_id = flght_id });
@@ -83,7 +83,7 @@ namespace TECAir_API_Data.Repositories
             applies_to.final_price = ((100 - promotionPrice) * flightPrice) / 100;
 
             var sql3 = @"
-                        INSERT INTO public.""Applies to"" (promotion_code, flight_id,final_price)
+                        INSERT INTO public.""AppliesTo"" (promotion_code, flight_id,final_price)
                         VALUES (@promotion_code, @flight_id,@final_price)";
             var result = await db.ExecuteAsync(sql3, new
             {
@@ -98,7 +98,7 @@ namespace TECAir_API_Data.Repositories
         {
             var db = dbConnection();
             var sql = @"
-                        UPDATE public.""Applies to"" 
+                        UPDATE public.""AppliesTo"" 
                         SET promotion_code = @promotion_code,
                             flight_id = @flight_id,
                             final_price = @final_price

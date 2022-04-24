@@ -1,5 +1,7 @@
+using TEC_Air_API_Model;
 using TECAir_API_Data;
 using TECAir_API_Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //PostgreSQL Connection
+builder.Services.AddDbContext<TecAirContext>(
+    options => options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQLConnection"))
+    );
+
 var posgreSQLConnectionConfig = new PostgreSQLConfig(builder.Configuration.GetConnectionString("PostgreSQLConnection"));
 builder.Services.AddSingleton(posgreSQLConnectionConfig);
 

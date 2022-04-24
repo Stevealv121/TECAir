@@ -44,8 +44,8 @@ namespace TECAir_API_Data.Repositories
             var db = dbConnection();
             var sql = @"SELECT * FROM public.""FLIGHT""
                         NATURAL JOIN public.""ROUTE""
-                        LEFT OUTER JOIN public.""Applies to""
-                        ON public.""FLIGHT"".id = public.""Applies to"".flight_id ";
+                        LEFT OUTER JOIN public.""AppliesTo""
+                        ON public.""FLIGHT"".id = public.""AppliesTo"".flight_id ";
             return await db.QueryAsync<Flight_Route>(sql, new { });
         }
 
@@ -64,8 +64,8 @@ namespace TECAir_API_Data.Repositories
             var db = dbConnection();
             var sql = @"SELECT * FROM public.""FLIGHT""
                         NATURAL JOIN public.""ROUTE""
-                        LEFT OUTER JOIN public.""Applies to""
-                        ON public.""FLIGHT"".id = public.""Applies to"".flight_id  
+                        LEFT OUTER JOIN public.""AppliesTo""
+                        ON public.""FLIGHT"".id = public.""AppliesTo"".flight_id  
                        WHERE destination = @destination AND origin = @origin";
             return await db.QueryAsync<Flight_Route>(sql, new 
             { 

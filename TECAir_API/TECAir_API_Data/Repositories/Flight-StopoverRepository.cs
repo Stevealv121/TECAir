@@ -25,7 +25,7 @@ namespace TECAir_API_Data.Repositories
         {
             var db = dbConnection();
             var sql = @"DELETE
-                        FROM public.""Flight Stopover""
+                        FROM public.""Flight_Stopover""
                         WHERE flight_id = @flight_id";
             var result = await db.ExecuteAsync(sql, new { flight_id = flightStopover.flight_id });
             return result > 0;
@@ -35,7 +35,7 @@ namespace TECAir_API_Data.Repositories
         {
             var db = dbConnection();
             var sql = @"SELECT flight_id,stopover
-                       FROM public.""Flight Stopover"" ";
+                       FROM public.""Flight_Stopover"" ";
             return await db.QueryAsync<Flight_Stopover>(sql, new { });
         }
 
@@ -43,7 +43,7 @@ namespace TECAir_API_Data.Repositories
         {
             var db = dbConnection();
             var sql = @"SELECT stopover
-                       FROM public.""Flight Stopover"" 
+                       FROM public.""Flight_Stopover"" 
                        WHERE flight_id = @flight_id";
             var result = await db.QueryAsync<string>(sql, new { flight_id = flght_id });
             
@@ -54,7 +54,7 @@ namespace TECAir_API_Data.Repositories
         {
             var db = dbConnection();
             var sql = @"
-                        INSERT INTO public.""Flight Stopover"" (flight_id,stopover)
+                        INSERT INTO public.""Flight_Stopover"" (flight_id,stopover)
                         VALUES (@flight_id,@stopover)";
             var result = await db.ExecuteAsync(sql, new
             {
@@ -68,7 +68,7 @@ namespace TECAir_API_Data.Repositories
         {
             var db = dbConnection();
             var sql = @"
-                        UPDATE public.""Flight Stopover"" 
+                        UPDATE public.""Flight_Stopover"" 
                         SET 
                             flight_id = @flight_id,
                             stopover = @stopover
