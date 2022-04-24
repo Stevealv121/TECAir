@@ -6,7 +6,7 @@
         The system will create a specific id for each suitcase.
       </label>
     </div>
-  </div> <!--Agregar funcionalidad para guardad los datos del input-->
+  </div> <!--Input with the baggage information-->
   <div class="col">
     <h3>Create a Baggage</h3>
     <div class="input-group mb-3">
@@ -34,7 +34,7 @@
           <option *ngFor="let flight of flights">{{flight.id}} {{flight.origin}}----{{flight.destination}}</option>
         </select>
     </div>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end"> <!----Action buttons-->
       <button id="span" id="buttons" class="btn btn-primary me-md-2" type="button" (click)="goBack()">Cancel</button>
       <button id="span" id="buttons" class="btn btn-primary" type="button" (click)="postSuitCase(user.value,color.value,weight.value,fly.value)">Create</button>
     </div>

@@ -1,0 +1,49 @@
+<div id="content" class="container" #content>
+  <div id="row" class="row">
+    <h3>TECAir Airline</h3> <h5 id="log">Your security in our hands</h5>
+  </div>
+  <div id="row" class="row">
+    <div id="content2" class="container">
+      <div class="col">
+        <h3>Flight Ticket</h3>
+        <div id="row2" class="row">
+          <div class="col">
+            <label id="flightNumber">Flight Number: {{flightNumber}}</label>
+          </div>
+          <div id="col1"class="col">
+            <label id="Airplane">Airplane: {{plate}}</label>
+          </div>
+          <div id="col2" class="col">
+            <label id="Airplane">Seat:  {{seat}}</label>
+          </div>
+          <div id="col2" class="col">
+            <label id="Airplane">Date:  {{date}}</label>
+          </div>
+        </div>
+        <div id="row3" class="row">
+          <div class="col">
+             <label>{{user?.first_name}}</label>
+          </div>
+          <div *ngIf="scales[0] != null" class="col">
+            <label >Scale 1: {{scales[0]}}</label>
+          </div>
+          <div *ngIf="scales[1] != null" class="col">
+            <label>Scale 2: {{scales[1]}}</label>
+          </div>
+        </div>
+        <div id="row1" class="row">
+          <div id="col3" class="col">
+            <label id="flightNumber">Origin: {{origin}}</label>
+          </div>
+          <div id="col4" class="col">
+            <label id="Airplane">Destination: {{destination}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="content3" class="container">
+  <button id="buttons" class="btn btn-primary me-md-2" type="button" (click)="goBack()">Home</button>
+    <button id="buttons" class="btn btn-primary" type="button" (click)="downloadPDF()">Print</button>
+</div>

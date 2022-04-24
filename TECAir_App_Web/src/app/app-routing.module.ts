@@ -20,6 +20,7 @@ import { FlightOpenComponent } from './reports/flight-open/flight-open.component
 import { FlightClosedComponent } from './reports/flight-closed/flight-closed.component';
 import { HomeComponent } from './home/home.component';
 import { DealsComponent } from './deals/deals.component';
+import { BillComponent } from './bill/bill.component';
 
 const routes: Routes = [
   { path: "baggage", component: BaggageComponent },
@@ -41,7 +42,8 @@ const routes: Routes = [
   { path: "RouteEdit", component: RouteEditComponent },
   { path: "OpenFlight", component: FlightOpenComponent },
   { path: "ClosedFlight", component: FlightClosedComponent },
-  { path: "deals", component: DealsComponent }
+  { path: "deals", component: DealsComponent },
+  {path: "bill", component: BillComponent}
 
 ];
 

@@ -39,7 +39,7 @@
         </div>
     </div>
     <!-- Flights -->
-    <div class="card-data" *ngFor="let info of availableFlights; index as i;">
+    <div class="card-data" *ngFor="let info of availableFlights; index as i">
         <div class="card">
             <ng-container *ngIf="numberOfStops[i] === 1; else zeroTemplate">
                 <h5 id="stop-h5">1 STOP</h5>
@@ -63,7 +63,7 @@
                     Details
                 </summary>
                 <div class="container-details">
-                    <ng-container *ngIf="stepOvers[i].length === 0; else stopOversTemplate">
+                    <ng-container *ngIf="stepOvers[i]?.length === 0; else stopOversTemplate">
                         <div class="row row-bottom-margin">
                             <div class="col">
                                 <h6>{{info.origin}} to {{info.destination}}</h6>

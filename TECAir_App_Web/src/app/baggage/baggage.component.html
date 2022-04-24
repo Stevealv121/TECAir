@@ -4,11 +4,10 @@
       <div id="col" class="col">
       </div>
       <div id="col2" class="col">
-        <table id="table" class="table "> <!--Se debe llenar con el la informacion de la BD-->
+        <table id="table" class="table "> <!--Table with the baggage information-->
           <thead>
             <tr>
               <th scope="col">Id</th>
-              <!--th scope="col">Owner</th--->
               <th scope="col">Color</th>
               <th scope="col">Weight</th>
               <th scope="col">Price</th>
@@ -18,7 +17,6 @@
           <tbody>
             <tr *ngFor="let suitcase of baggage">
               <th scope="row">{{suitcase.id}}</th>
-              <!--td>Mario Calderon Montero</td--->
               <td>{{suitcase.color}}</td>
               <td>{{suitcase.weight}} Kg</td>
               <td>--</td>

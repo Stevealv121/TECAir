@@ -18,6 +18,11 @@ export class BaggageCreationComponent implements OnInit {
   owner:Has|null;
   users: UserI[];
   flights: Flight[];
+  /**
+   * This function is the constructor of the component
+   * @param router Router type object.
+   * @param api  injects the api service to the component
+   */
   constructor(private router:Router, private api:ApiService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.baggage=null;
@@ -25,7 +30,9 @@ export class BaggageCreationComponent implements OnInit {
     this.owner = null;
     this.flights=[];
   }
-
+  /**
+   * This function intialize the elements of the component
+   */
   ngOnInit(): void {
     this.getUsers()
     this.getflights()
@@ -36,18 +43,24 @@ export class BaggageCreationComponent implements OnInit {
   goBack(){
     this.router.navigate(['baggage']);
   }
+  /**
+   * This function asks the API for registered users
+   */
   getUsers(){
     this.api.getUsers().subscribe((data: any) => {
       this.users=data;
     })
   }
+  /**
+   * This function asks the API for registered flights
+   */
   getflights(){
     this.api.getFlights().subscribe((data: any) => {
       this.flights =data;
     })
   }
   /**
-   * Post the suitcase in the Data Base
+   * This function post the new baggage on the data base and takes back to the flight component
    */
   async postSuitCase(user:string, color:string, weight:string, flightId:string){
     var splitted = user.split(" ", 3);

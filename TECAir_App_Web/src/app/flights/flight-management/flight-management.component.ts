@@ -19,7 +19,12 @@ export class FlightManagementComponent implements OnInit {
   newFlight:FlightPost |null;
   scale1: Scales|null;
   scale2: Scales|null;
-
+  /**
+   * This funcition is the contructor of the component
+   * @param router Router object type. Injects the Router to the component
+   * @param data DataService object type. Injects the data service to the component
+   * @param api Api object type. Injects the API service to the component
+   */
   constructor(private router: Router, private data: DataServiceService, private api:ApiService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.airplanes =[];
@@ -28,25 +33,42 @@ export class FlightManagementComponent implements OnInit {
     this.scale1=null;
     this.scale2=null;
   }
-
+  /**
+   * This function intialize the elements of the component
+   */
   ngOnInit(): void {
     this.getPlates();
     this.getRoutes();
   }
-
+  /**
+   * This function asks the API for the airplanes plates in the data base
+   */
   getPlates(){
     this.api.getAirplanes().subscribe((data: any) => {
       this.airplanes =data;
     })
 
   }
+  /**
+   * This function asks the API for the routes in the data base
+   */
   getRoutes(){
     this.api.getRoutes().subscribe((data: any) => {
       this.routes =data;
       console.log(this.routes);
     })
   }
-
+  /**
+   * This function asks the API to create a new flight in the data base
+   * @param plate string with the airplane's plate
+   * @param route string with the route code of the choosed route
+   * @param boardingGate string with the boarding gate's number
+   * @param price string with the flight's price
+   * @param status string with the Flight's status. Enable or Unable
+   * @param scale1 String with the first of the two scales.
+   * @param scale2 String with the last scale
+   * @param duration string with the flight's duration
+   */
   async createFlight(plate:string, route:string, boardingGate:string, price:string,status:string, scale1: string, scale2:string, duration:string){
     var bol: boolean = true;
     var splitted = route.split(" ",2);
@@ -86,7 +108,9 @@ export class FlightManagementComponent implements OnInit {
     await new Promise(f => setTimeout(f, 500))
     this.goBack()
   }
-
+  /**
+   * This function takes back the user to the flight component
+   */
   goBack(){
     this.router.navigate(['flights'])
   }
