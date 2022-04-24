@@ -18,6 +18,7 @@ import { Scales } from '../models/scales';
 import { Airplane } from '../models/airplane';
 //import { StopOverI } from '../models/stopOver.interface';
 import { StopOver } from '../models/stopOver';
+import { Promotion } from '../models/promotion';
 
 @Injectable({
   providedIn: 'root'
@@ -92,6 +93,11 @@ export class ApiService {
 
   getAppliesTo(promo_code: number): Observable<string[]> {
     let p = this.applyToPath + "/" + promo_code;
+    return this.http.get<string[]>(p);
+  }
+  getAppliesToByFlightID(flight_id: string): Observable<string[]> {
+    let p = this.url + "AppliesTo/PromotionandAppliesTo/" + flight_id;
+    //let p = this.url + "AppliesTo/PromotionandAppliesTo/3"
     return this.http.get<string[]>(p);
   }
 

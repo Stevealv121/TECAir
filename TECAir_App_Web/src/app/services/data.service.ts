@@ -23,6 +23,7 @@ export class DataService {
   selectedSeats: string[] = [];
   navbar!: string;
   admin: boolean = false;
+  home: boolean = false;
 
   constructor() {
     this.availableFlights = [];

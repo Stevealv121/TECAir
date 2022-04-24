@@ -63,10 +63,28 @@ export class ChooseFlightsComponent implements OnInit {
     } else {
       this.app.registerView = 'regView1';
     }
-    this.initiateValues();
+    if (this.data.home) {
+      this.initiateValues();
+    }
   }
 
   ngOnInit(): void {
+  }
+
+  async getFinalPrice() {
+    for (let i = 0; i < this.availableFlights.length; i++) {
+      this.api.getAppliesToByFlightID(this.availableFlights[i].id.toString()).subscribe((data: any) => {
+        if (data[i] == undefined) {
+          this.availableFlights[i].final_price = this.availableFlights[i].price;
+        } else {
+          this.availableFlights[i].final_price = data[i].final_price;
+          console.log(data);
+        }
+
+      });
+      await new Promise(f => (setTimeout(f, 500)));
+      console.log(this.availableFlights);
+    }
   }
 
   setFlightNumber(city: string, country: string) {
@@ -114,6 +132,7 @@ export class ChooseFlightsComponent implements OnInit {
   initiateValues() {
 
     this.availableFlights = this.data.availableFlights;
+    this.getFinalPrice();
     // console.log(this.availableFlights);
     if (this.availableFlights.length == 0) {
       this.bookingForm.patchValue({ origin: "From" });
@@ -162,7 +181,9 @@ export class ChooseFlightsComponent implements OnInit {
     }
 
     this.getStopOvers(flight_ids);
-
+    console.log(this.availableFlights);
+    this.getFinalPrice();
+    console.log(this.availableFlights);
 
   }
 

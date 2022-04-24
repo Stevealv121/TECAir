@@ -99,6 +99,8 @@ export class HomeComponent implements OnInit {
     });
     await new Promise(f => setTimeout(f, 100));
 
+    this.data.home = true;
+
     this.router.navigateByUrl("/choose-flights");
   }
 
