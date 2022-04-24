@@ -12,7 +12,7 @@ using TEC_Air_API_Model;
 namespace TEC_Air_API_Model.Migrations
 {
     [DbContext(typeof(TecAirContext))]
-    [Migration("20220424042009_InitialDatabase")]
+    [Migration("20220424160343_InitialDatabase")]
     partial class InitialDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

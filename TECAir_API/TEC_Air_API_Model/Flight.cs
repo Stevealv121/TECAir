@@ -9,7 +9,7 @@ namespace TEC_Air_API_Model
 {
     public class Flight
     {
-        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity), Key]
         public int id { get; set; }
         public int boarding_gate { get; set; }
         public int price { get; set; }

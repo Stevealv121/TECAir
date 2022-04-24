@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace TEC_Air_API_Model
 {
     public class Route
     {
-        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity), Key]
         public int route_code { get; set; }
         public string origin { get; set; }
         public string destination { get; set; }
