@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TEC_Air_API_Model
 {
+    /// <summary>
+    /// Model for flight stopovers
+    /// </summary>
     [Keyless]
     public class Flight_Stopover
     {

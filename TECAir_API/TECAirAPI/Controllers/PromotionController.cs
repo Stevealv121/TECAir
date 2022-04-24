@@ -4,6 +4,9 @@ using TECAir_API_Data.Repositories;
 
 namespace TECAirAPI.Controllers
 {
+    /// <summary>
+    /// Promotion API controller
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class PromotionController : Controller
@@ -14,17 +17,30 @@ namespace TECAirAPI.Controllers
         {
             _promotionRepository = promotionRepository;
         }
+        /// <summary>
+        /// Get all promotions
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetAllPromotion()
         {
             return Ok(await _promotionRepository.GetAllPromotions());
         }
-
+        /// <summary>
+        /// Get promotion by code
+        /// </summary>
+        /// <param name="promotion_code"></param>
+        /// <returns></returns>
         [HttpGet("{promotion_code}")]
         public async Task<IActionResult> GetAirplaneDetails(int promotion_code)
         {
             return Ok(await _promotionRepository.GetPromotionDetails(promotion_code));
         }
+        /// <summary>
+        /// Post promotion
+        /// </summary>
+        /// <param name="promotion"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreatePromotion([FromBody] Promotion promotion)
         {
@@ -37,7 +53,11 @@ namespace TECAirAPI.Controllers
 
             return Created("created", created);
         }
-
+        /// <summary>
+        /// Put promotion
+        /// </summary>
+        /// <param name="promotion"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> UpdatePromotion([FromBody] Promotion promotion)
         {
@@ -50,6 +70,11 @@ namespace TECAirAPI.Controllers
 
             return NoContent();
         }
+        /// <summary>
+        /// Delete promotion by code
+        /// </summary>
+        /// <param name="promo_code"></param>
+        /// <returns></returns>
         [HttpDelete("{promo_code}")]
         public async Task<IActionResult> DeletePromotion(int promo_code)
         {

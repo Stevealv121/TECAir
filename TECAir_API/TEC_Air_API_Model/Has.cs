@@ -9,6 +9,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TEC_Air_API_Model
 {
+    /// <summary>
+    /// Relationship model between baggage, user and flight
+    /// </summary>
     [Keyless]
     public class Has
     {

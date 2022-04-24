@@ -7,6 +7,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace TEC_Air_API_Model
 {
+    /// <summary>
+    /// Entity model for a flight
+    /// </summary>
     public class Flight
     {
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity), Key]

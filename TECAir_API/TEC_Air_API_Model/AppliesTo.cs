@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TEC_Air_API_Model
 {
+    /// <summary>
+    /// Relatioship model between promotion and flight
+    /// </summary>
     [Keyless]
     public class AppliesTo
     {

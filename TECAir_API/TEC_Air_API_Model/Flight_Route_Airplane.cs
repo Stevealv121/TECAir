@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TEC_Air_API_Model
 {
+    /// <summary>
+    /// Join model beetween Flight and Route and Airplane
+    /// </summary>
     public class Flight_Route_Airplane
     {
         public int id { get; set; }

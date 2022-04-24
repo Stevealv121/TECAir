@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TEC_Air_API_Model
 {
+    /// <summary>
+    /// Relatioship model between user and flight
+    /// </summary>
     [Keyless]
     public class Books
     {

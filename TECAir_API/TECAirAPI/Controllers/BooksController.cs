@@ -4,6 +4,9 @@ using TECAir_API_Data.Repositories;
 
 namespace TECAirAPI.Controllers
 {
+    /// <summary>
+    /// Books API controller
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class BooksController : Controller
@@ -14,22 +17,40 @@ namespace TECAirAPI.Controllers
         {
             _booksRepository = booksRepository;
         }
+        /// <summary>
+        /// Get all Books
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetAllReservation()
         {
             return Ok(await _booksRepository.GetAllReservation());
         }
-
+        /// <summary>
+        /// Get Books by flight id
+        /// </summary>
+        /// <param name="flight_id"></param>
+        /// <returns></returns>
         [HttpGet("{flight_id}")]
         public async Task<IActionResult> GetReservationDetails(int flight_id)
         {
             return Ok(await _booksRepository.GetReservationDetails(flight_id));
         }
+        /// <summary>
+        /// Get books by user id
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <returns></returns>
         [HttpGet("ByUser/{user_id}")]
         public async Task<IActionResult> GetReservationDetailsbyUser(int user_id)
         {
             return Ok(await _booksRepository.GetReservationDetailsbyUser(user_id));
         }
+        /// <summary>
+        /// Post books
+        /// </summary>
+        /// <param name="reservation"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreateFlight([FromBody] Books reservation)
         {
@@ -42,7 +63,11 @@ namespace TECAirAPI.Controllers
 
             return Created("created", created);
         }
-
+        /// <summary>
+        /// Put Books
+        /// </summary>
+        /// <param name="reservation"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> UpdateReservation([FromBody] Books reservation)
         {
@@ -55,6 +80,11 @@ namespace TECAirAPI.Controllers
 
             return NoContent();
         }
+        /// <summary>
+        /// Delete Books by user id
+        /// </summary>
+        /// <param name="Usr_ID"></param>
+        /// <returns></returns>
         [HttpDelete("{Usr_ID}")]
         public async Task<IActionResult> DeleteReservation(int Usr_ID)
         {
@@ -63,6 +93,11 @@ namespace TECAirAPI.Controllers
 
             return NoContent();
         }
+        /// <summary>
+        /// DElete Books by flight id
+        /// </summary>
+        /// <param name="flight_ID"></param>
+        /// <returns></returns>
         [HttpDelete("Flight/{flight_ID}")]
         public async Task<IActionResult> DeleteReservationFlight(int flight_ID)
         {

@@ -5,6 +5,9 @@ using Route = TEC_Air_API_Model.Route;
 
 namespace TECAirAPI.Controllers
 {
+    /// <summary>
+    /// Route API controller
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class RouteController : Controller
@@ -15,17 +18,30 @@ namespace TECAirAPI.Controllers
         {
             _routeRepository = routeRepository;
         }
+        /// <summary>
+        /// Get all routes
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetAllRoutes()
         {
             return Ok(await _routeRepository.GetAllRoutes());
         }
-
+        /// <summary>
+        /// Get route by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetRouteDetails(int id)
         {
             return Ok(await _routeRepository.GetRouteDetails(id));
         }
+        /// <summary>
+        /// Post routes
+        /// </summary>
+        /// <param name="route"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreateRoute([FromBody]Route route)
         {
@@ -38,7 +54,11 @@ namespace TECAirAPI.Controllers
 
             return Created("created", created);
         }
-
+        /// <summary>
+        /// Put routes
+        /// </summary>
+        /// <param name="route"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> UpdateRoute([FromBody] Route route)
         {
@@ -51,6 +71,11 @@ namespace TECAirAPI.Controllers
 
             return NoContent();
         }
+        /// <summary>
+        /// Delete route by id
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         [HttpDelete("{ID}")]
         public async Task<IActionResult> DeleteRoute(int ID)
         {

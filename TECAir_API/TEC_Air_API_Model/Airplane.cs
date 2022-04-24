@@ -7,6 +7,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TEC_Air_API_Model
 {
+    /// <summary>
+    /// Entity model for airplane
+    /// </summary>
     public class Airplane
     {
         [Key]

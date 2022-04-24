@@ -7,6 +7,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace TEC_Air_API_Model
 {
+    /// <summary>
+    /// Entity model for promotions
+    /// </summary>
     public class Promotion
     {
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity), Key]

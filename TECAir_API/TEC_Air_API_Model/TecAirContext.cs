@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TEC_Air_API_Model
 {
+    /// <summary>
+    /// Database context for TecAir airline
+    /// </summary>
     public class TecAirContext: DbContext
     {
         public TecAirContext(DbContextOptions<TecAirContext> options): base(options)
@@ -29,10 +32,5 @@ namespace TEC_Air_API_Model
         public DbSet<Route> ROUTE { get; set; }
         public DbSet<Seat> SEAT { get; set; }
         public DbSet<User> USER { get; set; }
-
-
-
-
-
     }
 }

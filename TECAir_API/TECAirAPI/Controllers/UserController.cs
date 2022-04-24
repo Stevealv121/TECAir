@@ -14,17 +14,31 @@ namespace TECAirAPI.Controllers
         {
             _userRepository = userRepository;
         }
+        /// <summary>
+        /// Get all users
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
             return Ok(await _userRepository.GetAllUsers());
         }
-
+        /// <summary>
+        /// Get user by email and password
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         [HttpGet("{email}/{password}")]
         public async Task<IActionResult> GetUserDetails(string email, string password)
         {
             return Ok(await _userRepository.GetUserDetails(email, password));
         }
+        /// <summary>
+        /// Post user
+        /// </summary>
+        /// <param name="usr"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody]User usr)
         {
@@ -37,7 +51,11 @@ namespace TECAirAPI.Controllers
 
             return Created("created", created);
         }
-
+        /// <summary>
+        /// Put user
+        /// </summary>
+        /// <param name="usr"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> UpdateUser([FromBody] User usr)
         {
@@ -50,6 +68,11 @@ namespace TECAirAPI.Controllers
 
             return NoContent();
         }
+        /// <summary>
+        /// Delete user by id
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         [HttpDelete("{ID}")]
         public async Task<IActionResult> DeleteUser(int ID)
         {

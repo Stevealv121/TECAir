@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TEC_Air_API_Model
 {
+    /// <summary>
+    /// Join model beetween Promotion and AppliesTo
+    /// </summary>
     public class Promotion_AppliesTo
     {
         public int promotion_code { get; set; }

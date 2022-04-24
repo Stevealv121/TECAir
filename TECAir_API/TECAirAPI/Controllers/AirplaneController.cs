@@ -4,6 +4,9 @@ using TECAir_API_Data.Repositories;
 
 namespace TECAirAPI.Controllers
 {
+    /// <summary>
+    /// Airplane API controller
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class AirplaneController : Controller
@@ -14,17 +17,30 @@ namespace TECAirAPI.Controllers
         {
             _airplaneRepository = airplaneRepository;
         }
+        /// <summary>
+        /// Get all aiplanes
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetAllAirplanes()
         {
             return Ok(await _airplaneRepository.GetAllAirplanes());
         }
-
+        /// <summary>
+        /// Get aiplane by plate
+        /// </summary>
+        /// <param name="plate"></param>
+        /// <returns></returns>
         [HttpGet("{plate}")]
         public async Task<IActionResult> GetAirplaneDetails(string plate)
         {
             return Ok(await _airplaneRepository.GetAirplaneDetails(plate));
         }
+        /// <summary>
+        /// Post airplane
+        /// </summary>
+        /// <param name="airplane"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreateAirplane([FromBody] Airplane airplane)
         {
@@ -37,7 +53,11 @@ namespace TECAirAPI.Controllers
 
             return Created("created", created);
         }
-
+        /// <summary>
+        /// Put airplane
+        /// </summary>
+        /// <param name="airplane"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> UpdateAirplane([FromBody] Airplane airplane)
         {
@@ -50,6 +70,11 @@ namespace TECAirAPI.Controllers
 
             return NoContent();
         }
+        /// <summary>
+        /// Delete airplane by plate
+        /// </summary>
+        /// <param name="Plate"></param>
+        /// <returns></returns>
         [HttpDelete("{Plate}")]
         public async Task<IActionResult> DeleteAirplane(string Plate)
         {
