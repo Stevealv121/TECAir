@@ -29,7 +29,7 @@ import { DataService } from './services/data.service';
           </div>
           <div class="open-card-BG" *ngIf="registerView == 'regView2'"><nav id="navbar"class="navbar navbar-expand-lg navbar-dark ">
           <div class="container-fluid">
-            <a id = "nav-item" class="navbar-brand" href="#">TECAir</a>
+            <a id = "nav-item" class="navbar-brand" routerLink="/choose-flights">TECAir</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -49,15 +49,6 @@ import { DataService } from './services/data.service';
                 </li>
                 <li class="nav-item">
                   <a id = "nav-item" class="nav-link" routerLink="/routes">Routes</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a id = "nav-item" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Account
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Log Out</a></li>
-                    <li><a class="dropdown-item" href="#">Change Password</a></li>
-                  </ul>
                 </li>
               </ul>
             </div>
