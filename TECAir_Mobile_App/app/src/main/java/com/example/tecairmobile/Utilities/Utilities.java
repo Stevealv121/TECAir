@@ -1,5 +1,9 @@
 package com.example.tecairmobile.Utilities;
 
+/** Utilities class used to construct every string needed for sql
+ * @author Dennis Jimenez
+ *
+ */
 public class Utilities {
 
     public static final String TABLE_AIRPLANE = "airplane";
