@@ -64,7 +64,6 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router, private api: ApiService, private data: DataService, private app: AppComponent, private deal: DealsComponent) {
     this.retrievePromotions();
     this.app.registerView = 'regView1';
-    this.data.home = true;
   }
 
   ngOnInit(): void {
@@ -111,7 +110,7 @@ export class HomeComponent implements OnInit {
 
     });
     await new Promise(f => setTimeout(f, 100));
-
+    this.data.home = true;
     this.router.navigateByUrl("choose-flights");
     // this.router.navigate(['choose-flights']);
   }

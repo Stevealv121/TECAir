@@ -1,7 +1,5 @@
 package com.example.tecairmobile.entities;
 
-import org.json.JSONObject;
-
 /** Represents the User
  * @author Dennis Jimenez
  *

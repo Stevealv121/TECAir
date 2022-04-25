@@ -29,6 +29,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * This class manages the process of acquiring a ticket
+ * @author Dennis Jimenez
+ */
 public class FlightReservation extends AppCompatActivity {
 
     TextView fprice;
@@ -42,7 +46,11 @@ public class FlightReservation extends AppCompatActivity {
     FlightsandRoutes far;
     int index,id;
 
-
+    /**
+     * On create method, launches the moment this activity is used.
+     * This method is used as a setup for all elements in the activity
+     * @param savedInstanceState Bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +73,13 @@ public class FlightReservation extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,showSeats);
         seats.setAdapter(adapter);
         seats.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            /**
+             * Method tied to spinner, detects items selected
+             * @param adapterView Adapter tied to spinner
+             * @param view Spinner view
+             * @param i Index
+             * @param l Total of elements
+             */
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
@@ -79,6 +94,10 @@ public class FlightReservation extends AppCompatActivity {
                 }
             }
 
+            /**
+             * Only used if no item is selected for any reason
+             * @param adapterView Adapter
+             */
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -86,8 +105,10 @@ public class FlightReservation extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method tasked with obtaining all seats from the SQLite database
+     */
     private void consultS() {
-
         SQLiteDatabase db = conn.getReadableDatabase();
         Seats seats;
         seatList = new ArrayList<>();
@@ -109,6 +130,10 @@ public class FlightReservation extends AppCompatActivity {
 
     }
 
+    /**
+     * Filters the list of seats so only the ones with the selected airplane plate are shown
+     * @param a_plate String with the airplane plate
+     */
     private void getFListS(String a_plate) {
         fseatList =new ArrayList<>();
         for(int i=0; i<seatList.size();i++){
@@ -119,6 +144,9 @@ public class FlightReservation extends AppCompatActivity {
         getListS();
     }
 
+    /**
+     * Method tasked with creating a list of strings for the spinner to show
+     */
     private void getListS() {
         showSeats = new ArrayList<>();
         showSeats.add("Please select your seat");
@@ -127,6 +155,10 @@ public class FlightReservation extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method tied to the button on screen
+     * @param view Button view
+     */
     public void onClick(View view) {
         updateT();
         createOBJ();
@@ -135,6 +167,9 @@ public class FlightReservation extends AppCompatActivity {
         startActivity(myintent);
     }
 
+    /**
+     * Updates the local database so the seat is truly reserved
+     */
     private void updateT() {
         Intent rintent = getIntent();
         id = rintent.getIntExtra("id",0);
@@ -148,6 +183,9 @@ public class FlightReservation extends AppCompatActivity {
         db.close();
     }
 
+    /**
+     * Creates an object to send to the API as an update
+     */
     private void createOBJ() {
         SQLiteDatabase db = conn.getReadableDatabase();
         Seats seats;
@@ -169,6 +207,10 @@ public class FlightReservation extends AppCompatActivity {
         }
     }
 
+    /**
+     * Calls retrofit and updates the Seat object selected on the API
+     * @param seats Object Seats
+     */
     private void updateDB(Seats seats){
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5104/")
                 .addConverterFactory(GsonConverterFactory.create()).build();

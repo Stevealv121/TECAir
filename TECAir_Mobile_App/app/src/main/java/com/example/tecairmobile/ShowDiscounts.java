@@ -25,7 +25,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
+/**
+ * This class manages the process of showing discounts to the user
+ * @author Dennis Jimenez
+ */
 public class ShowDiscounts extends AppCompatActivity {
 
     Spinner desc;
@@ -34,7 +37,11 @@ public class ShowDiscounts extends AppCompatActivity {
     ArrayList<Promotion> promList;
 
     SQLitehelper conn;
-
+    /**
+     * On create method, launches the moment this activity is used.
+     * This method is used as a setup for all elements in the activity
+     * @param savedInstanceState Bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +61,13 @@ public class ShowDiscounts extends AppCompatActivity {
         desc.setAdapter(adapter);
 
         desc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            /**
+             * Method tied to spinner, detects items selected
+             * @param adapterView Adapter tied to spinner
+             * @param view Spinner view
+             * @param i Index
+             * @param l Total of elements
+             */
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -71,7 +85,10 @@ public class ShowDiscounts extends AppCompatActivity {
                     p4.setText("");
                 }
             }
-
+            /**
+             * Only used if no item is selected for any reason
+             * @param adapterView Adapter
+             */
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -79,6 +96,9 @@ public class ShowDiscounts extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method used to consult the database and create a list of promotion objects
+     */
     private void consult() {
         SQLiteDatabase db = conn.getReadableDatabase();
 
@@ -102,6 +122,9 @@ public class ShowDiscounts extends AppCompatActivity {
         getlist();
     }
 
+    /**
+     * Creates a list of promotions so the spinner can show them
+     */
     private void getlist() {
         desclist = new ArrayList<>();
         desclist.add("Select an available Promotion");

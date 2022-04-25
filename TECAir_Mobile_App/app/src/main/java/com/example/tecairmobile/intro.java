@@ -26,9 +26,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
+/**
+ * This class manages the process of setting up and synchronizing the SQLite database
+ * @author Dennis Jimenez
+ */
 public class intro extends AppCompatActivity {
-
+    /**
+     * On create method, launches the moment this activity is used.
+     * This method is used as a setup for all elements in the activity
+     * @param savedInstanceState Bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +48,9 @@ public class intro extends AppCompatActivity {
         }
     }
 
+    /**
+     * Synchronizes the Flightsandroutes table on SQLite using the info provided by postgresql and the API
+     */
     private void sincFAR(){
         SQLitehelper conn = new SQLitehelper(this, "TecAir_BD", null,1);
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5104/")
@@ -91,6 +101,9 @@ public class intro extends AppCompatActivity {
         });
     }
 
+    /**
+     * Synchronizes the Seats table on SQLite using the info provided by postgresql and the API
+     */
     private void sincSeat() {
         SQLitehelper conn = new SQLitehelper(this, "TecAir_BD", null,1);
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5104/")
@@ -125,6 +138,10 @@ public class intro extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Synchronizes the Promotions table on SQLite using the info provided by postgresql and the API
+     */
     private void sincP() {
         SQLitehelper conn = new SQLitehelper(this, "TecAir_BD", null,1);
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5104/")
@@ -162,6 +179,9 @@ public class intro extends AppCompatActivity {
         });
     }
 
+    /**
+     * Synchronizes the User table on SQLite using the info provided by postgresql and the API
+     */
     private void sincUser() {
         SQLitehelper conn = new SQLitehelper(this, "TecAir_BD", null,1);
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5104/")
@@ -203,6 +223,10 @@ public class intro extends AppCompatActivity {
             }
         });
     }
+    /**
+     * Method tied to the on screen button
+     * @param view Button view
+     */
     public void onClick(View view) {
         Intent myintent = null;
 

@@ -10,13 +10,20 @@ import android.widget.Toast;
 public class MainMenu extends AppCompatActivity {
 
     int id;
-
+    /**
+     * On create method, launches the moment this activity is used.
+     * This method is used as a setup for all elements in the activity
+     * @param savedInstanceState Bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
     }
-
+    /**
+     * Method tied to the on screen button
+     * @param view Button view
+     */
     public void onClick(View view){
 
         Intent myintent = null;

@@ -11,12 +11,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.tecairmobile.Utilities.Utilities;
-
+/**
+ * This class manages the process of Log in
+ * @author Dennis Jimenez
+ */
 public class Login extends AppCompatActivity {
 
     EditText password, mail;
     SQLitehelper conn;
-
+    /**
+     * On create method, launches the moment this activity is used.
+     * This method is used as a setup for all elements in the activity
+     * @param savedInstanceState Bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,11 +35,17 @@ public class Login extends AppCompatActivity {
         mail = (EditText) findViewById(R.id.mail);
 
     }
-
+    /**
+     * Method tied to the on screen button
+     * @param view Button view
+     */
     public void onClick(View view) {
         consult();
     }
 
+    /**
+     * Consult method tasked with making sure the user exists
+     */
     private void consult() {
         int id;
         SQLiteDatabase db = conn.getReadableDatabase();

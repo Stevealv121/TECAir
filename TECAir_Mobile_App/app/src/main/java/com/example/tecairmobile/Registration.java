@@ -25,13 +25,20 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
+/**
+ * This class manages the process of Creating a new user
+ * @author Dennis Jimenez
+ */
 public class Registration extends AppCompatActivity {
 
     EditText name, mail, college, studentID,secondname,firstsurname,secondsurname,pass,id;
     Spinner student;
     String role;
-
+    /**
+     * On create method, launches the moment this activity is used.
+     * This method is used as a setup for all elements in the activity
+     * @param savedInstanceState Bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +62,13 @@ public class Registration extends AppCompatActivity {
         student.setAdapter(adapter);
 
         student.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            /**
+             * Method tied to spinner, detects items selected
+             * @param adapterView Adapter tied to spinner
+             * @param view Spinner view
+             * @param i Index
+             * @param l Total of elements
+             */
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String state = student.getSelectedItem().toString();
@@ -69,6 +83,10 @@ public class Registration extends AppCompatActivity {
                     studentID.setVisibility(View.VISIBLE);
                 }
             }
+            /**
+             * Only used if no item is selected for any reason
+             * @param adapterView Adapter
+             */
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -84,6 +102,10 @@ public class Registration extends AppCompatActivity {
 
     }
 
+    /**
+     * Method used to create a new User object in order to pass it to the function
+     * tasked with posting it to the API
+     */
     private void createObject() {
         User user;
         user = new User();
@@ -116,6 +138,10 @@ public class Registration extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method used to post a user to the API and by extension the database in postgresql
+     * @param user Object User
+     */
     private void posttodb(User user) {
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5104/")
                 .addConverterFactory(GsonConverterFactory.create()).build();
@@ -135,6 +161,9 @@ public class Registration extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method used to update the SQLite database and add a new user
+     */
     private void singUserUp(){
         SQLitehelper conn = new SQLitehelper(this, "TecAir_BD", null,1);
 

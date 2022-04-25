@@ -21,7 +21,10 @@ import com.example.tecairmobile.entities.Route;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * This class manages the process of searching for a flight
+ * @author Dennis Jimenez
+ */
 public class flightSearch extends AppCompatActivity {
 
     TextView f1,f2,f3,f4,f5;
@@ -30,7 +33,11 @@ public class flightSearch extends AppCompatActivity {
     ArrayList<FlightsandRoutes> farList;
     int uindex, id;
     SQLitehelper conn;
-
+    /**
+     * On create method, launches the moment this activity is used.
+     * This method is used as a setup for all elements in the activity
+     * @param savedInstanceState Bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +56,13 @@ public class flightSearch extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,showRoutes);
         routes.setAdapter(adapter);
         routes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            /**
+             * Method tied to spinner, detects items selected
+             * @param adapterView Adapter tied to spinner
+             * @param view Spinner view
+             * @param i Index
+             * @param l Total of elements
+             */
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -71,7 +85,10 @@ public class flightSearch extends AppCompatActivity {
                 }
 
             }
-
+            /**
+             * Only used if no item is selected for any reason
+             * @param adapterView Adapter
+             */
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -79,6 +96,9 @@ public class flightSearch extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method used to consult the Flightsandroutes table add them to a list
+     */
     private void consultFAR() {
         SQLiteDatabase db = conn.getReadableDatabase();
         FlightsandRoutes far;
@@ -114,6 +134,9 @@ public class flightSearch extends AppCompatActivity {
         getlistR();
     }
 
+    /**
+     * Creates a list of routes to show on the Spinner
+     */
     private void getlistR() {
         showRoutes = new ArrayList<>();
         showRoutes.add("Select Route");
@@ -122,6 +145,10 @@ public class flightSearch extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method tied to the on screen button
+     * @param view Button view
+     */
     public void onClick(View view) {
         if(f1.getText()==""){
             Toast.makeText(flightSearch.this,"Please select flight",Toast.LENGTH_LONG).show();
