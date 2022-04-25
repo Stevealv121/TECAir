@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from './services/api.service';
 import { DataService } from './services/data.service';
 
 @Component({
@@ -27,7 +29,7 @@ import { DataService } from './services/data.service';
           </div>
           <div class="open-card-BG" *ngIf="registerView == 'regView2'"><nav id="navbar"class="navbar navbar-expand-lg navbar-dark ">
           <div class="container-fluid">
-            <a id = "nav-item" class="navbar-brand" href="#">TECAir</a>
+            <a id = "nav-item" class="navbar-brand" routerLink="/choose-flights">TECAir</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -37,25 +39,16 @@ import { DataService } from './services/data.service';
                   <a id = "nav-item"class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a id = "nav-item" class="nav-link" href="/choose-flights">Book a trip</a>
+                  <a id = "nav-item" class="nav-link" routerLink="/choose-flights" >Book a trip</a>
                 </li>
                 <li class="nav-item">
-                  <a id = "nav-item" class="nav-link" href="/flights">Flight Management</a>
+                  <a id = "nav-item" class="nav-link" routerLink="/flights">Flight Management</a>
                 </li>
                 <li class="nav-item">
-                  <a id = "nav-item" class="nav-link" href="/baggage">Baggage</a>
+                  <a id = "nav-item" class="nav-link" routerLink="/baggage">Baggage</a>
                 </li>
                 <li class="nav-item">
-                  <a id = "nav-item" class="nav-link" href="/routes">Routes</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a id = "nav-item" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Account
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Log Out</a></li>
-                    <li><a class="dropdown-item" href="#">Change Password</a></li>
-                  </ul>
+                  <a id = "nav-item" class="nav-link" routerLink="/routes">Routes</a>
                 </li>
               </ul>
             </div>
@@ -83,4 +76,12 @@ import { DataService } from './services/data.service';
 export class AppComponent {
   title = 'TECAir_App_Web';
   registerView = 'regView1';
+
+  constructor(private router: Router) {
+
+  }
+
+  toBook() {
+    this.router.navigateByUrl("choose-flights");
+  }
 }

@@ -39,6 +39,9 @@ export class DealsComponent implements OnInit {
     this.getAllDeals();
   }
 
+  /**
+   * Get all the deals.
+   */
   async getAllDeals() {
     this.api.getPromotions().subscribe(data => {
       this.allDeals = data;
@@ -48,6 +51,9 @@ export class DealsComponent implements OnInit {
     this.populateDealsMatrix();
   }
 
+  /**
+   * It fills the matrix with all the retrieved deals.
+   */
   populateDealsMatrix() {
     let n_deals = this.allDeals.length;
     this.getTopDeals(n_deals);
@@ -65,6 +71,10 @@ export class DealsComponent implements OnInit {
 
   }
 
+  /**
+   * Book the selected deal.
+   * @param code promotion code.
+   */
   async bookNow(code: number) {
 
     this.api.getAppliesTo(code).subscribe(data => {
@@ -77,6 +87,10 @@ export class DealsComponent implements OnInit {
     this.router.navigateByUrl('/choose-travelers');
   }
 
+  /**
+   * Set all the stopovers from the flight selected.
+   * @param id flight id.
+   */
   async setStopsOfSelectedFlight(id: number) {
     this.api.getStopOvers(id.toString()).subscribe((data: any) => {
       for (let is = 0; is < data.length; is++) {
@@ -96,6 +110,9 @@ export class DealsComponent implements OnInit {
     console.log(this.stopOvers);
   }
 
+  /**
+   * Get all the flight information. It includes: Flight,Route,Stopovers and Airplane.
+   */
   async getFlightInfo() {
     //console.log(this.data.iDflightSelected);
     this.api.selectFlight(this.data.iDflightSelected.toString()).subscribe(data => {
@@ -128,7 +145,12 @@ export class DealsComponent implements OnInit {
   }
 
 
-
+  /**
+   * Set flight number.
+   * @param city name
+   * @param country name
+   * @returns 
+   */
   setFlightNumber(city: string, country: string) {
     let min = 100;
     let max = 999;
@@ -139,10 +161,18 @@ export class DealsComponent implements OnInit {
     return flightNumber;
   }
 
+  /**
+   * Set the flight date.
+   * @returns date with format mm/dd/yyyy
+   */
   setDate(): string {
     return this.route.month.toString() + "/" + this.route.day.toString() + "/" + this.route.year.toString();
   }
 
+  /**
+   * Get the three top deals.
+   * @param n_deals number of all the deals in the database.
+   */
   getTopDeals(n_deals: number) {
     if (n_deals < 3) {
       alert("Couldn't connect with the database");

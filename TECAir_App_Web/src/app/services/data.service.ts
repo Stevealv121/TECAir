@@ -31,7 +31,7 @@ export class DataService {
 
   constructor() {
     this.availableFlights = [];
-    this._numberTravelers = 0;
+    this._numberTravelers = 1;
   }
 
   getNumberTravelers(): number {

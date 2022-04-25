@@ -55,6 +55,10 @@ export class CheckOutComponent implements OnInit {
     this.getStopOvers();
   }
 
+  /**
+   * Choose the desired payment method.
+   * For now, there is only one payment method.
+   */
   choosePaymentMethod() {
 
     let paymentMethod = (<HTMLInputElement>document.getElementById('select')).value;
@@ -67,6 +71,9 @@ export class CheckOutComponent implements OnInit {
 
   }
 
+  /**
+   * Get all the stopovers from the flight selected.
+   */
   getStopOvers() {
     if (this.data.stopOvers.length > 0) {
       this.stepOvers = this.data.stopOvers;

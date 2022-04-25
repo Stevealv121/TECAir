@@ -71,23 +71,36 @@ export class HomeComponent implements OnInit {
 
   }
 
+  /**
+   * Displays the first promotion.
+   */
   setDisplay1() {
     this.display1 = this.block;
     this.display2 = this.none;
     this.display3 = this.none;
   }
+  /**
+   * Displays the second promotion.
+   */
   setDisplay2() {
     this.display2 = this.block;
     this.display1 = this.none;
     this.display3 = this.none;
   }
 
+  /**
+     * Displays the third promotion.
+     */
   setDisplay3() {
     this.display3 = this.block;
     this.display1 = this.none;
     this.display2 = this.none;
   }
 
+  /**
+   * Find flights given the origin and destination desired. 
+   * @param form Flight
+   */
   async findFlights(form: FlightI) {
     let from = form.origin;
     let to = form.destination;
@@ -103,6 +116,9 @@ export class HomeComponent implements OnInit {
     // this.router.navigate(['choose-flights']);
   }
 
+  /**
+   * Retrieves the first three promotions.
+   */
   async retrievePromotions() {
     this.api.getPromotions().subscribe(data => {
       for (let i = 0; i < 3; i++) {
@@ -114,6 +130,10 @@ export class HomeComponent implements OnInit {
     this.filled = true;
   }
 
+  /**
+   * Book the promotion selected.
+   * @param promotion_code promotion code.
+   */
   bookNow(promotion_code: any) {
     if (promotion_code !== undefined) {
       this.deal.bookNow(promotion_code);

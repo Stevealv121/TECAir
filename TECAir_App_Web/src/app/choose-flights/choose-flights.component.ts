@@ -56,11 +56,14 @@ export class ChooseFlightsComponent implements OnInit {
   numberOfStops: number[] = [];
   hasStopOvers: boolean = false;
   flightNumber: string = '';
+  admin: boolean = false;
+  adminColor: string = "";
 
   constructor(private router: Router, private data: DataService, private api: ApiService, private app: AppComponent) {
-    console.log(this.data.admin)
-    if (this.data.admin) {
+    this.admin = this.data.admin;
+    if (this.admin) {
       this.app.registerView = 'regView2';
+      this.adminColor = "#8A288D";
     } else {
       this.app.registerView = 'regView1';
     }
@@ -73,13 +76,15 @@ export class ChooseFlightsComponent implements OnInit {
       this.bookingForm.patchValue({ origin: "From" });
       this.bookingForm.patchValue({ destination: "To" });
     }
-    //this.initiateValues();
 
   }
 
   ngOnInit(): void {
   }
 
+  /**
+   * For each flight found, it gets each final price. 
+   */
   async getFinalPrice() {
     for (let i = 0; i < this.availableFlights.length; i++) {
       this.api.getAppliesToByFlightID(this.availableFlights[i].id.toString()).subscribe((data: any) => {
@@ -96,6 +101,9 @@ export class ChooseFlightsComponent implements OnInit {
     }
   }
 
+  /**
+   * Set the abbreviated name for the origin and destination cities.
+   */
   setAbbreviationNames() {
     for (let i = 0; i < this.availableFlights.length; i++) {
       let splitO = this.availableFlights[i].origin.split(",");
@@ -107,6 +115,12 @@ export class ChooseFlightsComponent implements OnInit {
     }
   }
 
+  /**
+   * Set the flight number for each flight.
+   * @param city City name.
+   * @param country Country name.
+   * @returns flight number.
+   */
   setFlightNumber(city: string, country: string) {
     let min = 100;
     let max = 999;
@@ -117,6 +131,10 @@ export class ChooseFlightsComponent implements OnInit {
     return flightNumber;
   }
 
+  /**
+   * For each flight gets all the stopovers.
+   * @param flight_ids get stopover by flight id.
+   */
   async getStopOvers(flight_ids: string[]) {
     for (let i = 0; i < flight_ids.length; i++) {
       console.log("id: " + flight_ids[0]);
@@ -149,6 +167,9 @@ export class ChooseFlightsComponent implements OnInit {
     // console.log(this.stepOvers);
   }
 
+  /**
+   * Initiate values from the view home.
+   */
   initiateValues() {
 
     this.availableFlights = this.data.availableFlights;
@@ -172,6 +193,10 @@ export class ChooseFlightsComponent implements OnInit {
 
   }
 
+  /**
+   * Find the flights given the origin and destination desired.
+   * @param form with origin and destination.
+   */
   async findFlights(form: FlightI) {
 
     //TODO: if dont get the data, refresh the method.
@@ -204,7 +229,11 @@ export class ChooseFlightsComponent implements OnInit {
     this.getFinalPrice();
 
   }
-
+  /**
+   * This method is triggered by the user. Choose the desired flight.
+   * @param id flight id.
+   * @param final_price flight final price.
+   */
   chooseFlight(id: number, final_price: number) {
     this.data.iDflightSelected = id;
     this.data.stopOvers = this.setStopsOfSelectedFlight(id);
@@ -213,6 +242,11 @@ export class ChooseFlightsComponent implements OnInit {
     this.router.navigateByUrl("/choose-travelers");
   }
 
+  /**
+   * Set all the stopovers for the flight selected.
+   * @param id flight id.
+   * @returns All stopovers.
+   */
   setStopsOfSelectedFlight(id: number): StopOver[] {
     let stopOvers: StopOver[] = [];
     this.stepOvers.forEach(flight => {
