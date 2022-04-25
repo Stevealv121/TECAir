@@ -21,6 +21,7 @@ export class FlightOpenComponent implements OnInit {
    * @param router Router object type. Injects the Router to the component
    * @param data DataService object type. Injects the data service to the component
    * @param api Api object type. Injects the API service to the component
+   * @param app App componet Object
    */
   constructor(private router: Router, private data: DataServiceService, private api: ApiService, private app: AppComponent) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -92,7 +93,7 @@ export class FlightOpenComponent implements OnInit {
     this.ngOnInit();
   }
   /**
-   * This function takes the html and makes a pdf with the information
+   * This function takes the user to the previus componet
    */
   goBack() {
     this.router.navigate(['flightsInfo'])

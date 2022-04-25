@@ -22,13 +22,13 @@
         </div>
         <div id="row3" class="row">
           <div class="col">
-             <label>{{user?.first_name}}</label>
+             <label>{{user?.id}} {{user?.first_name}} {{user?.second_name}} {{user?.first_surname}} {{user.second_surname}}</label>
           </div>
           <div *ngIf="scales[0] != null" class="col">
-            <label >Scale 1: {{scales[0]}}</label>
+            <label >Scale 1: {{scales[0].city}}, {{scales[0].country}}</label>
           </div>
           <div *ngIf="scales[1] != null" class="col">
-            <label>Scale 2: {{scales[1]}}</label>
+            <label>Scale 2: {{scales[1].city}}, {{scales[1].country}}</label>
           </div>
         </div>
         <div id="row1" class="row">

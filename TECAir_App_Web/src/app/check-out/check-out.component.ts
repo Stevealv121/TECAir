@@ -3,6 +3,8 @@ import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
 import { StopOver } from '../models/stopOver';
 import { DataService } from '../services/data.service';
+import { ApiService } from '../services/api.service';
+import { Book } from '../models/book';
 
 @Component({
   selector: 'app-check-out',
@@ -24,8 +26,9 @@ export class CheckOutComponent implements OnInit {
   tax: number = 0;
   total_due: number = 0;
   fare: number = 0;
+  book:Book;
 
-  constructor(private data: DataService, private app: AppComponent, private router: Router) {
+  constructor(private data: DataService, private app: AppComponent, private router: Router, private api:ApiService ) {
     if (this.data.admin) {
       this.app.registerView = 'regView2';
     } else {
@@ -42,6 +45,10 @@ export class CheckOutComponent implements OnInit {
     this.fare = this.data.final_price;
     this.tax = this.data.tax;
     this.total_due = this.data.total_due;
+    this.book={
+      user_id:0,
+      flight_id:0
+    };
   }
 
   ngOnInit(): void {
@@ -68,8 +75,17 @@ export class CheckOutComponent implements OnInit {
       this.hasStopOvers = false;
     }
   }
-
+  /**
+   * This function reserve a flight to an user
+   */
   generateBill() {
+    this.book={
+      user_id:this.data.getUser().id,
+      flight_id:this.data.iDflightSelected
+    }
+    this.api.Book(this.book).subscribe((data: any) => {
+
+    })
     this.router.navigate(['bill']);
   }
 }

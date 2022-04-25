@@ -19,7 +19,7 @@ import { Airplane } from '../models/airplane';
 //import { StopOverI } from '../models/stopOver.interface';
 import { StopOver } from '../models/stopOver';
 import { Promotion } from '../models/promotion';
-
+import { Book } from '../models/book';
 @Injectable({
   providedIn: 'root'
 })
@@ -41,6 +41,7 @@ export class ApiService {
   flightPostPath: string = this.url + "Flight";
   baggagePath: string = this.url + "Baggage";
   haspath: string = this.url + "Has";
+  bookpath: string = this.url + "Books";
 
 
   constructor(private http: HttpClient) { }
@@ -54,30 +55,73 @@ export class ApiService {
   signUp(form: UserI): Observable<ResponseI> {
     return this.http.post<ResponseI>(this.userPath, form)
   }
+  /**
+   * Send to the api a new promo to post
+   * @param form promo information
+   * @returns Api response
+   */
   postPromo(form: SimpPromotion) {
     return this.http.post<SimpPromotion>(this.promotionPath, form);
   }
+  /**
+   * Send to the api a new applies to post
+   * @param form applies information
+   * @returns Api response
+   */
   postAppliesTo(form: AppliesTo) {
     return this.http.post<AppliesTo>(this.applyToPath, form);
   }
+  /**
+   * Send to the api a new Flight to post
+   * @param form flight information
+   * @returns Api response
+   */
   postFlight(form: FlightPost) {
     return this.http.post<FlightPost>(this.flightPostPath, form);
   }
+  /**
+   * Send to the api a new scale to post
+   * @param form scale information
+   * @returns Api response
+   */
   postScale(form: Scales) {
     return this.http.post<Scales>(this.scalesPath, form);
   }
+  /**
+   * Send to the api a new Baggge to post
+   * @param form baggage information
+   * @returns Api response
+   */
   postBaggage(form: BaggageModel) {
     return this.http.post<BaggageModel>(this.baggagePath, form);
   }
+  /**
+   * Send to the api a new has to post
+   * @param form has information
+   * @returns Api response
+   */
   postHas(form: Has) {
     return this.http.post<Has>(this.haspath, form);
   }
+  /**
+   * Send to the api a new route to post
+   * @param form route information
+   * @returns Api response
+   */
   postRoute(form: Routes) {
     return this.http.post<Routes>(this.routesPath, form);
   }
   UpdateSeat(seat: SeatI) {
     let seatPath = this.url + "Seat";
     return this.http.put<SeatI>(seatPath, seat)
+  }
+  /**
+   * Send to the api a new books to post
+   * @param form books information
+   * @returns Api response
+   */
+  Book(form:Book){
+    return this.http.post<Book>(this.bookpath,form)
   }
   //gets
 
@@ -90,7 +134,6 @@ export class ApiService {
     let dealsPath = this.url + "Promotion";
     return this.http.get<PromotionI[]>(dealsPath)
   }
-
   getAppliesTo(promo_code: number): Observable<string[]> {
     let p = this.applyToPath + "/" + promo_code;
     return this.http.get<string[]>(p);
@@ -125,7 +168,10 @@ export class ApiService {
     let airplanePath = this.url + "Airplane/" + airplane_plate;
     return this.http.get<Airplane>(airplanePath)
   }
-
+  /**
+   * Asks the API for the flights in the data base
+   * @returns flight in the data Base
+   */
   getFlights() {
     const headerDict = {
       'Content-Type': 'application/json',
@@ -141,6 +187,10 @@ export class ApiService {
 
     return this.http.get<string>(this.flightPath, requestOptions);
   }
+  /**
+   * Asks the API for the flight's capacity according to the id in the data base
+   * @returns capacity in the data Base
+   */
   getFlightCapacity(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
@@ -157,7 +207,10 @@ export class ApiService {
     return this.http.get<string>(this.flightPostPath + "/Capacity/" + id, requestOptions);
   }
 
-
+  /**
+   * Asks the API for the baggage in the data base
+   * @returns baggage in the data Base
+   */
   getBaggage() {
     const headerDict = {
       'Content-Type': 'application/json',
@@ -173,7 +226,10 @@ export class ApiService {
 
     return this.http.get<string>(this.baggagePath, requestOptions);
   }
-
+  /**
+   * Asks the API for the airplanes in the data base
+   * @returns airplane in the data Base
+   */
   getAirplanes() {
     const headerDict = {
       'Content-Type': 'application/json',
@@ -190,7 +246,10 @@ export class ApiService {
     return this.http.get<string>(this.airplanePath, requestOptions);
 
   }
-
+  /**
+   * Asks the API for the routes in the data base
+   * @returns routes in the data Base
+   */
   getRoutes() {
     const headerDict = {
       'Content-Type': 'application/json',
@@ -206,7 +265,11 @@ export class ApiService {
 
     return this.http.get<string>(this.routesPath, requestOptions);
   }
-
+  /**
+   * Asks the API for the route, according its id, in the data base
+   * @param id number of the route
+   * @returns route in the data Base
+   */
   getRouteId(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
@@ -222,7 +285,11 @@ export class ApiService {
 
     return this.http.get<string>(this.routesPath + "/" + id, requestOptions);
   }
-
+  /**
+   * Asks the API for the flight's scales in the data base
+   * @param id flight number
+   * @returns flgiht in the data Base
+   */
   getScales(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
@@ -238,7 +305,10 @@ export class ApiService {
 
     return this.http.get<string>(this.scalesPath + id, requestOptions);
   }
-
+  /**
+   * Asks the API for the user in the data base
+   * @returns user in the data Base
+   */
   getUsers() {
     const headerDict = {
       'Content-Type': 'application/json',
@@ -254,7 +324,11 @@ export class ApiService {
 
     return this.http.get<string>(this.userPath, requestOptions);
   }
-
+  /**
+   * Asks the API for the flight's promotion in the data base
+   * @param id number of the flight
+   * @returns flgiht in the data Base
+   */
   getFlightPromo(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
@@ -270,6 +344,11 @@ export class ApiService {
 
     return this.http.get<string>(this.flightPromoPath + id, requestOptions);
   }
+  /**
+   * Asks the API for the flight's passengers in the data base
+   * @param id flight number
+   * @returns flgiht in the data Base
+   */
   getFlightPassengers(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
@@ -285,6 +364,11 @@ export class ApiService {
 
     return this.http.get<string>(this.passengersPath + id, requestOptions);
   }
+  /**
+   * Asks the API for the flight's baggage in the data base
+   * @param id flight number
+   * @returns flgiht in the data Base
+   */
   getFlightBaggage(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
@@ -302,12 +386,21 @@ export class ApiService {
   }
 
   //PUTS
-
+  /**
+   * send information to the api to edit a route
+   * @param form route information
+   * @returns api response
+   */
   putRoute(form: Routes) {
     return this.http.put<Routes>(this.routesPath, form);
   }
 
   // Deletes
+  /**
+   * Delete a promo according its id
+   * @param id flight number
+   * @returns api response
+   */
   deleteFlightPromo(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
@@ -323,6 +416,11 @@ export class ApiService {
 
     return this.http.delete<string>(this.deletePromoPath + id, requestOptions);
   }
+  /**
+   * Delete a passenger according its id
+   * @param id flight number
+   * @returns api response
+   */
   deleteFlightPassenger(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
@@ -338,6 +436,11 @@ export class ApiService {
 
     return this.http.delete<string>(this.booksPath + id, requestOptions);
   }
+  /**
+   * Delete a promo according its id
+   * @param id flight number
+   * @returns api response
+   */
   deleteHasBaggage(userId: number, flightId: number) {
     const headerDict = {
       'Content-Type': 'application/json',
@@ -353,6 +456,11 @@ export class ApiService {
 
     return this.http.delete<string>(this.haspath + "/" + userId + "/" + flightId, requestOptions);
   }
+ /**
+   * Delete a has according its id
+   * @param id flight number
+   * @returns api response
+   */
   deleteHas(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
@@ -368,6 +476,11 @@ export class ApiService {
 
     return this.http.delete<string>(this.haspath + "/Baggage/" + id, requestOptions);
   }
+  /**
+   * Delete a baggage according its id
+   * @param id baggage number
+   * @returns api response
+   */
   deleteBaggage(id: number) {
     const headerDict = {
       'Content-Type': 'application/json',
