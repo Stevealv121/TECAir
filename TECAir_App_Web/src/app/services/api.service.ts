@@ -19,7 +19,7 @@ import { Airplane } from '../models/airplane';
 //import { StopOverI } from '../models/stopOver.interface';
 import { StopOver } from '../models/stopOver';
 import { Promotion } from '../models/promotion';
-
+import { Book } from '../models/book';
 @Injectable({
   providedIn: 'root'
 })
@@ -41,6 +41,7 @@ export class ApiService {
   flightPostPath: string = this.url + "Flight";
   baggagePath: string = this.url + "Baggage";
   haspath: string = this.url + "Has";
+  bookpath: string = this.url + "Books";
 
 
   constructor(private http: HttpClient) { }
@@ -78,6 +79,9 @@ export class ApiService {
   UpdateSeat(seat: SeatI) {
     let seatPath = this.url + "Seat";
     return this.http.put<SeatI>(seatPath, seat)
+  }
+  Book(form:Book){
+    return this.http.post<Book>(this.bookpath,form)
   }
   //gets
 
