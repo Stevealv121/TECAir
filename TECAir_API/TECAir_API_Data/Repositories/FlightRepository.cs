@@ -76,7 +76,7 @@ namespace TECAir_API_Data.Repositories
         public async Task<IEnumerable<Flight_Route_Airplane>> GetFlightAirplaneByLocation(string _origin, string _destination)
         {
             var db = dbConnection();
-            var sql = @"SELECT route_code, id, boarding_gate, price, status, airplane_plate, origin, destination, year, month,hours,minutes,model,duration
+            var sql = @"SELECT route_code, id, boarding_gate, price, status, airplane_plate, origin, destination, day, year, month,hours,minutes,model,duration
                         FROM public.""FLIGHT""
                         NATURAL JOIN public.""ROUTE""
                         INNER JOIN public.""AIRPLANE"" ON public.""FLIGHT"".airplane_plate = public.""AIRPLANE"".plate
