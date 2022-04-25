@@ -57,12 +57,13 @@ export class ChooseFlightsComponent implements OnInit {
   hasStopOvers: boolean = false;
   flightNumber: string = '';
   admin: boolean = false;
+  adminColor: string = "";
 
   constructor(private router: Router, private data: DataService, private api: ApiService, private app: AppComponent) {
     this.admin = this.data.admin;
     if (this.admin) {
       this.app.registerView = 'regView2';
-      //this.data.admin = true;
+      this.adminColor = "#8A288D";
     } else {
       this.app.registerView = 'regView1';
     }

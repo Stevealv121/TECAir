@@ -110,7 +110,7 @@ export class ChooseTravelersComponent implements OnInit {
    * Set a tax of 13% of the final price and set the total due.
    */
   setTaxes() {
-    this.tax = (this.flight.final_price * 100) / 13;
+    this.tax = Math.round((this.flight.final_price) / 13);
     this.total_due = this.flight.final_price + this.tax;
     this.data.tax = this.tax;
     this.data.total_due = this.total_due;
@@ -166,6 +166,7 @@ export class ChooseTravelersComponent implements OnInit {
     this.travelerForm.patchValue({ first_name: this.user.first_name });
     // this.travelerForm.patchValue({ middle_name: this.user.second_name });
     this.travelerForm.patchValue({ last_name: this.user.first_surname });
+    this.data.user = this.user;
   }
 
   /**

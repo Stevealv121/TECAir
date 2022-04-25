@@ -23,6 +23,7 @@ export class SeatMapComponent implements OnInit {
   airplane: string = "";
   origin: string = "";
   destination: string = "";
+  duration: string = "";
   seatRow: string[] = ["1", "2", "3", "F", "1", "2", "3"];
   seatCol: string[] = ["A", "B", "C", "N", "D", "E", "F"];
   seats: SeatI[] = [];
@@ -41,6 +42,7 @@ export class SeatMapComponent implements OnInit {
     this.airplane = this.data.selectedAirplane;
     this.origin = this.data.origin;
     this.destination = this.data.destination;
+    this.duration = this.data.duration;
     numberOfTravelers = this.data.getNumberTravelers();
     this.subTotal = this.data.total_due;
   }
