@@ -124,12 +124,13 @@ public class Registration extends AppCompatActivity {
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                Toast.makeText(getApplicationContext(), "User Succesfully Added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Registration.this, "User Succesfully Added" + user, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Request Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Registration.this, "Request Error", Toast.LENGTH_LONG).show();
+                System.out.print(user.getId() + user.getEmail() + user.getFirst_name() + user.getSecond_name() + user.getFirst_surname() + user.getSecond_surname()+ user.getPhone() + user.getUniversity()+ user.getStudent_id() + user.getRole_name()+ user.getPassword());
             }
         });
     }
