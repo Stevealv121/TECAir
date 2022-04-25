@@ -28,6 +28,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Login to the site with password and email.
+   * @param form Login
+   */
   async onLogin(form: LoginI) {
     let password = form.password;
     let email = form.email;
@@ -39,10 +43,8 @@ export class LoginComponent implements OnInit {
         credentials = true;
         this.user = data;
         this.data.setUser(data);
-        console.log(this.user.role_name)
         if (this.user.role_name == "Worker") {
           this.data.admin = true;
-
         }
       }
       console.log(this.user);
@@ -55,6 +57,7 @@ export class LoginComponent implements OnInit {
 
     if (credentials) {
       if (this.data.admin) {
+        this.data.admin = true;
         this.router.navigateByUrl("choose-flights");
       } else {
         this.router.navigateByUrl("home");

@@ -49,9 +49,10 @@ export class SeatMapComponent implements OnInit {
     this.fillAircraft();
   }
 
+  /**
+   * Fills the airplane with all the seats.
+   */
   async fillAircraft() {
-    //TODO: fill seats for a specific airplane.
-
     this.api.getSeats(this.data.airplane_plate).subscribe(data => {
       this.seats = data;
     })
@@ -83,6 +84,9 @@ export class SeatMapComponent implements OnInit {
     }
   }
 
+  /**
+   * Select the desired seat.
+   */
   pickSeat() {
 
     let seat = document.getElementsByClassName('square') as HTMLCollectionOf<HTMLElement>;
@@ -99,6 +103,9 @@ export class SeatMapComponent implements OnInit {
 
   }
 
+  /**
+   * Set a name for each seat. For example: seat "A-1".
+   */
   setSeatsNames() {
     let seat = document.getElementsByClassName('square') as HTMLCollectionOf<HTMLElement>;
     var i;
@@ -108,10 +115,16 @@ export class SeatMapComponent implements OnInit {
     }
   }
 
+  /**
+   * Set the selected seat.
+   */
   setDataSeats() {
     this.data.selectedSeats = selectedSeats;
   }
 
+  /**
+   * Update the seat status. And assigns an user to the selected seat.
+   */
   async updateSeat() {
 
     for (let i = 0; i < this.seats.length; i++) {
@@ -131,6 +144,10 @@ export class SeatMapComponent implements OnInit {
 
 }
 
+/**
+ * Select a seat.
+ * @param this Seat
+ */
 function selectedSeat(this: any) {
   if (numberOfTravelers <= countSelectedSeats) {
     alert("You already have selected the seats for all the travelers.");

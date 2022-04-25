@@ -65,6 +65,9 @@ export class ChooseTravelersComponent implements OnInit {
     this.getFlightInfo();
   }
 
+  /**
+   * Get all the flight information. It includes: Flight,Route,Stopovers and Airplane.
+   */
   async getFlightInfo() {
     //console.log(this.data.iDflightSelected);
     this.api.selectFlight(this.data.iDflightSelected.toString()).subscribe(data => {
@@ -95,10 +98,17 @@ export class ChooseTravelersComponent implements OnInit {
     console.log(this.flight.final_price);
     this.setTaxes();
   }
+  /**
+   * Set the flight date.
+   * @returns date with format mm/dd/yyyy
+   */
   setDate(): string {
     return this.route.month.toString() + "/" + this.route.day.toString() + "/" + this.route.year.toString();
   }
 
+  /**
+   * Set a tax of 13% of the final price and set the total due.
+   */
   setTaxes() {
     this.tax = (this.flight.final_price * 100) / 13;
     this.total_due = this.flight.final_price + this.tax;
@@ -106,6 +116,9 @@ export class ChooseTravelersComponent implements OnInit {
     this.data.total_due = this.total_due;
   }
 
+  /**
+   * Get all the stopovers of the flight selected.
+   */
   getStopOvers() {
     if (this.data.stopOvers.length > 0) {
       this.stepOvers = this.data.stopOvers;
@@ -124,6 +137,9 @@ export class ChooseTravelersComponent implements OnInit {
     this.getUsers();
   }
 
+  /**
+   * Get the number of travelers.
+   */
   getTravelers() {
     let travelers = this.data.getNumberTravelers();
     for (let i = 1; i < travelers; i++) {
@@ -131,12 +147,18 @@ export class ChooseTravelersComponent implements OnInit {
     }
   }
 
+  /**
+   * Get the users.
+   */
   getUsers() {
     this.api.getUsers().subscribe((data: any) => {
       this.users = data;
     })
   }
 
+  /**
+   * Choose an user from all the users.
+   */
   selectUser() {
     let option: any = (<HTMLInputElement>document.getElementById('select')).value;
     console.log(option);
@@ -146,6 +168,10 @@ export class ChooseTravelersComponent implements OnInit {
     this.travelerForm.patchValue({ last_name: this.user.first_surname });
   }
 
+  /**
+   * Continues to the next step, selecting a seat.
+   * @param form Traveler
+   */
   continueSeats(form: TravelerI) {
 
     this.usersBooked.push(form);
