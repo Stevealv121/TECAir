@@ -58,6 +58,7 @@ export class ChooseFlightsComponent implements OnInit {
   flightNumber: string = '';
 
   constructor(private router: Router, private data: DataService, private api: ApiService, private app: AppComponent) {
+    console.log(this.data.admin)
     if (this.data.admin) {
       this.app.registerView = 'regView2';
     } else {

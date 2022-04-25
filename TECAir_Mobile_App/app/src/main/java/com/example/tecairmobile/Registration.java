@@ -48,7 +48,7 @@ public class Registration extends AppCompatActivity {
         id = (EditText) findViewById(R.id.id);
         student = findViewById(R.id.student);
 
-        List<String> states = Arrays.asList("Regular","Student");
+        List<String> states = Arrays.asList("Client","Student");
         ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item,states);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -58,13 +58,13 @@ public class Registration extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String state = student.getSelectedItem().toString();
-                if(state.equals("Regular")){
-                    role = "Regular";
+                if(state.equals("Client")){
+                    role = "Client";
                     college.setVisibility(View.INVISIBLE);
                     studentID.setVisibility(View.INVISIBLE);
                 }
                 else{
-                    role = "Student";
+                    role = "Client";
                     college.setVisibility(View.VISIBLE);
                     studentID.setVisibility(View.VISIBLE);
                 }
@@ -87,7 +87,7 @@ public class Registration extends AppCompatActivity {
     private void createObject() {
         User user;
         user = new User();
-        if(role.equals("Regular")){
+        if(role.equals("Client")){
             user.setId(Integer.parseInt(id.getText().toString()));
             user.setFirst_name(name.getText().toString());
             user.setSecond_name(secondname.getText().toString());
